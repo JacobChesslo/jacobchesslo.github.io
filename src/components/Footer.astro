@@ -1,0 +1,67 @@
+---
+import { NAVIGATIONS, SOCIALS, RESOURCES } from "./constants";
+---
+
+<footer>
+  <p>
+    &copy; {new Date().getFullYear()} - jacobchesslo.com
+  </p>
+
+  <div>
+    <div>
+      <p>Website</p>
+      <nav>
+        {
+          NAVIGATIONS.map(item => (
+            <a
+              title={item.label}
+              href={item.href}
+            >
+              {item.label}
+            </a>
+          ))
+        }
+      </nav>
+    </div>
+
+    <div>
+      <p>Socials</p>
+      <nav>
+        {
+          SOCIALS.map((item) => (
+            <a
+              title={item.label}
+              target="_blank"
+              href={item.href}
+              rel="noopener noreferrer"
+            >
+              {item.label}
+            </a>
+          ))
+        }
+      </nav>
+    </div>
+
+    <div>
+      <p>Resources</p>
+      <nav>
+        {
+          RESOURCES.map((item) => (
+            <a
+              title={item.label}
+              href={item.href}
+              target={item.href.includes("http") ? "_blank" : undefined}
+              rel={
+                item.href.includes("http")
+                  ? "noopener noreferrer"
+                  : undefined
+              }
+            >
+              {item.label}
+            </a>
+          ))
+        }
+      </nav>
+    </div>
+  </div>
+</footer>

@@ -1,14 +1,19 @@
 ---
+import { NAVIGATIONS } from './constants'
 ---
 
 <header>
   <h1>Jacob Chesslo</h1>
   <nav>
-    <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/about">About</a></li>
-      <li><a href="/projects">Projects</a></li>
-      <li><a href="/contact">Contact</a></li>
-    </ul>
+    {
+      NAVIGATIONS.map(item => (
+        <a
+          title={item.label}
+          href={item.href}
+        >
+          {item.label}
+        </a>
+      ))
+    }
   </nav>
 </header>
