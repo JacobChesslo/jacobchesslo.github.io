@@ -2,66 +2,77 @@
 import { NAVIGATIONS, SOCIALS, RESOURCES } from "./constants";
 ---
 
-<footer>
-  <p>
-    &copy; {new Date().getFullYear()} - jacobchesslo.com
-  </p>
-
-  <div>
-    <div>
-      <p>Website</p>
-      <nav>
-        {
-          NAVIGATIONS.map(item => (
-            <a
-              title={item.label}
-              href={item.href}
-            >
-              {item.label}
-            </a>
-          ))
-        }
-      </nav>
-    </div>
-
-    <div>
-      <p>Socials</p>
-      <nav>
-        {
-          SOCIALS.map((item) => (
-            <a
-              title={item.label}
-              target="_blank"
-              href={item.href}
-              rel="noopener noreferrer"
-            >
-              {item.label}
-            </a>
-          ))
-        }
-      </nav>
-    </div>
-
-    <div>
-      <p>Resources</p>
-      <nav>
-        {
-          RESOURCES.map((item) => (
-            <a
-              title={item.label}
-              href={item.href}
-              target={item.href.includes("http") ? "_blank" : undefined}
-              rel={
-                item.href.includes("http")
-                  ? "noopener noreferrer"
-                  : undefined
-              }
-            >
-              {item.label}
-            </a>
-          ))
-        }
-      </nav>
+<footer class="relative starfield-bg text-gray-200 border-t border-blue-900 mt-12 overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none z-0"></div>
+  <div class="relative z-10 max-w-5xl mx-auto px-6 py-10">
+    <p class="text-center text-sm mb-8 text-blue-300 flex items-center justify-center gap-2">
+      <span class="animate-pulse text-xl">🪐</span>
+      &copy; {new Date().getFullYear()} - jacobchesslo.com
+      <span class="animate-pulse text-xl">✨</span>
+    </p>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center sm:text-left">
+      <div>
+        <p class="font-semibold text-blue-200 mb-2 tracking-wide flex items-center gap-1">
+          <span class="text-blue-400">☄️</span> Website
+        </p>
+        <nav class="flex flex-col gap-1">
+          {
+            NAVIGATIONS.map(item => (
+              <a
+                title={item.label}
+                href={item.href}
+                class="text-blue-300 hover:text-white transition-colors duration-150 px-2 py-1 rounded hover:bg-blue-900/40"
+              >
+                {item.label}
+              </a>
+            ))
+          }
+        </nav>
+      </div>
+      <div>
+        <p class="font-semibold text-blue-200 mb-2 tracking-wide flex items-center gap-1">
+          <span class="text-purple-400">🛰️</span> Socials
+        </p>
+        <nav class="flex flex-col gap-1">
+          {
+            SOCIALS.map((item) => (
+              <a
+                title={item.label}
+                target="_blank"
+                href={item.href}
+                rel="noopener noreferrer"
+                class="text-purple-300 hover:text-white transition-colors duration-150 px-2 py-1 rounded hover:bg-purple-900/40"
+              >
+                {item.label}
+              </a>
+            ))
+          }
+        </nav>
+      </div>
+      <div>
+        <p class="font-semibold text-blue-200 mb-2 tracking-wide flex items-center gap-1">
+          <span class="text-teal-400">🌌</span> Resources
+        </p>
+        <nav class="flex flex-col gap-1">
+          {
+            RESOURCES.map((item) => (
+              <a
+                title={item.label}
+                href={item.href}
+                target={item.href.includes("http") ? "_blank" : undefined}
+                rel={
+                  item.href.includes("http")
+                    ? "noopener noreferrer"
+                    : undefined
+                }
+                class="text-teal-300 hover:text-white transition-colors duration-150 px-2 py-1 rounded hover:bg-teal-900/40"
+              >
+                {item.label}
+              </a>
+            ))
+          }
+        </nav>
+      </div>
     </div>
   </div>
 </footer>

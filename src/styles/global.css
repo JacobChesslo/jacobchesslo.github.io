@@ -1,0 +1,123 @@
+@import "tailwindcss";
+
+/*
+  Space Themed Global Styles with Light & Dark Themes
+  --------------------------------------------------
+  - Add .theme-light or .theme-dark to <body> or <html> to toggle themes.
+  - Default is dark if no theme class is present.
+  - You can toggle by setting: <body class="theme-light"> or <body class="theme-dark">
+*/
+
+/* Theme Variables */
+:root {
+  --color-bg: #090b1a;
+  --color-bg-gradient: linear-gradient(135deg, #0a1026 0%, #1a1a40 100%);
+  --color-text: #e0e6f7;
+  --color-accent: #38bdf8;
+  --color-star1: #fff;
+  --color-star2: #a5b4fc;
+  --color-star3: #f472b6;
+  --color-star4: #38bdf8;
+  --color-star5: #facc15;
+}
+
+.theme-light {
+  --color-bg: #f5f7fa;
+  --color-bg-gradient: linear-gradient(135deg, #e0e6f7 0%, #b6c6e3 100%);
+  --color-text: #1a1a40;
+  --color-accent: #7c3aed;
+  --color-star1: #fff;
+  --color-star2: #7c3aed;
+  --color-star3: #f472b6;
+  --color-star4: #38bdf8;
+  --color-star5: #facc15;
+}
+
+.theme-dark {
+  --color-bg: #090b1a;
+  --color-bg-gradient: linear-gradient(135deg, #0a1026 0%, #1a1a40 100%);
+  --color-text: #e0e6f7;
+  --color-accent: #38bdf8;
+  --color-star1: #fff;
+  --color-star2: #a5b4fc;
+  --color-star3: #f472b6;
+  --color-star4: #38bdf8;
+  --color-star5: #facc15;
+}
+
+/* Global background and text */
+body {
+  background: var(--color-bg-gradient);
+  color: var(--color-text);
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  min-height: 100vh;
+  transition: background 0.5s, color 0.5s;
+}
+/* Space-themed starfield background for footer or sections */
+.starfield-bg {
+  background: var(--color-bg);
+  position: relative;
+  overflow: hidden;
+}
+.starfield-bg::before, .starfield-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(var(--color-star1) 1px, transparent 1px),
+    radial-gradient(var(--color-star2) 1.5px, transparent 1.5px),
+    radial-gradient(var(--color-star3) 1.2px, transparent 1.2px),
+    radial-gradient(var(--color-star4) 0.8px, transparent 0.8px),
+    radial-gradient(var(--color-star5) 1.2px, transparent 1.2px);
+  background-size:
+    120px 180px,
+    200px 140px,
+    160px 220px,
+    240px 160px,
+    300px 200px;
+  background-position:
+    13px 47px,
+    88px 120px,
+    55px 200px,
+    170px 30px,
+    210px 180px;
+  opacity: 0.25;
+  animation: starfield-move 60s linear infinite;
+}
+.starfield-bg::after {
+  opacity: 0.15;
+  filter: blur(1px);
+  animation-duration: 120s;
+}
+@keyframes starfield-move {
+  0% { background-position: 0 0, 40px 60px, 80px 20px, 60px 100px, 100px 50px; }
+  100% { background-position: 80px 80px, 160px 180px, 240px 120px, 160px 200px, 200px 100px; }
+}
+
+/* Cosmic accent for links and buttons */
+a, .accent {
+  color: var(--color-accent);
+  transition: color 0.3s;
+}
+a:hover, .accent:hover {
+  color: var(--color-star3);
+  text-shadow: 0 0 8px var(--color-accent), 0 0 2px var(--color-star2);
+}
+
+/* Optional: cosmic glow for headers */
+h1, h2, h3 {
+  text-shadow: 0 0 8px var(--color-accent), 0 0 2px var(--color-star2);
+}
+
+/* Optional: add a nebula gradient overlay for extra space vibes */
+.nebula-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(ellipse at 60% 40%, #7c3aed44 0%, transparent 70%),
+              radial-gradient(ellipse at 30% 70%, #38bdf844 0%, transparent 80%);
+  mix-blend-mode: lighten;
+}

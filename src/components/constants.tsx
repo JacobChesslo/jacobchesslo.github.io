@@ -66,6 +66,7 @@ interface IHref {
 
 export const NAVIGATIONS: IHref[] = [
   {label: "Home", href: "/"},
+  {label: "Work", href: "/"},
   {label: "About", href: "/about"},
   {label: "Projects", href: "/projects"},
   {label: "Contact", href: "/contact"},

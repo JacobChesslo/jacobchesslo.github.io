@@ -4,8 +4,9 @@ import { QUOTES } from "./constants"
 const quote = QUOTES[Math.floor(Math.random() * QUOTES.length)];
 ---
 
-<blockquote>
-  {quote.quote}
-  <br />
-  <cite>{quote.author}</cite>
+<blockquote class="bg-gradient-to-br from-blue-900/80 to-purple-900/70 border-l-4 border-blue-400 shadow-lg rounded-xl p-6 my-8 max-w-2xl mx-auto text-lg text-blue-100 relative">
+  <span class="block mb-2 text-2xl leading-none text-blue-300">“</span>
+  <span class="block mb-4">{quote.quote}</span>
+  <cite class="block text-right text-sm text-purple-300 font-semibold mt-2">— {quote.author}</cite>
+  <span class="absolute top-2 right-4 text-purple-400 text-xl animate-pulse">✨</span>
 </blockquote>
