@@ -1,5 +1,5 @@
 
-interface IQuote {
+export interface IQuote {
   quote: string;
   author: string;
 }
@@ -79,6 +79,6 @@ export const SOCIALS: IHref[] = [
 
 export const RESOURCES: IHref[] = [
   {label: "Resume", href: "https://github.com/jacobchesslo"},
-  {label: "Curriculum-Vitae", href: "https://github.com/jacobchesslo"},
+  {label: "Curriculum Vitae", href: "/cv"},
   {label: "Source Code", href: "https://github.com/jacobchesslo/website"},
 ];

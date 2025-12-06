@@ -3,8 +3,47 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
-  <main>
-    <h1>Contact Me</h1>
-    <p>You can reach me via email at <a href="mailto:jacobchesslo@gmail.com">jacobchesslo@gmail.com</a>.</p>
+  <main class="py-12">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <h1 class="text-4xl md:text-5xl font-bold text-[#fef5e7] mb-4" style="font-family: 'Space Grotesk', sans-serif; text-shadow: 3px 3px 0 #e94560;">
+        Contact Me
+      </h1>
+      <div class="w-24 h-1 mx-auto bg-gradient-to-r from-[#e94560] via-[#f8b500] to-[#0f9b8e] rounded-full"></div>
+    </div>
+
+    <!-- Contact Card -->
+    <div class="max-w-md mx-auto">
+      <div class="retro-card text-center">
+        <!-- Decorative starburst -->
+        <div class="flex justify-center mb-6">
+          <svg class="w-12 h-12 text-[#f8b500]" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="12,2 15,9 22,9 16,14 18,22 12,17 6,22 8,14 2,9 9,9" />
+          </svg>
+        </div>
+
+        <p class="text-[#fef5e7]/80 mb-6" style="font-family: 'Outfit', sans-serif;">
+          Want to get in touch? I'd love to hear from you!
+        </p>
+
+        <a
+          href="mailto:jacobchesslo@gmail.com"
+          class="retro-btn inline-block"
+        >
+          Send Email
+        </a>
+
+        <p class="mt-4 text-[#0f9b8e] text-sm" style="font-family: 'Space Grotesk', sans-serif;">
+          jacobchesslo@gmail.com
+        </p>
+      </div>
+    </div>
+
+    <!-- Decorative bottom element -->
+    <div class="flex justify-center items-center gap-4 mt-12">
+      <span class="text-[#e94560]">*</span>
+      <div class="w-2 h-2 rounded-full bg-[#f8b500]"></div>
+      <span class="text-[#0f9b8e]">*</span>
+    </div>
   </main>
 </Layout>

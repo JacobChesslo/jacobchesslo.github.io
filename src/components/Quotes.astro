@@ -1,12 +1,42 @@
 ---
 import { QUOTES } from "./constants"
 
-const quote = QUOTES[Math.floor(Math.random() * QUOTES.length)];
+const index = Math.floor(Math.random() * QUOTES.length);
+const quote = QUOTES[index];
 ---
 
-<blockquote class="bg-gradient-to-br from-blue-900/80 to-purple-900/70 border-l-4 border-blue-400 shadow-lg rounded-xl p-6 my-8 max-w-2xl mx-auto text-lg text-blue-100 relative">
-  <span class="block mb-2 text-2xl leading-none text-blue-300">“</span>
-  <span class="block mb-4">{quote.quote}</span>
-  <cite class="block text-right text-sm text-purple-300 font-semibold mt-2">— {quote.author}</cite>
-  <span class="absolute top-2 right-4 text-purple-400 text-xl animate-pulse">✨</span>
+<script>
+  import { initQuoteRotator } from "../scripts/quote-rotator";
+
+  const block = document.getElementById('quote-block');
+  if (block) {
+    const quotes = JSON.parse(block.dataset.quotes || '[]');
+    const index = parseInt(block.dataset.index || '0');
+    initQuoteRotator(quotes, index);
+  }
+</script>
+
+<blockquote
+  id="quote-block"
+  class="relative bg-gradient-to-br from-[#0f3460]/90 to-[#1a1a2e]/90 border-2 border-[#e94560] shadow-xl p-8 my-8 max-w-2xl mx-auto text-lg text-[#fef5e7] transition-all duration-500 ease-in-out"
+  style="border-radius: 24px 8px 24px 8px; font-family: 'Outfit', sans-serif;"
+  data-quotes={JSON.stringify(QUOTES)}
+  data-initial-index={index}
+>
+  <!-- Retro corner accents -->
+  <div class="absolute -top-1 -left-1 w-4 h-4 border-t-2 border-l-2 border-[#f8b500]" style="border-radius: 8px 0 0 0;"></div>
+  <div class="absolute -bottom-1 -right-1 w-4 h-4 border-b-2 border-r-2 border-[#0f9b8e]" style="border-radius: 0 0 8px 0;"></div>
+
+  <!-- Quote mark -->
+  <span class="absolute -top-3 -right-3 text-[#f8b500] text-2xl" style="text-shadow: 0 0 10px #f8b500;">"</span>
+
+  <div id="quote-content" class="transition-all duration-500 ease-in-out">
+    <span id="quote-text" class="block mb-4 text-[#fef5e7] italic leading-relaxed">{quote.quote}</span>
+    <cite id="quote-author" class="block text-right text-sm text-[#0f9b8e] font-semibold mt-3 not-italic tracking-wider uppercase" style="font-family: 'Space Grotesk', sans-serif;">
+      — {quote.author}
+    </cite>
+  </div>
+
+  <!-- Decorative bottom swoosh -->
+  <div class="absolute bottom-2 left-1/2 -translate-x-1/2 w-16 h-0.5 bg-gradient-to-r from-[#e94560] via-[#f8b500] to-[#0f9b8e] rounded-full opacity-60"></div>
 </blockquote>

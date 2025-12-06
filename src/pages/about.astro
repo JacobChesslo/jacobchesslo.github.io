@@ -3,8 +3,82 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
-  <main>
-    <h1>About Me</h1>
-    <p>Hello! I'm a software developer passionate about building web applications and learning new technologies.</p>
+  <main class="py-12">
+    <!-- Hero Header -->
+    <div class="text-center mb-12">
+      <h1 class="text-4xl md:text-5xl font-bold text-[#fef5e7] mb-3" style="font-family: 'Space Grotesk', sans-serif; text-shadow: 3px 3px 0 #e94560;">
+        Jacob Chesslo
+      </h1>
+      <p class="text-[#0f9b8e] italic text-sm tracking-wide" style="font-family: 'Outfit', sans-serif;">they/them/theirs • he/him/his</p>
+      <div class="w-24 h-1 mx-auto bg-gradient-to-r from-[#e94560] via-[#f8b500] to-[#0f9b8e] rounded-full mt-4"></div>
+    </div>
+
+    <!-- Education Section -->
+    <section class="mb-12">
+      <div class="flex items-center gap-4 mb-6">
+        <span class="text-[#f8b500] text-2xl">*</span>
+        <h2 class="text-2xl font-bold text-[#f8b500] uppercase tracking-widest" style="font-family: 'Space Grotesk', sans-serif;">
+          My Love of Education
+        </h2>
+        <div class="flex-1 h-px bg-gradient-to-r from-[#f8b500] to-transparent"></div>
+      </div>
+
+      <div class="grid gap-4 ml-8">
+        <div class="retro-card group hover:border-[#f8b500] transition-colors">
+          <h3 class="text-lg font-semibold text-[#fef5e7] group-hover:text-[#f8b500] transition-colors" style="font-family: 'Space Grotesk', sans-serif;">
+            Albert Gallatin Area School District
+          </h3>
+        </div>
+        <div class="retro-card group hover:border-[#f8b500] transition-colors">
+          <h3 class="text-lg font-semibold text-[#fef5e7] group-hover:text-[#f8b500] transition-colors" style="font-family: 'Space Grotesk', sans-serif;">
+            Florida Institute of Technology
+          </h3>
+        </div>
+        <div class="retro-card group hover:border-[#f8b500] transition-colors">
+          <h3 class="text-lg font-semibold text-[#fef5e7] group-hover:text-[#f8b500] transition-colors" style="font-family: 'Space Grotesk', sans-serif;">
+            Continuing
+          </h3>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section>
+      <div class="flex items-center gap-4 mb-6">
+        <span class="text-[#0f9b8e] text-2xl">*</span>
+        <h2 class="text-2xl font-bold text-[#0f9b8e] uppercase tracking-widest" style="font-family: 'Space Grotesk', sans-serif;">
+          My Love to Make a Difference
+        </h2>
+        <div class="flex-1 h-px bg-gradient-to-r from-[#0f9b8e] to-transparent"></div>
+      </div>
+
+      <div class="grid gap-4 ml-8">
+        <div class="retro-card group hover:border-[#0f9b8e] transition-colors">
+          <h3 class="text-lg font-semibold text-[#fef5e7] group-hover:text-[#0f9b8e] transition-colors" style="font-family: 'Space Grotesk', sans-serif;">
+            Eagle Scout
+          </h3>
+        </div>
+        <div class="retro-card group hover:border-[#0f9b8e] transition-colors">
+          <h3 class="text-lg font-semibold text-[#fef5e7] group-hover:text-[#0f9b8e] transition-colors" style="font-family: 'Space Grotesk', sans-serif;">
+            Research Assistant in High Energy Particle Physics
+          </h3>
+        </div>
+        <div class="retro-card group hover:border-[#0f9b8e] transition-colors">
+          <h3 class="text-lg font-semibold text-[#fef5e7] group-hover:text-[#0f9b8e] transition-colors" style="font-family: 'Space Grotesk', sans-serif;">
+            Pi Lambda Phi
+          </h3>
+        </div>
+        <div class="retro-card group hover:border-[#0f9b8e] transition-colors">
+          <h3 class="text-lg font-semibold text-[#fef5e7] group-hover:text-[#0f9b8e] transition-colors" style="font-family: 'Space Grotesk', sans-serif;">
+            ENSCO, Inc.
+          </h3>
+        </div>
+        <div class="retro-card group hover:border-[#0f9b8e] transition-colors">
+          <h3 class="text-lg font-semibold text-[#fef5e7] group-hover:text-[#0f9b8e] transition-colors" style="font-family: 'Space Grotesk', sans-serif;">
+            Blue Origin
+          </h3>
+        </div>
+      </div>
+    </section>
   </main>
 </Layout>

@@ -2,54 +2,60 @@
 import { NAVIGATIONS } from './constants'
 ---
 
-<header class="bg-gray-900 text-white px-6 py-4 shadow-md">
+<header class="relative z-20 bg-gradient-to-r from-[#1a1a2e] via-[#16213e] to-[#1a1a2e] border-b-2 border-[#e94560] px-6 py-4 shadow-lg">
+  <!-- Retro accent line -->
+  <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#e94560] via-[#f8b500] to-[#0f9b8e]"></div>
+
   <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
-    <h1 class="text-2xl font-bold tracking-tight">Jacob Chesslo</h1>
-    <nav class="flex gap-4 mt-2 sm:mt-0">
+    <h1 class="text-2xl font-bold tracking-widest uppercase text-[#fef5e7]" style="font-family: 'Space Grotesk', sans-serif; text-shadow: 2px 2px 0 #e94560;">
+      Jacob Chesslo
+    </h1>
+    <nav class="flex gap-1 mt-2 sm:mt-0">
       {
         NAVIGATIONS.map(item => (
           <a
             title={item.label}
             href={item.href}
-            class="text-gray-300 hover:text-white transition-colors duration-150 font-medium px-2 py-1 rounded hover:bg-gray-800"
+            class="text-[#fef5e7] hover:text-[#f8b500] transition-all duration-200 font-medium px-3 py-1 rounded-full hover:bg-[#e94560]/20 uppercase text-sm tracking-wider"
+            style="font-family: 'Space Grotesk', sans-serif;"
           >
             {item.label}
           </a>
         ))
       }
     </nav>
-    <!-- Theme Dropdown -->
+    <!-- Theme Dropdown - Retro Style -->
     <div class="relative ml-4">
       <label for="theme-select" class="sr-only">Theme</label>
       <select
         id="theme-select"
-        class="theme-dropdown px-8 py-1 rounded-full bg-gradient-to-r from-indigo-900/80 via-blue-900/80 to-purple-900/80 text-accent border-2 border-accent shadow-lg focus:outline-none focus:ring-2 focus:ring-accent transition-all duration-200 appearance-none cursor-pointer font-semibold"
+        class="theme-dropdown px-6 py-1.5 rounded-full bg-[#0f3460] text-[#f8b500] border-2 border-[#f8b500] shadow-lg focus:outline-none focus:ring-2 focus:ring-[#e94560] transition-all duration-200 appearance-none cursor-pointer font-semibold uppercase text-sm tracking-wider"
         aria-label="Select theme"
-        style="box-shadow: 0 0 8px 2px var(--color-accent, #38bdf8), 0 2px 8px #0006; background-blend-mode: lighten; min-width: 120px;"
+        style="font-family: 'Space Grotesk', sans-serif; box-shadow: 0 4px 0 #1a1a2e, 0 0 12px #f8b50033; min-width: 100px;"
       >
-        <option value="system">💻</option>
-        <option value="light">🌝</option>
-        <option value="dark">🌚</option>
+        <option value="system">Auto</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
       </select>
-      <!-- Custom dropdown arrow with cosmic accent -->
-      <span class="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-accent text-lg drop-shadow-glow" aria-hidden="true" style="text-shadow: 0 0 6px var(--color-accent, #38bdf8);">
-        <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
-          <path d="M6 8l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- Retro dropdown arrow -->
+      <span class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[#f8b500]" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none">
+          <path d="M6 8l4 4 4-4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </span>
       <style>
-        .text-accent {
-          color: var(--color-accent, #38bdf8);
-        }
-        .border-accent {
-          border-color: var(--color-accent, #38bdf8);
-        }
-        .drop-shadow-glow {
-          filter: drop-shadow(0 0 6px var(--color-accent, #38bdf8));
-        }
         .theme-dropdown:focus {
-          outline: 2px solid var(--color-accent, #38bdf8);
+          outline: 2px solid #e94560;
           outline-offset: 2px;
+        }
+        .theme-dropdown:hover {
+          background: #16213e;
+          transform: translateY(-1px);
+          box-shadow: 0 5px 0 #1a1a2e, 0 0 16px #f8b50044;
+        }
+        .theme-dropdown option {
+          background: #1a1a2e;
+          color: #fef5e7;
         }
       </style>
     </div>
