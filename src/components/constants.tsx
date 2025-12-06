@@ -78,7 +78,6 @@ export const SOCIALS: IHref[] = [
 ];
 
 export const RESOURCES: IHref[] = [
-  {label: "Resume", href: "https://github.com/jacobchesslo"},
   {label: "Curriculum Vitae", href: "/cv"},
-  {label: "Source Code", href: "https://github.com/jacobchesslo/website"},
+  {label: "Source Code", href: "https://github.com/jacobchesslo/jacobchesslo.github.io"},
 ];
