@@ -34,8 +34,6 @@ export function initQuoteRotator(quotes: IQuote[], initialIndex: number) {
       contentEl.style.height = startHeight + 'px';
       contentEl.style.overflow = 'hidden';
 
-      contentEl.offsetHeight;
-
       contentEl.style.height = endHeight + 'px';
 
       setTimeout(() => {
