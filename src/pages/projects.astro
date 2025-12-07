@@ -1,57 +1,50 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+import { GITHUB_URL } from '../components/constants';
+import ExternalLink from '../components/ExternalLink';
+
+import ProjectCard from '../components/ProjectCard';
 ---
 
 <Layout>
   <main class="py-12">
     <!-- Header -->
     <div class="text-center mb-12">
-      <h1 class="text-4xl md:text-5xl font-bold text-[#fef5e7] mb-4" style="font-family: 'Space Grotesk', sans-serif; text-shadow: 3px 3px 0 #e94560;">
+      <h1
+        class="text-4xl md:text-5xl font-bold text-[#fef5e7] mb-4"
+        style="font-family: 'Space Grotesk', sans-serif; text-shadow: 3px 3px 0 #e94560;"
+      >
         My Projects
       </h1>
-      <div class="w-24 h-1 mx-auto bg-gradient-to-r from-[#e94560] via-[#f8b500] to-[#0f9b8e] rounded-full"></div>
+      <div
+        class="w-24 h-1 mx-auto bg-gradient-to-r from-[#e94560] via-[#f8b500] to-[#0f9b8e] rounded-full"
+      >
+      </div>
     </div>
 
     <!-- Projects Grid -->
     <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      <!-- Project A -->
-      <div class="retro-card group hover:border-[#e94560] transition-all duration-300 hover:-translate-y-1">
-        <div class="flex items-center gap-2 mb-3">
-          <span class="text-[#e94560] text-xl">*</span>
-          <h3 class="text-lg font-bold text-[#e94560] uppercase tracking-wider" style="font-family: 'Space Grotesk', sans-serif;">
-            Project A
-          </h3>
-        </div>
-        <p class="text-[#fef5e7]/80 text-sm" style="font-family: 'Outfit', sans-serif;">
-          A web app for task management.
-        </p>
-      </div>
-
-      <!-- Project B -->
-      <div class="retro-card group hover:border-[#f8b500] transition-all duration-300 hover:-translate-y-1">
-        <div class="flex items-center gap-2 mb-3">
-          <span class="text-[#f8b500] text-xl">*</span>
-          <h3 class="text-lg font-bold text-[#f8b500] uppercase tracking-wider" style="font-family: 'Space Grotesk', sans-serif;">
-            Project B
-          </h3>
-        </div>
-        <p class="text-[#fef5e7]/80 text-sm" style="font-family: 'Outfit', sans-serif;">
-          A personal blog built with Astro.
-        </p>
-      </div>
-
-      <!-- Project C -->
-      <div class="retro-card group hover:border-[#0f9b8e] transition-all duration-300 hover:-translate-y-1">
-        <div class="flex items-center gap-2 mb-3">
-          <span class="text-[#0f9b8e] text-xl">*</span>
-          <h3 class="text-lg font-bold text-[#0f9b8e] uppercase tracking-wider" style="font-family: 'Space Grotesk', sans-serif;">
-            Project C
-          </h3>
-        </div>
-        <p class="text-[#fef5e7]/80 text-sm" style="font-family: 'Outfit', sans-serif;">
-          An open-source library for data visualization.
-        </p>
-      </div>
+      {
+        [
+          {
+            name: 'jacobchesslo.github.io',
+            children: (
+              <>
+                A personal website. Built with
+                <ExternalLink href="https://astro.build">Astro</ExternalLink>,
+                <ExternalLink href="https://www.solidjs.com">SolidJS</ExternalLink>,
+                <ExternalLink href="https://tailwindcss.com">TailwindCSS</ExternalLink>, and
+                <ExternalLink href="https://vite.dev">Vite</ExternalLink>.
+              </>
+            ),
+          },
+        ].map((item) => (
+          <ProjectCard name={item.name} href={`${GITHUB_URL}/${item?.name}`}>
+            {item.children}
+          </ProjectCard>
+        ))
+      }
     </div>
   </main>
 </Layout>

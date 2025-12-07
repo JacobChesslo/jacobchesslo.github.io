@@ -1,21 +1,30 @@
 ---
-import { NAVIGATIONS } from './constants'
+import { NAVIGATIONS } from './constants';
 ---
 
-<header class="relative z-20 bg-gradient-to-r from-[#1a1a2e] via-[#16213e] to-[#1a1a2e] border-b-2 border-[#e94560] px-4 sm:px-6 py-4 shadow-lg">
+<header
+  class="relative z-20 bg-gradient-to-r from-[#1a1a2e] via-[#16213e] to-[#1a1a2e] border-b-2 border-[#e94560] px-4 sm:px-6 py-4 shadow-lg"
+>
   <!-- Retro accent line -->
-  <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#e94560] via-[#f8b500] to-[#0f9b8e]"></div>
+  <div
+    class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#e94560] via-[#f8b500] to-[#0f9b8e]"
+  >
+  </div>
 
   <div class="max-w-5xl mx-auto flex items-center justify-between gap-4">
     <!-- Logo -->
-    <a href="/" class="text-xl sm:text-2xl font-bold tracking-widest uppercase text-[#fef5e7] hover:text-[#f8b500] transition-colors" style="font-family: 'Space Grotesk', sans-serif; text-shadow: 2px 2px 0 #e94560;">
+    <a
+      href="/"
+      class="text-xl sm:text-2xl font-bold tracking-widest uppercase text-[#fef5e7] hover:text-[#f8b500] transition-colors"
+      style="font-family: 'Space Grotesk', sans-serif; text-shadow: 2px 2px 0 #e94560;"
+    >
       Jacob Chesslo
     </a>
 
     <!-- Desktop Navigation -->
     <nav class="hidden md:flex items-center gap-1">
       {
-        NAVIGATIONS.map(item => (
+        NAVIGATIONS.map((item) => (
           <a
             title={item.label}
             href={item.href}
@@ -39,9 +48,17 @@ import { NAVIGATIONS } from './constants'
           <option value="light">Light</option>
           <option value="dark">Dark</option>
         </select>
-        <span class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-[#f8b500]" aria-hidden="true">
+        <span
+          class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-[#f8b500]"
+          aria-hidden="true"
+        >
           <svg width="12" height="12" viewBox="0 0 20 20" fill="none">
-            <path d="M6 8l4 4 4-4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path
+              d="M6 8l4 4 4-4"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
           </svg>
         </span>
       </div>
@@ -55,22 +72,33 @@ import { NAVIGATIONS } from './constants'
       aria-expanded="false"
     >
       <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16"></path>
       </svg>
-      <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      <svg
+        id="close-icon"
+        class="w-6 h-6 hidden"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M6 18L18 6M6 6l12 12"></path>
       </svg>
     </button>
   </div>
 
   <!-- Mobile Navigation -->
-  <nav
-    id="mobile-menu"
-    class="hidden md:hidden mt-4 pb-2 border-t border-[#e94560]/30 pt-4"
-  >
+  <nav id="mobile-menu" class="hidden md:hidden mt-4 pb-2 border-t border-[#e94560]/30 pt-4">
     <div class="flex flex-col gap-2">
       {
-        NAVIGATIONS.map(item => (
+        NAVIGATIONS.map((item) => (
           <a
             title={item.label}
             href={item.href}
@@ -94,9 +122,17 @@ import { NAVIGATIONS } from './constants'
           <option value="light">Light</option>
           <option value="dark">Dark</option>
         </select>
-        <span class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[#f8b500]" aria-hidden="true">
+        <span
+          class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[#f8b500]"
+          aria-hidden="true"
+        >
           <svg width="14" height="14" viewBox="0 0 20 20" fill="none">
-            <path d="M6 8l4 4 4-4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path
+              d="M6 8l4 4 4-4"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
           </svg>
         </span>
       </div>
@@ -112,7 +148,9 @@ import { NAVIGATIONS } from './constants'
     .theme-dropdown:hover {
       background: #16213e;
       transform: translateY(-1px);
-      box-shadow: 0 5px 0 #1a1a2e, 0 0 16px #f8b50044;
+      box-shadow:
+        0 5px 0 #1a1a2e,
+        0 0 16px #f8b50044;
     }
     .theme-dropdown option,
     .theme-dropdown-mobile option {
@@ -155,7 +193,7 @@ import { NAVIGATIONS } from './constants'
     }
 
     function setDropdowns(theme) {
-      const value = (theme === 'light' || theme === 'dark') ? theme : 'system';
+      const value = theme === 'light' || theme === 'dark' ? theme : 'system';
       if (selectDesktop) selectDesktop.value = value;
       if (selectMobile) selectMobile.value = value;
     }
@@ -174,14 +212,18 @@ import { NAVIGATIONS } from './constants'
     let systemListener;
     function watchSystemTheme() {
       if (systemListener) {
-        window.matchMedia('(prefers-color-scheme: dark)').removeEventListener('change', systemListener);
+        window
+          .matchMedia('(prefers-color-scheme: dark)')
+          .removeEventListener('change', systemListener);
       }
       const currentTheme = localStorage.getItem(THEME_KEY);
       if (!currentTheme || currentTheme === 'system') {
         systemListener = (e) => {
           applyTheme(e.matches ? 'dark' : 'light');
         };
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', systemListener);
+        window
+          .matchMedia('(prefers-color-scheme: dark)')
+          .addEventListener('change', systemListener);
       }
     }
 
@@ -194,7 +236,9 @@ import { NAVIGATIONS } from './constants'
       } else {
         applyTheme(value);
         if (systemListener) {
-          window.matchMedia('(prefers-color-scheme: dark)').removeEventListener('change', systemListener);
+          window
+            .matchMedia('(prefers-color-scheme: dark)')
+            .removeEventListener('change', systemListener);
         }
       }
     }

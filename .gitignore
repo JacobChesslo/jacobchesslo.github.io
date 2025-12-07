@@ -14,14 +14,21 @@ yarn-error.log*
 pnpm-debug.log*
 
 # environment variables
-.env
+*.env
 .env.production
 
 # macOS-specific files
 .DS_Store
 
-# jetbrains setting folder
+# IDE settings
 .idea/
+.vscode/
+.claude/
 
 # generated CV PDF
 public/JacobChessloCV.pdf
+
+# Playwright
+playwright-report/
+playwright/.cache/
+test-results/

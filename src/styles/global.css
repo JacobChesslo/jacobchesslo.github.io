@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 /* Retro-futuristic font stack */
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap');
 
@@ -66,7 +66,9 @@ body {
   color: var(--color-text);
   font-family: 'Outfit', 'Space Grotesk', 'Futura', 'Century Gothic', sans-serif;
   min-height: 100vh;
-  transition: background 0.5s, color 0.5s;
+  transition:
+    background 0.5s,
+    color 0.5s;
 }
 
 /* Atomic starburst background pattern */
@@ -77,7 +79,7 @@ body {
 }
 
 .starfield-bg::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   z-index: 0;
@@ -85,12 +87,9 @@ body {
   background-image:
     /* Large starburst */
     radial-gradient(circle, var(--color-star4) 2px, transparent 2px),
-    /* Medium atomic dots */
-    radial-gradient(circle, var(--color-star2) 1.5px, transparent 1.5px),
-    /* Small accent dots */
-    radial-gradient(circle, var(--color-star3) 1px, transparent 1px),
-    /* Tiny sparkles */
-    radial-gradient(circle, var(--color-star1) 0.5px, transparent 0.5px);
+    /* Medium atomic dots */ radial-gradient(circle, var(--color-star2) 1.5px, transparent 1.5px),
+    /* Small accent dots */ radial-gradient(circle, var(--color-star3) 1px, transparent 1px),
+    /* Tiny sparkles */ radial-gradient(circle, var(--color-star1) 0.5px, transparent 0.5px);
   background-size:
     180px 180px,
     120px 120px,
@@ -106,7 +105,7 @@ body {
 }
 
 .starfield-bg::after {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   z-index: 0;
@@ -119,28 +118,43 @@ body {
 }
 
 @keyframes atomic-pulse {
-  0%, 100% { opacity: 0.15; transform: scale(1); }
-  50% { opacity: 0.2; transform: scale(1.02); }
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.2;
+    transform: scale(1.02);
+  }
 }
 
 /* Midcentury accent styling for links */
-a, .accent {
+a,
+.accent {
   color: var(--color-accent);
-  transition: color 0.3s, text-shadow 0.3s;
+  transition:
+    color 0.3s,
+    text-shadow 0.3s;
   text-decoration: none;
 }
 
-a:hover, .accent:hover {
+a:hover,
+.accent:hover {
   color: var(--color-tertiary);
   text-shadow: 0 0 12px var(--color-tertiary);
 }
 
 /* Retro-futuristic headers */
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-family: 'Space Grotesk', 'Futura', 'Century Gothic', sans-serif;
   font-weight: 600;
   letter-spacing: 0.02em;
-  text-shadow: 2px 2px 0 var(--color-accent), 4px 4px 0 rgba(0,0,0,0.1);
+  text-shadow:
+    2px 2px 0 var(--color-accent),
+    4px 4px 0 rgba(0, 0, 0, 0.1);
 }
 
 h1 {
@@ -160,7 +174,7 @@ h1 {
 
 .atomic-divider::before,
 .atomic-divider::after {
-  content: "";
+  content: '';
   height: 2px;
   flex: 1;
   background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
@@ -177,20 +191,36 @@ h1 {
 }
 
 .retro-card::before {
-  content: "";
+  content: '';
   position: absolute;
   top: -50%;
   left: -50%;
   width: 200%;
   height: 200%;
-  background: conic-gradient(from 0deg, transparent 0deg, var(--color-tertiary) 10deg, transparent 20deg);
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    var(--color-tertiary) 10deg,
+    transparent 20deg
+  );
   opacity: 0.05;
   animation: rotate-slow 20s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.retro-card > * {
+  position: relative;
+  z-index: 1;
 }
 
 @keyframes rotate-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Starburst decoration */
@@ -199,7 +229,7 @@ h1 {
 }
 
 .starburst::after {
-  content: "*";
+  content: '*';
   position: absolute;
   top: -0.5rem;
   right: -0.5rem;
@@ -209,22 +239,38 @@ h1 {
 }
 
 @keyframes twinkle {
-  0%, 100% { opacity: 1; transform: scale(1) rotate(0deg); }
-  50% { opacity: 0.7; transform: scale(1.1) rotate(15deg); }
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1) rotate(15deg);
+  }
 }
 
 /* Boomerang/swoosh accent line */
 .swoosh-line {
   height: 4px;
-  background: linear-gradient(90deg, var(--color-accent), var(--color-secondary), var(--color-tertiary));
+  background: linear-gradient(
+    90deg,
+    var(--color-accent),
+    var(--color-secondary),
+    var(--color-tertiary)
+  );
   border-radius: 2px;
   margin: 1rem 0;
 }
 
 /* Orbit animation for decorative elements */
 @keyframes orbit {
-  from { transform: rotate(0deg) translateX(50px) rotate(0deg); }
-  to { transform: rotate(360deg) translateX(50px) rotate(-360deg); }
+  from {
+    transform: rotate(0deg) translateX(50px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(50px) rotate(-360deg);
+  }
 }
 
 .orbit-element {
@@ -242,17 +288,23 @@ h1 {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   border-radius: 50px;
-  box-shadow: 0 4px 0 var(--color-navy), 0 6px 12px rgba(0,0,0,0.3);
+  box-shadow:
+    0 4px 0 var(--color-navy),
+    0 6px 12px rgba(0, 0, 0, 0.3);
   cursor: pointer;
   transition: all 0.2s;
 }
 
 .retro-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 0 var(--color-navy), 0 8px 16px rgba(0,0,0,0.3);
+  box-shadow:
+    0 6px 0 var(--color-navy),
+    0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
 .retro-btn:active {
   transform: translateY(2px);
-  box-shadow: 0 2px 0 var(--color-navy), 0 4px 8px rgba(0,0,0,0.3);
+  box-shadow:
+    0 2px 0 var(--color-navy),
+    0 4px 8px rgba(0, 0, 0, 0.3);
 }

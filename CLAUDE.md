@@ -30,6 +30,7 @@ My personal website.
 ## Important Notes
 
 - New components should have a companion test file
+
 ## Instructions for Claude
 
 - Always suggest TypeScript types for new functions

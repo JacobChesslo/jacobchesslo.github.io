@@ -14,10 +14,16 @@ const cvHtml = await marked(cvContent);
   <main class="py-12">
     <!-- Header -->
     <div class="text-center mb-8">
-      <h1 class="text-4xl md:text-5xl font-bold text-[#fef5e7] mb-4" style="font-family: 'Space Grotesk', sans-serif; text-shadow: 3px 3px 0 #e94560;">
+      <h1
+        class="text-4xl md:text-5xl font-bold text-[#fef5e7] mb-4"
+        style="font-family: 'Space Grotesk', sans-serif; text-shadow: 3px 3px 0 #e94560;"
+      >
         Curriculum Vitae
       </h1>
-      <div class="w-24 h-1 mx-auto bg-gradient-to-r from-[#e94560] via-[#f8b500] to-[#0f9b8e] rounded-full mb-6"></div>
+      <div
+        class="w-24 h-1 mx-auto bg-gradient-to-r from-[#e94560] via-[#f8b500] to-[#0f9b8e] rounded-full mb-6"
+      >
+      </div>
 
       <!-- Download Button - links to pre-built PDF -->
       <a
@@ -26,7 +32,12 @@ const cvHtml = await marked(cvContent);
         class="retro-btn inline-flex items-center gap-2"
       >
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+          ></path>
         </svg>
         Download PDF
       </a>
@@ -103,7 +114,7 @@ const cvHtml = await marked(cvContent);
   }
 
   .cv-article :global(li::before) {
-    content: "*";
+    content: '*';
     position: absolute;
     left: -1.25rem;
     color: #e94560;

@@ -1,4 +1,3 @@
-
 # Jacob S Chesslo
 
 +1 (724) 833-3207
@@ -6,6 +5,7 @@
 [jacobchesslo@gmail.com](mailto:jacobchesslo@gmail.com)
 
 ## Professional and Research Interests
+
 - Theory of Everything (TOE), Grand Unified Theory (GUT)
 - Space Exploration, Space Development, Space Urbanization, and Democratization of Space
 - Subatomic Physics, Particle Physics, High Energy Physics
@@ -23,14 +23,17 @@
 ## Education
 
 ### (Unfinished) **Masters of Science in Computer Science**
-2022 January ㄧ 2022 May  
+
+2022 January ㄧ 2022 May
 
 **University of Central Florida** - College of Engineering and Computer Science - Department of Computer Science
 Orlando, Florida, United States of America
 
-- GPA (4.00 scale): Overall: 4.00 Department: 4.00  
+- GPA (4.00 scale): Overall: 4.00 Department: 4.00
 - Computer Science Coursework: Quantum Computing
-### Bachelors of Science in Physics, Minor in Chemistry 
+
+### Bachelors of Science in Physics, Minor in Chemistry
+
 2017 August ㄧ 2020 December
 
 **Florida Institute of Technology** - College of Engineering and Science - Department of Aerospace, Physics, and Space Sciences
@@ -41,12 +44,14 @@ Melbourne, Florida, United States of America
 - [Unofficial Transcript](https://drive.google.com/file/d/1jwJZXvBOQS2iDoIWEQ9MmmMdHcZ4N37q/view?usp=drivesdk)
 
 - General Coursework:
-	- **Physics:** Quantum Mechanics, Electromagnetism, Physical Mechanics, Optics, Thermodynamics/Statistical Mechanics, Solid State Physics, Modern Physics, Subatomic Physics, General Physics, Space Sciences, Circuit Theory
-	- **Chemistry:** General Chemistry, Organic Chemistry, Physical Chemistry
-	- **Mathematics:** Calculus, Linear Algebra, Discrete Math, Complex Variables, Differential Equations, Partial Differential Equations
+  - **Physics:** Quantum Mechanics, Electromagnetism, Physical Mechanics, Optics, Thermodynamics/Statistical Mechanics, Solid State Physics, Modern Physics, Subatomic Physics, General Physics, Space Sciences, Circuit Theory
+  - **Chemistry:** General Chemistry, Organic Chemistry, Physical Chemistry
+  - **Mathematics:** Calculus, Linear Algebra, Discrete Math, Complex Variables, Differential Equations, Partial Differential Equations
 
 - **Notable Organizations:** Student Astronomical Society (SAS); Students for the Exploration and Development of Space (SEDS); Society of Physics Students (SPS); Student Rocket Society (SRS); Astrobiological Research and Education Society (ARES); Pi Lambda Phi Fraternity Florida Delta Upsilon Chapter; Phi Eta Sigma Honor Society; Rainbow Alliance; Student Government Association (SGA); Order of Omega Greek Honor Society
+
 ### High School Diploma
+
 2013 August ㄧ 2017 June
 
 **Albert Gallatin Senior High School**
@@ -56,14 +61,15 @@ Uniontown, Pennsylvania, United States of America
 - Graduation Honors: Summa Cum Laude, [Graduation Speaker](https://youtu.be/D8ItHynYYCQ?t=2358)
 
 - **Notable Coursework:**
-	- **Advanced Placement (AP):** Physics C: Mechanics, Calculus AB/BC, United States History, English Language and Composition, Macroeconomics, United States Government and Politics, English Literature and Composition
-	- **College in High School (CHS):** Chemistry, Physics, Calculus
+  - **Advanced Placement (AP):** Physics C: Mechanics, Calculus AB/BC, United States History, English Language and Composition, Macroeconomics, United States Government and Politics, English Literature and Composition
+  - **College in High School (CHS):** Chemistry, Physics, Calculus
 
 - **Notable Organizations:** National Honor Society, Future Business Leaders of America, Band (Drumline), Young Astronauts Club, Varsity Academic League, Debate Team, Math Team, Drama Club
 
 ## Experience and Employment
 
 ### Software Engineer III
+
 2025 August ㄧ Present
 
 Software Engineer II
@@ -72,8 +78,9 @@ Software Engineer II
 Software Engineer I
 2022 October ㄧ 2023 August
 
-*Blue Origin*, Advanced Concepts and Enterprise Engineering,  Engineering Productivity/Engineering Platforms
+_Blue Origin_, Advanced Concepts and Enterprise Engineering, Engineering Productivity/Engineering Platforms
 Kent, Washington, United States of America
+
 - Led technical development of “K9” avionics execution platform, ensuring uptime, stability, and scalability under the highest stakes verification efforts for NG-1.
 - Designed architecture roadmaps (2024–2026) and executed high-priority epics, balancing rapid delivery with long-term maintainability.
 - Implemented K9 Task Caching mechanism, reducing hardware environment queue times and saving over 386 days of compute time across major programs within 3 months of implementation.
@@ -89,7 +96,7 @@ Kent, Washington, United States of America
 - Works within the Engineering Productivity Team to help all engineers throughout the company to move faster and more efficiently without compromising safety.
 - Collaborates with customers from across the business to design, develop, and maintain continuous integration and continuous delivery solutions to build, test, and deploy avionics software to hardware in the loop (HIL) and processor in the loop (PIL) systems.
 - Deeply understands aerospace safety-critical software and hardware development processes-such as DO-178, DO-330, and DO-254-and finds ways to create and apply tooling to make the process more effective and efficient.
-- Provides informed infrastructure, build, tooling, automation, software-in-the-loop (SIL),  hardware-in-the-loop (HIL), systems-in-the-loop (SYSIL), processors-in-the-loop (PIL), and testing expertise.
+- Provides informed infrastructure, build, tooling, automation, software-in-the-loop (SIL), hardware-in-the-loop (HIL), systems-in-the-loop (SYSIL), processors-in-the-loop (PIL), and testing expertise.
 - Improves stability through collecting and analyzing data, monitoring, analysis, thoughtful code reviews, and detailed feedback.
 - Works in an Agile environment utilizing Atlassian Jira, Atlassian Confluence, and Gitlab-CI for Scrum management.
 - Maintains and develops internal user-facing applications, standard development kits, software in the loop systems, and test executor software.
@@ -98,9 +105,10 @@ Kent, Washington, United States of America
 - Active member of the Bar Raiser program - frequently conducts interviews to uphold and heighten hiring standards across Blue Origin.
 - Active participant in 5 Business Resource Groups (BRGs) and Pride Planning Committees; authored Pride Parade announcement presented to ~300,000 attendees in Seattle.
 - Participant in New Mercury Mentorship Program and member of Club for the Future.
-- Served as “Blue Guide” for 1 new hire, which is the dedicated mentor for new team members  
+- Served as “Blue Guide” for 1 new hire, which is the dedicated mentor for new team members
 
 ### Scientist II
+
 2021 March ㄧ 2022 October
 
 **ENSCO, Inc.** - Mission Systems Group
@@ -116,6 +124,7 @@ Melbourne, Florida, United States of America
 - Built software tools to assist other physical scientists and developers. Notably, created a tool to reduce the end-to-end analysis workflow time used by six other scientists by 10x.
 
 [Project: ACES 4](https://github.com/UFParLab/aces4)
+
 - Supported the development, maintenance, testing, and expansion of [ACES](http://qtp.ufl.edu/ACES/) (Advanced Concepts in Electronic Structure Theory), which is a parallel ab initio computational quantum chemistry software package.
 - Designed, developed, tested, and maintained developer and user-facing utilities, pre-processing utilities and optimizations, post-processing utilities and thermodynamic scripts, and general optimization utilities. Used largely Python, Fortran, C, C++, and Make/CMake software and build stack. Specific examples include Hessian calculations, best-first-guess initializations and optimizations, and Python-based drivers and software bindings.
 - PyACESTests: Developed and maintained functional and non-functional testing architecture and test-cases, including unit tests, integration tests, system tests, stress tests, performance tests, and security tests.
@@ -144,6 +153,7 @@ Project: Blackbird, Infrasound Propagation Software
 - Specifically, integrated Ground-to-Space (G2S) Meso data format capability and subsequent expansion of simulation height from 30km from Weather Research and Forecasting Model (WRF) netCDF data format to 100km. Utilized Fortran, C, C++, OpenMPI, IntelMPI, CMake/Make, netCDF WRF data format, and MesoG2S data format.
 
 ### Research Assistant
+
 2018 August ㄧ 2020 December
 
 **Florida Institute of Technology** - High Energy Particle Physics (HEP) Group - Hohlmann Research Group
@@ -164,127 +174,143 @@ Project: [Low-Density, Modular Gas Electron Multiplier (GEM)](https://media.licd
 
 - Designed, drafted, machined, and constructed custom plastic and carbon-fiber composite bodywork using Autodesk Inventor and Fusion 360 for use in prototype modular low-density gas electron multiplier (GEM).
 - Constructed, reconstructed, simulated, and troubleshot local prototype low-density GEM for operability and density optimization.
-- Developed and ran particle-accelerator and detector simulations, specifically focusing on GEM detectors for use in the [Electron-Ion Collider (EIC)](https://www.bnl.gov/eic/), using [EICRoot](https://wiki.bnl.gov/eic/index.php/Eicroot) within a Docker container.  
+- Developed and ran particle-accelerator and detector simulations, specifically focusing on GEM detectors for use in the [Electron-Ion Collider (EIC)](https://www.bnl.gov/eic/), using [EICRoot](https://wiki.bnl.gov/eic/index.php/Eicroot) within a Docker container.
+
 ## Leadership, Service, and Volunteer Experience
 
 ### President
+
 2022 February ㄧ 2024 February
 
 Pi Lambda Phi Fraternity Florida Delta Upsilon Alumni Association
 
-- Leads the Board of Trustees and corresponding Executive Officers. Facilitates open communication between the Alumni Association, its Board of Trustees, Chapter Coaches of the Florida Delta Upsilon Chapter of Pi Lambda Phi Fraternity, and auxiliary organizations including the Pi Lambda Phi Fraternity International Headquarters, Florida Delta Upsilon Chapter of Pi Lambda Phi Fraternity, Florida Institute of Technology.  
+- Leads the Board of Trustees and corresponding Executive Officers. Facilitates open communication between the Alumni Association, its Board of Trustees, Chapter Coaches of the Florida Delta Upsilon Chapter of Pi Lambda Phi Fraternity, and auxiliary organizations including the Pi Lambda Phi Fraternity International Headquarters, Florida Delta Upsilon Chapter of Pi Lambda Phi Fraternity, Florida Institute of Technology.
 
 ### Board of Trustee
+
 2021 February ㄧ Present
 Pi Lambda Phi Fraternity Florida Delta Upsilon Alumni Association
+
 - Supports the general operations of the Alumni Association, including advising the Florida Delta Upsilon Chapter of Pi Lambda Phi Fraternity and curating the annual Alumni Weekend event.
+
 ### New Member Educator
+
 2020 November ㄧ 2021 March
 
 Pi Lambda Phi Fraternity Florida Delta Upsilon Chapter
+
 - Chaired the New Member Educator Committee in educating and integrating new members into the organization, leading three New Members into the organization during the COVID-19 Pandemic.
-- Notable Accomplishments: Compiled and expanded resources available for future New Member Educators including presentations, handouts, calendars, and projects  
-### ### Advisor  
+- Notable Accomplishments: Compiled and expanded resources available for future New Member Educators including presentations, handouts, calendars, and projects
+
+### ### Advisor
+
 2020 January – 2021 December
 
 Rainbow Alliance at Florida Institute of Technology
 
 - Advises President alongside other Faculty and Alumni Advisors
-- Notable Accomplishments: Advised organization through the COVID-19 Pandemic and multiple leadership changes. Advised Florida Tech Pride Week planning  
-### President  
+- Notable Accomplishments: Advised organization through the COVID-19 Pandemic and multiple leadership changes. Advised Florida Tech Pride Week planning
+
+### President
+
 2019 November – 2020 November
 
 Pi Lambda Phi Fraternity Florida Delta Upsilon Chapter
 
 - Chaired Executive Board of 6; Acted as liaison between the Office of Student Life, other Greek Organizations, International Headquarters, Alumni Chapter, and Chapter; Developed short and long term vision and goals of the Chapter
-- Notable Accomplishments: Responded to the COVID-19 Pandemic and helped individuals transition from a largely in-person and social-based organization to one that is largely virtual; Developed a social safety support program for attendees of chapter sponsored events open to nonmembers (Angel Shot program: social safety program); Led construction of a membership dues collection system that resulted in 100% membership dues collection; Initiated research into chapter housing  
+- Notable Accomplishments: Responded to the COVID-19 Pandemic and helped individuals transition from a largely in-person and social-based organization to one that is largely virtual; Developed a social safety support program for attendees of chapter sponsored events open to nonmembers (Angel Shot program: social safety program); Led construction of a membership dues collection system that resulted in 100% membership dues collection; Initiated research into chapter housing
 
-### Social Media Director  
+### Social Media Director
+
 2020 January – 2020 October
 
 Pi Lambda Phi Fraternity Delta Upsilon Chapter
 
 - Periodically designed and uploaded content on Instagram, Facebook, and Snapchat for advertising events, increasing engagement, and recruiting new members; Developed and initiated an outreach program to help develop a recruitment list
-- Notable Accomplishments: Doubled social media following and engagement on Instagram; Established guidelines for periodic value-based posting; Established Chapter brand guidelines  
+- Notable Accomplishments: Doubled social media following and engagement on Instagram; Established guidelines for periodic value-based posting; Established Chapter brand guidelines
 
-### Contributor  
+### Contributor
+
 2019 April – 2020 December
 
 Florida Institute of Technology Greek Life Task Force
 
-- Analyzed previous five-year plan and reestablished new five-year goals and vision for the Greek Life Community at Florida Institute of Technology alongside other Greek Life Community members, the Coordinator of Greek Life, and the Director of Student Life  
+- Analyzed previous five-year plan and reestablished new five-year goals and vision for the Greek Life Community at Florida Institute of Technology alongside other Greek Life Community members, the Coordinator of Greek Life, and the Director of Student Life
 
+### Senate Academics Committee Chair
 
-
-### Senate Academics Committee Chair  
 2019 January – 2020 May
 
 Student Government Association at Florida Tech
 
 - Led committee composed of an average of six members in hearing and responding to students’ concerns regarding academic affairs at the University
-- Notable Accomplishments: Reinstated Professor of the Year program; Led largest Florida Institute of Technology Student Government Association study of individual Colleges and Departments and Schools  
+- Notable Accomplishments: Reinstated Professor of the Year program; Led largest Florida Institute of Technology Student Government Association study of individual Colleges and Departments and Schools
 
+### Vice President of Education and Development
 
-
-### Vice President of Education and Development  
 2018 November – 2019 November
 
 Pi Lambda Phi Fraternity Florida Delta Upsilon Chapter
 
 - Supported the President as second-in-succession; Organized Scholarship, Philanthropy, Constitution, New Member Education, and Ritual committees
-- Notable Accomplishments: Implemented transition documents for the transfer of power for all six Executive Board positions; Implemented Academic Support System strategy to increase chapter GPA average by 0.2 in two semesters  
+- Notable Accomplishments: Implemented transition documents for the transfer of power for all six Executive Board positions; Implemented Academic Support System strategy to increase chapter GPA average by 0.2 in two semesters
 
+### Student Body Senator
 
-
-### Student Body Senator  
 2018 May – 2020 May
 
 Student Government Association at Florida Institute of Technology
 
 - Represented over 200 undergraduate students at Florida Institute of Technology during two consecutive terms.
-- Notable Accomplishments: Led construction of new Student Body Constitution and Statutes system; Responded to crosswalk safety issues in Quality of Life committee and pushed for the implementation of methods that have decreased overall crosswalk-related accidents including flashing pedestrian crosswalk signs at the main roadway crosswalk going through the Florida tech campus  
+- Notable Accomplishments: Led construction of new Student Body Constitution and Statutes system; Responded to crosswalk safety issues in Quality of Life committee and pushed for the implementation of methods that have decreased overall crosswalk-related accidents including flashing pedestrian crosswalk signs at the main roadway crosswalk going through the Florida tech campus
 
+### Supervisor of Elections
 
-
-### Supervisor of Elections  
 2019 August – 2020 May
 
 Student Government Association at Florida Institute of Technology
 
 - Corresponded between Election Commission, Student Body, Student Government Association, and Office of Student Life to ensure fair and democratic processes for electing the next session of the Student Government Association
-- Notable Accomplishments: Responded to the beginning of the COVID-19 Pandemic as the Student Body Election season was occurring and led the Elections Commission, Student Government, Student Life Office, and Student Body through the transition with appropriate changes, resulting in only a 35% reduction in student body participation at the time of the election admirer the first few months of the pandemic; Compiled and expanded resources including timelines and procedures available for future Supervisor of Elections; Oversaw implementation of new Election voting system via CampusLabs which included candidate biographies and photos attached to the ballots  
+- Notable Accomplishments: Responded to the beginning of the COVID-19 Pandemic as the Student Body Election season was occurring and led the Elections Commission, Student Government, Student Life Office, and Student Body through the transition with appropriate changes, resulting in only a 35% reduction in student body participation at the time of the election admirer the first few months of the pandemic; Compiled and expanded resources including timelines and procedures available for future Supervisor of Elections; Oversaw implementation of new Election voting system via CampusLabs which included candidate biographies and photos attached to the ballots
 
+### President
 
-
-### President  
 2019 January – 2020 January
 
 Rainbow Alliance at Florida Institute of Technology
 
 - Led Florida Institute of Technology LGBTQ+ Student Organization in activism, education and development, university improvement, and general activities
 - Notable Accomplishments: Led the planning, arrangement, and execution of first-ever Florida Tech Pride Week; Increased networking with other pride organizations and their leadership including Space Coast Pride and Florida Collegiate Pride Coalition; Led rebranding of Rainbow Alliance from previously named Spectrum; Collaborated with Space Coast Pride to allow Rainbow Alliance to walk in Space Coast Pride Parade; Collaborated with EA Games Pride group to walk with them in Orlando Come Out With Pride Parade; Developed first ongoing sponsorship for the organization; Established organizational Advisory council and filled three spots
-### Vice President  
+
+### Vice President
+
 2018 September – 2019 January
 
 Rainbow Alliance at Florida Institute of Technology
 
 - Supported President as second-in-succession and attended meetings in their place
-- Notable Accomplishments: Implemented transition documents for all Executive Board positions for successful and smooth transfer of power (4 documents); Led rewriting of Organization Constitution and Bylaws to better reflect actual procedures of the organization and to implement new systems and procedures  
-### Treasurer  
+- Notable Accomplishments: Implemented transition documents for all Executive Board positions for successful and smooth transfer of power (4 documents); Led rewriting of Organization Constitution and Bylaws to better reflect actual procedures of the organization and to implement new systems and procedures
+
+### Treasurer
+
 2018 January – 2018 September
 
 Rainbow Alliance at Florida Institute of Technology
 
 - Managed financial assets of the organization; Planned and executed general-purpose fundraisers; corresponded with and submitted funding requests to the Student Activities Funding Committee for events
-- Notable Accomplishments: Acquired funding through Student Activities Funding Committee requests, fundraising, and donations for the Executive Board and other interested members to attend statewide LGBTQ+ leadership conferences (6 attendees)  
-### Treasurer  
+- Notable Accomplishments: Acquired funding through Student Activities Funding Committee requests, fundraising, and donations for the Executive Board and other interested members to attend statewide LGBTQ+ leadership conferences (6 attendees)
+
+### Treasurer
+
 2018 May – 2019 May
 
 Phi Eta Sigma at Florida Institute of Technology
 
 - Managed financial assets of the organization; Planned and executed general-purpose fundraisers
-- Notable Accomplishments: Organized and budgeted ongoing membership incentive program  
+- Notable Accomplishments: Organized and budgeted ongoing membership incentive program
+
 ## Personal Projects
+
 ### BehaviorPy
 
 - BehaviorPy is a Python library for the Behavioral Sciences.
@@ -298,129 +324,132 @@ Phi Eta Sigma at Florida Institute of Technology
 ### pymorse
 
 - Python package for encoding and decoding Morse code
-- Project Repository: [https://www.github.com/JacobChesslo/pymorse](https://www.github.com/jacobchesslo/pymorse)  
+- Project Repository: [https://www.github.com/JacobChesslo/pymorse](https://www.github.com/jacobchesslo/pymorse)
 
 ## Presentations and Posters
-- Molt, R., Patterson, E., Chesslo, J., Burns, D. (2021 Apr) IR peak position accuracy compared to experiment from VPT2 and VSCF anharmonic formalisms for gaseous and liquid systems. American Chemical Society Spring 2021 Conference.  [https://scimeetings.acs.org/exhibit/IR-peak-position-accuracy-compared/3553975](https://scimeetings.acs.org/exhibit/IR-peak-position-accuracy-compared/3553975), [https://acs.digitellinc.com/p/s/ir-peak-position-accuracy-compared-to-experiment-from-vpt2-and-vscf-anharmonic-formalisms-for-gaseous-and-liquid-systems-27032](https://acs.digitellinc.com/p/s/ir-peak-position-accuracy-compared-to-experiment-from-vpt2-and-vscf-anharmonic-formalisms-for-gaseous-and-liquid-systems-27032)
+
+- Molt, R., Patterson, E., Chesslo, J., Burns, D. (2021 Apr) IR peak position accuracy compared to experiment from VPT2 and VSCF anharmonic formalisms for gaseous and liquid systems. American Chemical Society Spring 2021 Conference. [https://scimeetings.acs.org/exhibit/IR-peak-position-accuracy-compared/3553975](https://scimeetings.acs.org/exhibit/IR-peak-position-accuracy-compared/3553975), [https://acs.digitellinc.com/p/s/ir-peak-position-accuracy-compared-to-experiment-from-vpt2-and-vscf-anharmonic-formalisms-for-gaseous-and-liquid-systems-27032](https://acs.digitellinc.com/p/s/ir-peak-position-accuracy-compared-to-experiment-from-vpt2-and-vscf-anharmonic-formalisms-for-gaseous-and-liquid-systems-27032)
 
 - Molt, R., Patterson, E., Chesslo, J., Burns, D. (2022 Mar) Accuracy of VPT2/CCSD(T) IR spectral estimation for broadened signals at STP conditions. American Chemical Society Spring 2022 Conference. [https://acs.digitellinc.com/p/s/accuracy-of-vpt2ccsdt-ir-spectral-estimation-for-broadened-signals-at-stp-conditions-472531](https://acs.digitellinc.com/p/s/accuracy-of-vpt2ccsdt-ir-spectral-estimation-for-broadened-signals-at-stp-conditions-472531)
 
-- Bomberger, M., Chesslo, J., Pitts, N., Construction and test of a modular gas electron multiplier for a future electron-ion collider. M. BOMBERGER, J. CHESSLO, N. PITTS, A. WIKRAMANAYAKE, M. HOHLMANN. High Energy Physics Laboratory A, Department of Aerospace, Physics, and Space Sciences, Florida Tech, 150 W. University Blvd, Melbourne FL 32901.  
+- Bomberger, M., Chesslo, J., Pitts, N., Construction and test of a modular gas electron multiplier for a future electron-ion collider. M. BOMBERGER, J. CHESSLO, N. PITTS, A. WIKRAMANAYAKE, M. HOHLMANN. High Energy Physics Laboratory A, Department of Aerospace, Physics, and Space Sciences, Florida Tech, 150 W. University Blvd, Melbourne FL 32901.
 
   [https://nsuworks.nova.edu/cgi/viewcontent.cgi?article=5193&&context=cps_facpresentations%2F&&sei-redir=1&referer=https%253A%252F%252Fscholar.google.com%252Fscholar%253Fhl%253Den%2526as_sdt%253D0%25252C48%2526q%253Dchesslo%2526btnG%253D#search=%22chesslo%22](https://nsuworks.nova.edu/cgi/viewcontent.cgi?article=5193&&context=cps_facpresentations%2F&&sei-redir=1&referer=https%253A%252F%252Fscholar.google.com%252Fscholar%253Fhl%253Den%2526as_sdt%253D0%25252C48%2526q%253Dchesslo%2526btnG%253D#search=%22chesslo%22)
 
 - Chesslo, J., Rahmani, M., Hohlmann, M. (2020 Apr) Gridcard Automation for CMS MC Sample Requests. Florida Institute of Technology Student Design Showcase
 
-- Bomberger, M., Chesslo, J., Hohlmann, M. (2019 Apr) Construction and Test of a Modular GEM for EIC. Florida Institute of Technology Student Design Showcase  
+- Bomberger, M., Chesslo, J., Hohlmann, M. (2019 Apr) Construction and Test of a Modular GEM for EIC. Florida Institute of Technology Student Design Showcase
 
 ## Exam Scores
-- GRE: 324 / 340  
-  - Verbal Reasoning: 159 / 170 (82nd Percentile)  
-  - Quantitative Reasoning: 165 / 170 (85th Percentile)  
+
+- GRE: 324 / 340
+  - Verbal Reasoning: 159 / 170 (82nd Percentile)
+  - Quantitative Reasoning: 165 / 170 (85th Percentile)
   - Analytical Writing: 4.0 / 6.0 (54th Percentile)
 
-- ACT: 33  
-  - English: 33  
-  - Math: 30  
-  - Reading: 32  
-  - Science: 34  
+- ACT: 33
+  - English: 33
+  - Math: 30
+  - Reading: 32
+  - Science: 34
 
-- SAT (with Essay): 1400 / 1600  
-  - EVBRW: 700 / 800  
-  - Math: 700 / 800  
+- SAT (with Essay): 1400 / 1600
+  - EVBRW: 700 / 800
+  - Math: 700 / 800
 
-- Physics Subject Test: 690 / 800  
-- Chemistry Subject Test: 660 / 800  
-- Mathematics Subject Test: 680 / 800  
+- Physics Subject Test: 690 / 800
+- Chemistry Subject Test: 660 / 800
+- Mathematics Subject Test: 680 / 800
+
 # Honors, Awards, and Notable Achievements
 
-- Peer-to-Peer recognition award 2022 June  
+- Peer-to-Peer recognition award 2022 June
   - Blue Origin
 
-- Internal team award 2022 June  
+- Internal team award 2022 June
   - Blue Origin
 
-- Internal team award 2022 May  
+- Internal team award 2022 May
   - Blue Origin
 
-- Internal team award 2022 Mar  
+- Internal team award 2022 Mar
   - Blue Origin
 
-- Internal team award 2022 Feb  
+- Internal team award 2022 Feb
   - Blue Origin
 
-- Internal team award 2022 Feb  
+- Internal team award 2022 Feb
   - Blue Origin
 
-- Legacy Award 2021 Apr  
+- Legacy Award 2021 Apr
   - Pi Lambda Phi Fraternity Florida Delta Upsilon Chapter
 
-- Active Alumni Award 2021 Apr  
+- Active Alumni Award 2021 Apr
   - Pi Lambda Phi Fraternity Florida Delta Upsilon Chapter
 
-- Lamp of Knowledge Award 2021 Apr  
+- Lamp of Knowledge Award 2021 Apr
   - Pi Lambda Phi Fraternity Florida Delta Upsilon Chapter
 
-- Fraternity Man of the Year 2021 Feb  
+- Fraternity Man of the Year 2021 Feb
   - Florida Institute of Technology Office of Fraternity and Sorority Life
 
-- Cum Laude 2020 Dec  
-  - Florida Institute of Technology  
-
-- Dean’s List 2020 Dec  
+- Cum Laude 2020 Dec
   - Florida Institute of Technology
 
-- Rev. Dr. Fredrick Dobens, H.B. Scholarship 2020 May  
+- Dean’s List 2020 Dec
+  - Florida Institute of Technology
+
+- Rev. Dr. Fredrick Dobens, H.B. Scholarship 2020 May
   - Pi Lambda Phi Educational Foundation
 
-- Dean’s List 2020 May  
+- Dean’s List 2020 May
   - Florida Institute of Technology
 
-- Order of Omega Inductee 2019 Oct  
-  - Florida Institute of Technology Office of Fraternity and Sorority Life  
+- Order of Omega Inductee 2019 Oct
+  - Florida Institute of Technology Office of Fraternity and Sorority Life
   - Order of Omega
 
-- Outstanding APSS Junior of the Year 2019 Apr  
-  - Florida Institute of Technology  
-  - Vice President of Academics Affairs/Provost  
+- Outstanding APSS Junior of the Year 2019 Apr
+  - Florida Institute of Technology
+  - Vice President of Academics Affairs/Provost
   - Aerospace, Physics, and Space Sciences Department
 
-- Gold and Purple Award 2019 Apr  
+- Gold and Purple Award 2019 Apr
   - Pi Lambda Phi Fraternity Florida Delta Upsilon Chapter
 
-- Campus Involvement Award 2019 Apr  
+- Campus Involvement Award 2019 Apr
   - Pi Lambda Phi Fraternity Florida Delta Upsilon Chapter
 
-- New Member Award 2019 Apr  
+- New Member Award 2019 Apr
   - Pi Lambda Phi Fraternity Florida Delta Upsilon Chapter
 
-- Dean’s List 2018 May  
+- Dean’s List 2018 May
   - Florida Institute of Technology
 
-- Outstanding PSS Sophomore of the Year 2018 Apr  
-  - Florida Institute of Technology  
-  - Vice President of Academics Affairs/Provost  
+- Outstanding PSS Sophomore of the Year 2018 Apr
+  - Florida Institute of Technology
+  - Vice President of Academics Affairs/Provost
   - Physics and Space Sciences Department
 
-- Dean’s List 2017 Dec  
+- Dean’s List 2017 Dec
   - Florida Institute of Technology
 
-- Summa Cum Lade 2017 Jun  
+- Summa Cum Lade 2017 Jun
   - Albert Gallatin Senior High School
 
-- Fayette County Student Achievement Award 2017 May  
+- Fayette County Student Achievement Award 2017 May
   - Fayette County, Pennsylvania Chamber of Commerce
 
-- Eagle Scout 2016 Dec  
+- Eagle Scout 2016 Dec
   - Boy Scouts of America
 
-- National Honors Society Inductee 2015 Apr  
-  - Albert Gallatin Senior High School  
+- National Honors Society Inductee 2015 Apr
+  - Albert Gallatin Senior High School
   - National Honors Society
 
-- Order of the Arrow Inductee 2015 Aug  
-  - Boy Scouts of America  
-  - Order of the Arrow  
+- Order of the Arrow Inductee 2015 Aug
+  - Boy Scouts of America
+  - Order of the Arrow
 
 ## Skills and Qualifications
 

@@ -7,13 +7,8 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://jacobchesslo.github.io',
-  integrations: [
-    mdx(),
-    solidJs(),
-  ],
+  integrations: [mdx(), solidJs()],
   vite: {
-    plugins: [
-      tailwindcss(),
-    ],
+    plugins: [tailwindcss()],
   },
 });

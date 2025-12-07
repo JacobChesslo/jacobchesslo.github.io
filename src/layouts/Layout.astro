@@ -1,15 +1,18 @@
 ---
-import Header from '../components/Header.astro'
-import Footer from '../components/Footer.astro'
-import '../styles/global.css'
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
 ---
 
-<html lang="en" class="bg-gradient-to-b from-[#1a1a2e] via-[#16213e] to-[#0f3460] text-[#fef5e7] scroll-smooth">
+<html
+  lang="en"
+  class="bg-gradient-to-b from-[#1a1a2e] via-[#16213e] to-[#0f3460] text-[#fef5e7] scroll-smooth"
+>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <slot name="head" />
   </head>
   <body class="min-h-screen font-sans antialiased flex flex-col relative">
@@ -18,12 +21,17 @@ import '../styles/global.css'
       <!-- Starburst in top right -->
       <div class="absolute -top-20 -right-20 w-96 h-96 opacity-10">
         <svg viewBox="0 0 200 200" class="w-full h-full text-[#f8b500]">
-          <polygon fill="currentColor" points="100,0 108,75 150,25 115,80 200,60 120,95 180,140 110,105 140,200 100,115 60,200 90,105 20,140 80,95 0,60 85,80 50,25 92,75" />
+          <polygon
+            fill="currentColor"
+            points="100,0 108,75 150,25 115,80 200,60 120,95 180,140 110,105 140,200 100,115 60,200 90,105 20,140 80,95 0,60 85,80 50,25 92,75"
+          ></polygon>
         </svg>
       </div>
       <!-- Orbit ring decoration -->
-      <div class="absolute top-1/3 -left-32 w-64 h-64 border-2 border-[#e94560]/20 rounded-full"></div>
-      <div class="absolute bottom-1/4 -right-16 w-48 h-48 border border-[#0f9b8e]/20 rounded-full"></div>
+      <div class="absolute top-1/3 -left-32 w-64 h-64 border-2 border-[#e94560]/20 rounded-full">
+      </div>
+      <div class="absolute bottom-1/4 -right-16 w-48 h-48 border border-[#0f9b8e]/20 rounded-full">
+      </div>
     </div>
 
     <Header />

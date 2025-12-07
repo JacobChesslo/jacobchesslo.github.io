@@ -132,7 +132,7 @@ async function generatePdf() {
   console.log('Launching browser...');
   const browser = await puppeteer.launch({
     headless: true,
-    args: ['--no-sandbox', '--disable-setuid-sandbox']
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
   });
 
   const page = await browser.newPage();
@@ -154,9 +154,9 @@ async function generatePdf() {
       top: '0.5in',
       right: '0.5in',
       bottom: '0.5in',
-      left: '0.5in'
+      left: '0.5in',
     },
-    printBackground: true
+    printBackground: true,
   });
 
   await browser.close();

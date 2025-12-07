@@ -1,18 +1,28 @@
 ---
-import { NAVIGATIONS, SOCIALS, RESOURCES } from "./constants";
+import { NAVIGATIONS, SOCIALS, RESOURCES } from './constants';
 ---
 
-<footer class="relative starfield-bg text-[#fef5e7] border-t-4 border-[#e94560] mt-12 overflow-hidden">
+<footer
+  class="relative starfield-bg text-[#fef5e7] border-t-4 border-[#e94560] mt-12 overflow-hidden"
+>
   <!-- Retro gradient accent at top -->
-  <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0f9b8e] via-[#f8b500] to-[#e94560]"></div>
+  <div
+    class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0f9b8e] via-[#f8b500] to-[#e94560]"
+  >
+  </div>
 
   <div class="absolute inset-0 pointer-events-none z-0"></div>
   <div class="relative z-10 max-w-5xl mx-auto px-6 py-10">
     <!-- Atomic age copyright section -->
     <div class="text-center mb-8">
-      <div class="inline-flex items-center gap-4 px-6 py-2 rounded-full bg-[#0f3460]/50 border border-[#f8b500]/30">
+      <div
+        class="inline-flex items-center gap-4 px-6 py-2 rounded-full bg-[#0f3460]/50 border border-[#f8b500]/30"
+      >
         <span class="text-[#f8b500] text-lg">*</span>
-        <p class="text-sm text-[#fef5e7] tracking-widest uppercase" style="font-family: 'Space Grotesk', sans-serif;">
+        <p
+          class="text-sm text-[#fef5e7] tracking-widest uppercase"
+          style="font-family: 'Space Grotesk', sans-serif;"
+        >
           &copy; {new Date().getFullYear()} jacobchesslo.com
         </p>
         <span class="text-[#e94560] text-lg">*</span>
@@ -22,13 +32,16 @@ import { NAVIGATIONS, SOCIALS, RESOURCES } from "./constants";
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center sm:text-left">
       <!-- Website Column -->
       <div>
-        <p class="font-semibold text-[#e94560] mb-3 tracking-widest uppercase text-sm flex items-center justify-center sm:justify-start gap-2" style="font-family: 'Space Grotesk', sans-serif;">
+        <p
+          class="font-semibold text-[#e94560] mb-3 tracking-widest uppercase text-sm flex items-center justify-center sm:justify-start gap-2"
+          style="font-family: 'Space Grotesk', sans-serif;"
+        >
           <span class="inline-block w-2 h-2 bg-[#e94560] rounded-full"></span>
           Website
         </p>
         <nav class="flex flex-col gap-1">
           {
-            NAVIGATIONS.map(item => (
+            NAVIGATIONS.map((item) => (
               <a
                 title={item.label}
                 href={item.href}
@@ -44,7 +57,10 @@ import { NAVIGATIONS, SOCIALS, RESOURCES } from "./constants";
 
       <!-- Socials Column -->
       <div>
-        <p class="font-semibold text-[#0f9b8e] mb-3 tracking-widest uppercase text-sm flex items-center justify-center sm:justify-start gap-2" style="font-family: 'Space Grotesk', sans-serif;">
+        <p
+          class="font-semibold text-[#0f9b8e] mb-3 tracking-widest uppercase text-sm flex items-center justify-center sm:justify-start gap-2"
+          style="font-family: 'Space Grotesk', sans-serif;"
+        >
           <span class="inline-block w-2 h-2 bg-[#0f9b8e] rounded-full"></span>
           Socials
         </p>
@@ -68,7 +84,10 @@ import { NAVIGATIONS, SOCIALS, RESOURCES } from "./constants";
 
       <!-- Resources Column -->
       <div>
-        <p class="font-semibold text-[#f8b500] mb-3 tracking-widest uppercase text-sm flex items-center justify-center sm:justify-start gap-2" style="font-family: 'Space Grotesk', sans-serif;">
+        <p
+          class="font-semibold text-[#f8b500] mb-3 tracking-widest uppercase text-sm flex items-center justify-center sm:justify-start gap-2"
+          style="font-family: 'Space Grotesk', sans-serif;"
+        >
           <span class="inline-block w-2 h-2 bg-[#f8b500] rounded-full"></span>
           Resources
         </p>
@@ -78,12 +97,8 @@ import { NAVIGATIONS, SOCIALS, RESOURCES } from "./constants";
               <a
                 title={item.label}
                 href={item.href}
-                target={item.href.includes("http") ? "_blank" : undefined}
-                rel={
-                  item.href.includes("http")
-                    ? "noopener noreferrer"
-                    : undefined
-                }
+                target={item.href.includes('http') ? '_blank' : undefined}
+                rel={item.href.includes('http') ? 'noopener noreferrer' : undefined}
                 class="text-[#fef5e7]/80 hover:text-[#f8b500] transition-all duration-200 px-3 py-1 rounded hover:bg-[#f8b500]/10 text-sm"
                 style="font-family: 'Outfit', sans-serif;"
               >
@@ -99,7 +114,7 @@ import { NAVIGATIONS, SOCIALS, RESOURCES } from "./constants";
     <div class="mt-10 flex items-center justify-center gap-4">
       <div class="h-px flex-1 max-w-24 bg-gradient-to-r from-transparent to-[#e94560]"></div>
       <svg class="w-6 h-6 text-[#f8b500]" viewBox="0 0 24 24" fill="currentColor">
-        <polygon points="12,2 15,9 22,9 16,14 18,22 12,17 6,22 8,14 2,9 9,9" />
+        <polygon points="12,2 15,9 22,9 16,14 18,22 12,17 6,22 8,14 2,9 9,9"></polygon>
       </svg>
       <div class="h-px flex-1 max-w-24 bg-gradient-to-l from-transparent to-[#0f9b8e]"></div>
     </div>
