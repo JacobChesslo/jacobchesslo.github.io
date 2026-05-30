@@ -30,6 +30,7 @@ My personal website.
 ## Important Notes
 
 - New components should have a companion test file
+- CV content lives in a git submodule at `src/content/curriculum-vitae` (https://github.com/JacobChesslo/curriculum-vitae). Run `git submodule update --init` after cloning.
 
 ## Instructions for Claude
 

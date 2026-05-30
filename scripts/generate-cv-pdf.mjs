@@ -7,7 +7,7 @@ import { marked } from 'marked';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, '..');
 
-const cvMd = fs.readFileSync(path.join(rootDir, 'src/content/cv.md'), 'utf-8');
+const cvMd = fs.readFileSync(path.join(rootDir, 'src/content/curriculum-vitae/README.md'), 'utf-8');
 const cvHtml = marked.parse(cvMd);
 
 const html = `<!DOCTYPE html>

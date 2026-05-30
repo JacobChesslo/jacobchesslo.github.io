@@ -1,0 +1,3 @@
+[submodule "src/content/curriculum-vitae"]
+	path = src/content/curriculum-vitae
+	url = https://github.com/JacobChesslo/curriculum-vitae
