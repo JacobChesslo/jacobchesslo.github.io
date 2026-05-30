@@ -26,7 +26,7 @@ Software engineer and technical lead with a foundation in physics and scientific
 
 ## Education
 
-### Masters of Science in Computer Science *(Incomplete)*
+### Masters of Science in Computer Science _(Incomplete)_
 
 2022 January – 2022 May
 
@@ -124,7 +124,7 @@ Kent, Washington, United States of America
 - Active member of the Bar Raiser program: completed 25 interviews across 8 positions resulting in 6 offers, maintaining 4.0+/5.0 feedback scores; contributed directly to 3 team hires; served as Blue Guide for new team members.
 - Active participant in 5 Business Resource Groups (BRGs) and Pride Planning Committees; authored Pride Parade announcement presented to ~300,000 attendees in Seattle.
 - Participant in New Mercury Mentorship Program and member of Club for the Future.
-- *Recognition:* Outstanding Contribution Award (2024) · Blue Star Peer Recognition (2023) · Peer-to-Peer Recognition Award (2022) · five internal team recognition awards (2022)
+- _Recognition:_ Outstanding Contribution Award (2024) · Blue Star Peer Recognition (2023) · Peer-to-Peer Recognition Award (2022) · five internal team recognition awards (2022)
 
 ### Scientist II
 
@@ -211,7 +211,7 @@ Pi Lambda Phi Fraternity Florida Delta Upsilon Alumni Association
 Pi Lambda Phi Fraternity Florida Delta Upsilon Alumni Association
 
 - Supports the general operations of the Alumni Association, including advising the Florida Delta Upsilon Chapter of Pi Lambda Phi Fraternity and curating the annual Alumni Weekend event.
-- *Recognition:* Legacy Award · Active Alumni Award · Lamp of Knowledge Award (all April 2021, Pi Lambda Phi Fraternity Florida Delta Upsilon Chapter)
+- _Recognition:_ Legacy Award · Active Alumni Award · Lamp of Knowledge Award (all April 2021, Pi Lambda Phi Fraternity Florida Delta Upsilon Chapter)
 
 ### New Member Educator
 
@@ -239,7 +239,7 @@ Pi Lambda Phi Fraternity Florida Delta Upsilon Chapter
 
 - Chaired Executive Board of 6; Acted as liaison between the Office of Student Life, other Greek Organizations, International Headquarters, Alumni Chapter, and Chapter; Developed short and long term vision and goals of the Chapter
 - Notable Accomplishments: Responded to the COVID-19 Pandemic and helped individuals transition from a largely in-person and social-based organization to one that is largely virtual; Developed a social safety support program for attendees of chapter sponsored events open to nonmembers (Angel Shot program: social safety program); Led construction of a membership dues collection system that resulted in 100% membership dues collection; Initiated research into chapter housing
-- *Recognition:* Fraternity Man of the Year (February 2021, Florida Institute of Technology Office of Fraternity and Sorority Life) · Rev. Dr. Fredrick Dobens, H.B. Scholarship (May 2020, Pi Lambda Phi Educational Foundation)
+- _Recognition:_ Fraternity Man of the Year (February 2021, Florida Institute of Technology Office of Fraternity and Sorority Life) · Rev. Dr. Fredrick Dobens, H.B. Scholarship (May 2020, Pi Lambda Phi Educational Foundation)
 
 ### Social Media Director
 
@@ -275,7 +275,7 @@ Pi Lambda Phi Fraternity Florida Delta Upsilon Chapter
 
 - Supported the President as second-in-succession; Organized Scholarship, Philanthropy, Constitution, New Member Education, and Ritual committees
 - Notable Accomplishments: Implemented transition documents for the transfer of power for all six Executive Board positions; Implemented Academic Support System strategy to increase chapter GPA average by 0.2 in two semesters
-- *Recognition:* Gold and Purple Award · Campus Involvement Award · New Member Award (all April 2019, Pi Lambda Phi Fraternity Florida Delta Upsilon Chapter) · Order of Omega Inductee (October 2019, Florida Tech Office of Fraternity and Sorority Life)
+- _Recognition:_ Gold and Purple Award · Campus Involvement Award · New Member Award (all April 2019, Pi Lambda Phi Fraternity Florida Delta Upsilon Chapter) · Order of Omega Inductee (October 2019, Florida Tech Office of Fraternity and Sorority Life)
 
 ### Student Body Senator
 

@@ -10,12 +10,18 @@ const year = new Date().getFullYear();
     <a href="/work">Work</a>
     <a href="/cv">CV</a>
     <span class="footer-sep" aria-hidden="true"></span>
-    {SOCIALS.map((s) => (
-      <a href={s.href} target="_blank" rel="noopener noreferrer">{s.label}</a>
-    ))}
+    {
+      SOCIALS.map((s) => (
+        <a href={s.href} target="_blank" rel="noopener noreferrer">
+          {s.label}
+        </a>
+      ))
+    }
   </nav>
 
-  <span style="color: var(--accent); font-size: 0.6rem; letter-spacing: 0.1em;">&#8767; built with intention</span>
+  <span style="color: var(--accent); font-size: 0.6rem; letter-spacing: 0.1em;"
+    >&#8767; built with intention</span
+  >
 </footer>
 
 <style>
@@ -31,13 +37,18 @@ const year = new Date().getFullYear();
     letter-spacing: 0.08em;
     transition: color var(--dur-fast) var(--ease-out);
   }
-  .footer-nav a:hover { color: var(--accent); }
+  .footer-nav a:hover {
+    color: var(--accent);
+  }
   .footer-sep {
     display: inline-block;
-    width: 1px; height: 12px;
+    width: 1px;
+    height: 12px;
     background: var(--border);
   }
   @media (max-width: 600px) {
-    .footer-nav { gap: 12px; }
+    .footer-nav {
+      gap: 12px;
+    }
   }
 </style>

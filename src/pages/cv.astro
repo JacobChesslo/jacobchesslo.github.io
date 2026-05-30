@@ -19,10 +19,12 @@ renderer.paragraph = function ({ text }) {
 
 renderer.list = function ({ items, ordered }) {
   const tag = ordered ? 'ol' : 'ul';
-  const inner = items.map((item) => {
-    const body = item.tokens.map((t) => (t.type === 'text' ? t.text : '')).join('') || item.text;
-    return `<li>${body}</li>`;
-  }).join('\n');
+  const inner = items
+    .map((item) => {
+      const body = item.tokens.map((t) => (t.type === 'text' ? t.text : '')).join('') || item.text;
+      return `<li>${body}</li>`;
+    })
+    .join('\n');
   return `<${tag} class="cv-list">\n${inner}\n</${tag}>\n`;
 };
 
@@ -34,22 +36,30 @@ const cvHtml = marked.parse(cvRaw) as string;
   title="CV | Jacob Chesslo"
   description="Curriculum vitae of Jacob Chesslo - software engineer, physicist, and researcher."
 >
-<div class="cv-page">
+  <div class="cv-page">
+    <div class="cv-download-bar">
+      <a href="/JacobChessloCV.pdf" download="JacobChessloCV.pdf" class="btn btn-ghost cv-download">
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        Download PDF
+      </a>
+    </div>
 
-  <div class="cv-download-bar">
-    <a href="/JacobChessloCV.pdf" download="JacobChessloCV.pdf" class="btn btn-ghost cv-download">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
-        <polyline points="7 10 12 15 17 10"/>
-        <line x1="12" y1="15" x2="12" y2="3"/>
-      </svg>
-      Download PDF
-    </a>
+    <div class="cv-md-body" set:html={cvHtml} />
   </div>
-
-  <div class="cv-md-body" set:html={cvHtml} />
-
-</div>
 </Layout>
 
 <style>
@@ -155,7 +165,9 @@ const cvHtml = marked.parse(cvRaw) as string;
     transition: color var(--dur-fast) var(--ease-out);
     word-break: break-all;
   }
-  .cv-md-body :global(a:hover) { color: var(--secondary); }
+  .cv-md-body :global(a:hover) {
+    color: var(--secondary);
+  }
 
   .cv-md-body :global(strong) {
     color: var(--text);
@@ -175,31 +187,64 @@ const cvHtml = marked.parse(cvRaw) as string;
 
   /* Responsive */
   @media (max-width: 700px) {
-    .cv-page { padding: 100px var(--space-md) var(--space-xl); }
+    .cv-page {
+      padding: 100px var(--space-md) var(--space-xl);
+    }
   }
 
   /* ── Print ─────────────────────────────────────────────── */
   @media print {
     :root {
-      --bg: #ffffff; --surface: #ffffff;
-      --border: #d0d0d0; --text: #111111; --text-dim: #444444;
-      --text-muted: #888888; --accent: #1a1a1a; --secondary: #1a1a1a;
+      --bg: #ffffff;
+      --surface: #ffffff;
+      --border: #d0d0d0;
+      --text: #111111;
+      --text-dim: #444444;
+      --text-muted: #888888;
+      --accent: #1a1a1a;
+      --secondary: #1a1a1a;
       --tertiary: #555555;
     }
 
-    body::before { display: none; }
-    nav, .site-footer, .nav-mobile { display: none !important; }
-    .cv-download-bar { display: none !important; }
+    body::before {
+      display: none;
+    }
+    nav,
+    .site-footer,
+    .nav-mobile {
+      display: none !important;
+    }
+    .cv-download-bar {
+      display: none !important;
+    }
 
-    body { background: #fff; color: #111; }
+    body {
+      background: #fff;
+      color: #111;
+    }
 
-    .cv-page { padding: 0; max-width: 100%; }
+    .cv-page {
+      padding: 0;
+      max-width: 100%;
+    }
 
-    .cv-md-body :global(.cv-section-label) { color: #000; border-bottom-color: #bbb; }
-    .cv-md-body :global(a) { color: #333; }
-    .cv-md-body :global(em) { color: #333; }
-    .cv-md-body :global(strong) { color: #000; }
+    .cv-md-body :global(.cv-section-label) {
+      color: #000;
+      border-bottom-color: #bbb;
+    }
+    .cv-md-body :global(a) {
+      color: #333;
+    }
+    .cv-md-body :global(em) {
+      color: #333;
+    }
+    .cv-md-body :global(strong) {
+      color: #000;
+    }
 
-    @page { margin: 0.6in 0.65in; size: letter portrait; }
+    @page {
+      margin: 0.6in 0.65in;
+      size: letter portrait;
+    }
   }
 </style>

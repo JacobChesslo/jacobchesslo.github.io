@@ -6,11 +6,7 @@ const quote = QUOTES[index];
 ---
 
 <section class="quote-section" aria-label="Quote">
-  <blockquote
-    id="quote-block"
-    data-quotes={JSON.stringify(QUOTES)}
-    data-initial-index={index}
-  >
+  <blockquote id="quote-block" data-quotes={JSON.stringify(QUOTES)} data-initial-index={index}>
     <div class="quote-mark" aria-hidden="true">"</div>
     <div id="quote-content" class="quote-content">
       <p id="quote-text" class="quote-text">{quote.quote}</p>
@@ -25,7 +21,7 @@ const quote = QUOTES[index];
   const block = document.getElementById('quote-block');
   if (block) {
     const quotes = JSON.parse(block.dataset.quotes || '[]');
-    const index  = parseInt(block.dataset.initialIndex || '0');
+    const index = parseInt(block.dataset.initialIndex || '0');
     lockQuoteHeight(quotes);
     initQuoteRotator(quotes, index);
   }

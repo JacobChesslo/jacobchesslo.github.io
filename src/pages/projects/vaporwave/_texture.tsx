@@ -1,11 +1,9 @@
-
-import * as THREE from "three";
-
+import * as THREE from 'three';
 
 interface ICreateGridTextureProps {
-  cellSizeExponent?: number,
-  cellsExponent?: number,
-  lineWidthExponent?: number,
+  cellSizeExponent?: number;
+  cellsExponent?: number;
+  lineWidthExponent?: number;
 }
 
 export function createGridTexture({
@@ -16,17 +14,17 @@ export function createGridTexture({
   const cellSize = 2 ** cellSizeExponent;
   const cells = 2 ** cellsExponent;
 
-  const canvas = document.createElement("canvas");
-  const canvasSize = canvas.height = canvas.width = cellSize * cells;
+  const canvas = document.createElement('canvas');
+  const canvasSize = (canvas.height = canvas.width = cellSize * cells);
 
-  const context = canvas.getContext("2d")!;
+  const context = canvas.getContext('2d')!;
 
   // Background
-  context.fillStyle = "#8000FF";
+  context.fillStyle = '#8000FF';
   context.fillRect(0, 0, canvasSize, canvasSize);
 
   // Grid lines
-  context.strokeStyle = "#ff00ff";
+  context.strokeStyle = '#ff00ff';
   context.lineWidth = 2 ** lineWidthExponent;
 
   context.beginPath();
@@ -55,10 +53,10 @@ export function createGridTexture({
  * (Bright = high, dark = low.)
  */
 export function createDisplacementTexture(size = 512): THREE.CanvasTexture {
-  const canvas = document.createElement("canvas");
+  const canvas = document.createElement('canvas');
   canvas.width = size;
   canvas.height = size;
-  const ctx = canvas.getContext("2d")!;
+  const ctx = canvas.getContext('2d')!;
 
   const imageData = ctx.createImageData(size, size);
   const data = imageData.data;
@@ -101,10 +99,10 @@ export function createDisplacementTexture(size = 512): THREE.CanvasTexture {
  * glossy and others more diffuse.
  */
 export function createMetalnessTexture(size = 512, cells = 24): THREE.CanvasTexture {
-  const canvas = document.createElement("canvas");
+  const canvas = document.createElement('canvas');
   canvas.width = size;
   canvas.height = size;
-  const ctx = canvas.getContext("2d")!;
+  const ctx = canvas.getContext('2d')!;
 
   const imageData = ctx.createImageData(size, size);
   const data = imageData.data;
