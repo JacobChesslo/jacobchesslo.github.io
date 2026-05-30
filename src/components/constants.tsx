@@ -65,22 +65,9 @@ interface IHref {
   href: string;
 }
 
-export const NAVIGATIONS: IHref[] = [
-  { label: 'Home', href: '/' },
-  { label: 'Work', href: '/' },
-  { label: 'About', href: '/about' },
-  { label: 'Projects', href: '/projects' },
-  { label: 'Contact', href: '/contact' },
-];
-
 export const GITHUB_URL = 'https://github.com/jacobchesslo';
 
 export const SOCIALS: IHref[] = [
-  { label: 'Github', href: GITHUB_URL },
+  { label: 'GitHub', href: GITHUB_URL },
   { label: 'LinkedIn', href: 'https://linkedin.com/in/jacobchesslo' },
-];
-
-export const RESOURCES: IHref[] = [
-  { label: 'Curriculum Vitae', href: '/cv' },
-  { label: 'Source Code', href: 'https://github.com/jacobchesslo/jacobchesslo.github.io' },
 ];

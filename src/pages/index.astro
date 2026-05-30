@@ -3,35 +3,439 @@ import Layout from '../layouts/Layout.astro';
 import Quotes from '../components/Quotes.astro';
 ---
 
-<Layout>
-  <main class="text-center py-12">
-    <!-- Hero Section -->
-    <div class="mb-12">
-      <h1
-        class="text-4xl md:text-5xl font-bold text-[#fef5e7] mb-4"
-        style="font-family: 'Space Grotesk', sans-serif; text-shadow: 3px 3px 0 #e94560, 6px 6px 0 rgba(0,0,0,0.2);"
-      >
-        Welcome to My Virtual Space
-      </h1>
-      <div
-        class="w-32 h-1 mx-auto bg-gradient-to-r from-[#e94560] via-[#f8b500] to-[#0f9b8e] rounded-full mb-6"
-      >
-      </div>
-      <p
-        class="text-[#fef5e7]/80 text-lg max-w-xxl mx-auto"
-        style="font-family: 'Outfit', sans-serif;"
-      >
-        Exploring the cosmos through code and science - one curiosity at a time.
+<Layout
+  title="Jacob Chesslo"
+  description="Software Development Engineer at Blue Origin - physicist, builder, and space enthusiast."
+  fullWidth={true}
+>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="stars" aria-hidden="true"></div>
+  <div class="nebula nebula-1" aria-hidden="true"></div>
+  <div class="nebula nebula-2" aria-hidden="true"></div>
+  <div class="nebula nebula-3" aria-hidden="true"></div>
+  <div class="nebula nebula-4" aria-hidden="true"></div>
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <div class="hero-content">
+    <h1 class="hero-name">
+      Jacob
+      <span class="accent-line">Chesslo.</span>
+    </h1>
+    <p class="hero-title">
+      Software Engineer @ <span>Blue Origin</span> &nbsp;&middot;&nbsp; Physicist &nbsp;&middot;&nbsp; Builder
+    </p>
+    <p class="hero-sub">
+      Went from simulating dark matter at CERN to shipping the software that runs avionics test campaigns at Blue Origin.
+    </p>
+    <div class="hero-ctas">
+      <a href="/#experience" class="btn btn-primary">View My Work</a>
+      <a href="/#contact" class="btn btn-ghost">Get In Touch</a>
+    </div>
+  </div>
+
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <h2 class="section-title">Dark matter to launch hardware.</h2>
+
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        I'm Jacob. I work at <strong>Blue Origin</strong> in Kent, WA on the software that runs avionics verification for New Glenn and other programs - the testing infrastructure between the engineers and the flight hardware.
       </p>
+      <p>
+        Physics undergrad at Florida Tech, particle research at <strong>CERN</strong>, then HPC scientific software at ENSCO before moving to aerospace. The common thread has been making computation fast and correct when the stakes are high.
+      </p>
+      <p>
+        I've also spent a lot of time running organizations - student government, LGBTQ+ groups, fraternity boards. That side of things taught me things about people that no amount of code review does.
+      </p>
+      <div class="about-tags">
+        <span class="tag">aerospace</span>
+        <span class="tag">avionics</span>
+        <span class="tag">particle physics</span>
+        <span class="tag">quantum computing</span>
+        <span class="tag">HPC</span>
+        <span class="tag">DEI</span>
+        <span class="tag">open source</span>
+        <span class="tag">scientific computing</span>
+      </div>
     </div>
 
-    <!-- Decorative atomic element -->
-    <div class="flex justify-center items-center gap-6 mb-8">
-      <span class="text-[#e94560] text-2xl">*</span>
-      <div class="w-3 h-3 rounded-full bg-[#f8b500]"></div>
-      <span class="text-[#0f9b8e] text-2xl">*</span>
+    <div class="about-interests">
+      <h3>Research &amp; Interests</h3>
+      <div class="interest-item">Theory of Everything / Grand Unified Theory</div>
+      <div class="interest-item">Space Exploration &amp; Democratization of Space</div>
+      <div class="interest-item">Subatomic &amp; High Energy Particle Physics</div>
+      <div class="interest-item">Quantum Computing &amp; Alternative Computing</div>
+      <div class="interest-item">Artificial Intelligence &amp; Machine Learning</div>
+      <div class="interest-item">Green &amp; Renewable Energy</div>
+      <div class="interest-item">Philosophy of Science</div>
+      <div class="interest-item">Organizational Leadership &amp; Emotional Intelligence</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">02 &nbsp; Experience</div>
+  <h2 class="section-title">Where the hours went.</h2>
+
+  <div class="timeline">
+    <div class="timeline-line" aria-hidden="true"></div>
+
+    <div class="exp-item">
+      <div class="exp-dot-wrapper" aria-hidden="true"><div class="exp-dot"></div><div class="exp-dot-ring"></div></div>
+      <div class="exp-meta">
+        <span class="exp-date">2022 Oct - Present</span>
+        <span class="exp-tag">Aerospace</span>
+      </div>
+      <div class="exp-role">Software Engineer I &rarr; II &rarr; III</div>
+      <div class="exp-org">Blue Origin &middot; Engineering Productivity &middot; Systems &amp; Avionics CoE &middot; Kent, WA</div>
+      <div class="exp-desc">
+        Built and led K9 - the avionics task orchestration platform running verification workflows for New Glenn, New Shepard, and other programs. At various points the sole engineer keeping it running during active launch campaigns.
+      </div>
+      <div class="exp-highlights">
+        <div class="exp-highlight">Implemented K9 Task Caching, saving <strong>over <span class="stat-signal">386 days</span></strong> of compute time across major programs within 3 months</div>
+        <div class="exp-highlight">Created <strong>k9core</strong> shared library with 40+ releases in 2024 - company standard for test coverage and API consistency</div>
+        <div class="exp-highlight">Delivered automated ingestion pipeline between Holocron, Jama, and GitLab for multi-BU verification reporting</div>
+        <div class="exp-highlight">Achieved AS9115 Cyber Compliance for avionics software verification platforms</div>
+        <div class="exp-highlight">Active Bar Raiser - upholds hiring standards across Blue Origin through frequent interviews</div>
+      </div>
     </div>
 
-    <Quotes />
-  </main>
+    <div class="exp-item">
+      <div class="exp-dot-wrapper" aria-hidden="true"><div class="exp-dot"></div><div class="exp-dot-ring"></div></div>
+      <div class="exp-meta">
+        <span class="exp-date">2021 Mar - 2022 Oct</span>
+        <span class="exp-tag">Defense &middot; Science</span>
+      </div>
+      <div class="exp-role">Scientist II</div>
+      <div class="exp-org">ENSCO, Inc. - Mission Systems Group &middot; Melbourne, FL</div>
+      <div class="exp-desc">
+        Scientific software for defense and research: quantum chemistry simulation, infrared spectroscopy analysis, acoustic propagation modeling. Mostly Python and Fortran on HPC clusters, with a lot of time spent making existing code run orders of magnitude faster.
+      </div>
+      <div class="exp-highlights">
+        <div class="exp-highlight">Creator of <strong>Fermantic</strong> - Python IR spectroscopy package; reduced bottleneck algorithm runtime by <strong>5 orders of magnitude</strong> (hours &rarr; milliseconds)</div>
+        <div class="exp-highlight">Migrated legacy DoD Matlab seismic software to modern Python/MySQL architecture</div>
+        <div class="exp-highlight">Built <strong>PyCluster</strong> - HPC workload manager abstraction toolkit (Slurm, PBS, Torque)</div>
+        <div class="exp-highlight">Reduced end-to-end analysis workflow time for six scientists by <strong>10&times;</strong></div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-dot-wrapper" aria-hidden="true"><div class="exp-dot"></div><div class="exp-dot-ring"></div></div>
+      <div class="exp-meta">
+        <span class="exp-date">2018 Aug - 2020 Dec</span>
+        <span class="exp-tag">Research &middot; CERN</span>
+      </div>
+      <div class="exp-role">Research Assistant</div>
+      <div class="exp-org">Florida Tech - High Energy Particle Physics Group &middot; Melbourne, FL</div>
+      <div class="exp-desc">
+        Hohlmann Research Group at Florida Tech. Ran dark matter particle simulations for the CMS experiment at CERN, and built physical hardware - machined carbon-fiber bodywork for a GEM detector prototype for the Electron-Ion Collider.
+      </div>
+      <div class="exp-highlights">
+        <div class="exp-highlight">Simulated dark photon decay signatures using MadGraph, Pythia8, and CERN ROOT on LXPLUS HPC clusters</div>
+        <div class="exp-highlight">Designed and machined carbon-fiber composite bodywork for a modular Gas Electron Multiplier (GEM) detector prototype</div>
+        <div class="exp-highlight">Automated combinatorial input generation for CMS Monte Carlo sample requests via Bash scripting</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EDUCATION -->
+<section id="education">
+  <h2 class="section-title">The degrees.</h2>
+
+  <div class="edu-grid">
+    <div class="edu-card">
+      <div class="edu-year">2022 Jan - 2022 May</div>
+      <div class="edu-degree">M.S. Computer Science <span style="color: var(--text-muted); font-weight: 400;">(unfinished)</span></div>
+      <div class="edu-school">University of Central Florida &middot; Orlando, FL</div>
+      <div class="edu-gpa">GPA: 4.00 / 4.00</div>
+      <div class="edu-honors">Coursework: Quantum Computing</div>
+    </div>
+
+    <div class="edu-card">
+      <div class="edu-year">2017 Aug - 2020 Dec</div>
+      <div class="edu-degree">B.S. Physics, Minor: Chemistry</div>
+      <div class="edu-school">Florida Institute of Technology &middot; Melbourne, FL</div>
+      <div class="edu-gpa">GPA: 3.48 &middot; Department: 3.08</div>
+      <div class="edu-honors">Cum Laude &middot; Dean's List &times; 4</div>
+    </div>
+
+    <div class="edu-card">
+      <div class="edu-year">2013 Aug - 2017 Jun</div>
+      <div class="edu-degree">High School Diploma</div>
+      <div class="edu-school">Albert Gallatin Senior High School &middot; Uniontown, PA</div>
+      <div class="edu-gpa">GPA: 4.5 / 4.0</div>
+      <div class="edu-honors">Summa Cum Laude &middot; Graduation Speaker</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">04 &nbsp; Personal Projects</div>
+  <h2 class="section-title">Personal projects.</h2>
+
+  <div class="proj-grid">
+    <div class="proj-card">
+      <div class="proj-domain">Python &middot; Behavioral Science</div>
+      <div class="proj-name">BehaviorPy</div>
+      <div class="proj-desc">Python library for applied behavior analysis — statistical tools and data workflows for behavioral science research.</div>
+      <a href="https://github.com/JacobChesslo/behaviorpy" class="proj-link" target="_blank" rel="noopener noreferrer">github.com/JacobChesslo/behaviorpy</a>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-domain">Python &middot; Security</div>
+      <div class="proj-name">random-password</div>
+      <div class="proj-desc">Cryptographically secure password generator. Configurable character sets, length, and exclusion rules.</div>
+      <a href="https://github.com/JacobChesslo/random-password" class="proj-link" target="_blank" rel="noopener noreferrer">github.com/JacobChesslo/random-password</a>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-domain">Python &middot; Encoding</div>
+      <div class="proj-name">pymorse</div>
+      <div class="proj-desc">Python package for encoding and decoding Morse code.</div>
+      <a href="https://github.com/JacobChesslo/pymorse" class="proj-link" target="_blank" rel="noopener noreferrer">github.com/JacobChesslo/pymorse</a>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-domain">Research &middot; CERN</div>
+      <div class="proj-name">DarkSector Models</div>
+      <div class="proj-desc">Beyond the Standard Model particle physics models for dark photon signature simulation at the CMS experiment, using MadGraph5.</div>
+      <a href="https://github.com/JacobChesslo/DarkSector" class="proj-link" target="_blank" rel="noopener noreferrer">github.com/JacobChesslo/DarkSector</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <h2 class="section-title">What I reach for.</h2>
+
+  <div class="skills-grid">
+    <div class="skill-group">
+      <h3>Languages</h3>
+      <div class="skill-list">
+        <span class="skill-chip">Python</span>
+        <span class="skill-chip">C / C++</span>
+        <span class="skill-chip">Fortran</span>
+        <span class="skill-chip">TypeScript</span>
+        <span class="skill-chip">Go</span>
+        <span class="skill-chip">SQL</span>
+        <span class="skill-chip">Bash</span>
+        <span class="skill-chip">Julia</span>
+        <span class="skill-chip">Java</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h3>Infrastructure &amp; Cloud</h3>
+      <div class="skill-list">
+        <span class="skill-chip">AWS</span>
+        <span class="skill-chip">Kubernetes</span>
+        <span class="skill-chip">Terraform</span>
+        <span class="skill-chip">Ansible</span>
+        <span class="skill-chip">Docker</span>
+        <span class="skill-chip">GitLab CI</span>
+        <span class="skill-chip">PostgreSQL</span>
+        <span class="skill-chip">MongoDB</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h3>Science &amp; HPC</h3>
+      <div class="skill-list">
+        <span class="skill-chip">MPI / OpenMPI</span>
+        <span class="skill-chip">Slurm / PBS</span>
+        <span class="skill-chip">Gaussian</span>
+        <span class="skill-chip">CERN ROOT</span>
+        <span class="skill-chip">MadGraph5</span>
+        <span class="skill-chip">Qiskit</span>
+        <span class="skill-chip">NumPy / SciPy</span>
+        <span class="skill-chip">TensorFlow</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h3>Physics &amp; Research</h3>
+      <div class="skill-list">
+        <span class="skill-chip">Quantum Mechanics</span>
+        <span class="skill-chip">Particle Physics</span>
+        <span class="skill-chip">Quantum Chemistry</span>
+        <span class="skill-chip">IR Spectroscopy</span>
+        <span class="skill-chip">Coupled-Cluster Theory</span>
+        <span class="skill-chip">Monte Carlo</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h3>Aerospace</h3>
+      <div class="skill-list">
+        <span class="skill-chip">DO-178C</span>
+        <span class="skill-chip">DO-330</span>
+        <span class="skill-chip">DO-254</span>
+        <span class="skill-chip">HIL / PIL / SIL</span>
+        <span class="skill-chip">AS9115</span>
+        <span class="skill-chip">NASA Trick</span>
+        <span class="skill-chip">Avionics CI/CD</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h3>Leadership</h3>
+      <div class="skill-list">
+        <span class="skill-chip">Agile / Scrum</span>
+        <span class="skill-chip">Technical Mentorship</span>
+        <span class="skill-chip">Bar Raiser</span>
+        <span class="skill-chip">Technical Hiring</span>
+        <span class="skill-chip">Org Leadership</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<Quotes />
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-tagline">
+    If it has to work the first time,<br><span class="contact-accent">I want to work on it.</span>
+  </div>
+  <p class="contact-sub">Especially interested in aerospace, hard science, and anything with real constraints.</p>
+  <div class="contact-links">
+    <a href="https://github.com/JacobChesslo" class="contact-link" target="_blank" rel="noopener noreferrer">GitHub</a>
+    <a href="mailto:jacobchesslo@gmail.com" class="contact-link">Email</a>
+    <a href="https://linkedin.com/in/jacobchesslo" class="contact-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+  </div>
+</section>
+
 </Layout>
+
+<script>
+  import { animate, inView, stagger } from 'motion';
+
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reducedMotion) {
+
+    // ── Timeline line draw ──────────────────────────────────────
+    const timelineLine = document.querySelector<HTMLElement>('.timeline-line');
+    if (timelineLine) {
+      inView('#experience', () => {
+        animate(timelineLine, { scaleY: [0, 1] }, { duration: 1.4, ease: [0.16, 1, 0.3, 1] });
+      }, { margin: '0px 0px -100px 0px' });
+    }
+
+    // ── Exp items: entrance (once per element) ─────────────────
+    // motion v12 inView has no `once` option — track manually
+    const enteredItems = new Set<Element>();
+
+    inView('.exp-item', (entry) => {
+      const item = entry.target as HTMLElement;
+      if (enteredItems.has(item)) return;
+      enteredItems.add(item);
+
+      const dot = item.querySelector<HTMLElement>('.exp-dot');
+      const highlights = Array.from(item.querySelectorAll<HTMLElement>('.exp-highlight'));
+
+      animate(item, { x: [-30, 0], opacity: [0, 1] }, { duration: 0.7, ease: [0.16, 1, 0.3, 1] });
+
+      if (dot) {
+        animate(dot, { scale: [0, 1.3, 1], opacity: [0, 1] }, { duration: 0.5, ease: [0.34, 1.56, 0.64, 1] });
+      }
+
+      if (highlights.length) {
+        animate(highlights, { x: [-16, 0], opacity: [0, 1] }, {
+          delay: stagger(0.06, { start: 0.4 }),
+          duration: 0.45,
+          ease: [0.16, 1, 0.3, 1],
+        });
+      }
+    });
+
+    // ── Exp dot ring: radar pulse while item is in view ─────────
+    inView('.exp-item', (entry) => {
+      const ring = (entry.target as HTMLElement).querySelector<HTMLElement>('.exp-dot-ring');
+      if (!ring) return;
+
+      const pulse = () => animate(ring, { scale: [1, 3.5], opacity: [0.7, 0] }, {
+        duration: 1.4,
+        ease: [0.16, 1, 0.3, 1],
+      });
+
+      const initial = setTimeout(pulse, 800);
+      const id = setInterval(pulse, 3200);
+
+      return () => { clearTimeout(initial); clearInterval(id); };
+    }, { amount: 0.3 });
+
+    // ── Education cards (once) ──────────────────────────────────
+    const seenEdu = new Set<Element>();
+    inView('.edu-card', (entry) => {
+      if (seenEdu.has(entry.target)) return;
+      seenEdu.add(entry.target);
+      animate(entry.target as HTMLElement, { y: [24, 0], opacity: [0, 1] }, {
+        duration: 0.6, ease: [0.16, 1, 0.3, 1],
+      });
+    });
+
+    // ── Project cards (once) ────────────────────────────────────
+    const seenProj = new Set<Element>();
+    inView('.proj-card', (entry) => {
+      if (seenProj.has(entry.target)) return;
+      seenProj.add(entry.target);
+      animate(entry.target as HTMLElement, { y: [24, 0], opacity: [0, 1] }, {
+        duration: 0.6, ease: [0.16, 1, 0.3, 1],
+      });
+    });
+
+    // ── Skill groups (once) ─────────────────────────────────────
+    const seenSkill = new Set<Element>();
+    inView('.skill-group', (entry) => {
+      if (seenSkill.has(entry.target)) return;
+      seenSkill.add(entry.target);
+      animate(entry.target as HTMLElement, { y: [20, 0], opacity: [0, 1] }, {
+        duration: 0.5, ease: [0.16, 1, 0.3, 1],
+      });
+    });
+
+  }
+</script>
+
+<script is:inline>
+  // Nav scroll state
+  const siteNav = document.getElementById('site-nav');
+  if (siteNav) {
+    window.addEventListener('scroll', () => {
+      siteNav.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+  }
+
+  // Parallax on hero star field + grid
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      const gridBg = document.querySelector('.grid-bg');
+      const stars  = document.querySelector('.stars');
+      if (gridBg) gridBg.style.transform = `translateY(${y * 0.08}px)`;
+      if (stars)  stars.style.transform  = `translateY(${y * 0.05}px)`;
+    }, { passive: true });
+  }
+</script>

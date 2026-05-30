@@ -1,0 +1,71 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+import { GITHUB_URL } from '../../components/constants';
+import Link from '../../components/Link';
+
+import ProjectCard from '../../components/ProjectCard';
+---
+
+<Layout
+  title="Projects | Jacob Chesslo"
+  description="Personal and open-source projects by Jacob Chesslo."
+>
+  <main class="py-12">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <h1
+        class="text-4xl md:text-5xl font-bold text-[#f0ece4] mb-4"
+        style="font-family: 'Syne', sans-serif; text-shadow: 2px 2px 0 rgba(139,92,246,0.5);"
+      >
+        My Projects
+      </h1>
+      <div
+        class="w-24 h-1 mx-auto bg-gradient-to-r from-[#8b5cf6] via-[#7c3aed] to-[#a78bfa] rounded-full"
+      >
+      </div>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {
+        [
+          {
+            name: 'jacobchesslo.github.io',
+            children: (
+              <>
+                A personal website. Built with
+                <Link href="https://astro.build">Astro</Link>,
+                <Link href="https://www.solidjs.com">SolidJS</Link>,
+                <Link href="https://tailwindcss.com">TailwindCSS</Link>, and
+                <Link href="https://vite.dev">Vite</Link>.
+              </>
+            ),
+          },
+        ].map((item) => (
+          <ProjectCard name={item.name} href={`${GITHUB_URL}/${item?.name}`}>
+            {item.children}
+          </ProjectCard>
+        ))
+      }
+
+      {
+        [
+          {
+            name: 'vaporwave',
+            children: (
+              <>
+                Vaporwave fun project. Built with
+                <Link href="https://threejs.org">ThreeJS</Link>.
+              </>
+            ),
+          },
+        ].map((item) => (
+          <ProjectCard name={item.name} href={`./projects/${item?.name}`}>
+            {item.children}
+          </ProjectCard>
+        ))
+      }
+    </div>
+  </main>
+</Layout>

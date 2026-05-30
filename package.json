@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "npm run generate:cv && astro build",
+    "build": "astro build && npm run generate:cv",
     "preview": "astro preview",
     "astro": "astro",
     "generate:cv": "node scripts/generate-cv-pdf.mjs",
@@ -23,8 +23,10 @@
     "astro": "^5.12.9",
     "html2pdf.js": "^0.12.1",
     "marked": "^17.0.1",
+    "motion": "^12.40.0",
     "solid-icons": "^1.1.0",
     "tailwindcss": "^4.1.11",
+    "three": "^0.181.2",
     "vite": "^7.2.6"
   },
   "devDependencies": {
@@ -33,6 +35,7 @@
     "@astrojs/sitemap": "^3.4.2",
     "@eslint/js": "^9.39.1",
     "@playwright/test": "^1.57.0",
+    "@types/three": "^0.181.0",
     "@typescript-eslint/parser": "^8.48.1",
     "eslint": "^9.39.1",
     "eslint-config-prettier": "^10.1.8",

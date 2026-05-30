@@ -1,170 +1,144 @@
 import puppeteer from 'puppeteer';
-import { marked } from 'marked';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { marked } from 'marked';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, '..');
 
-async function generatePdf() {
-  console.log('Reading CV markdown...');
+const cvMd = fs.readFileSync(path.join(rootDir, 'src/content/cv.md'), 'utf-8');
+const cvHtml = marked.parse(cvMd);
 
-  const cvPath = path.join(rootDir, 'src/content/cv.md');
-  const cvContent = fs.readFileSync(cvPath, 'utf-8');
-  const cvHtml = await marked(cvContent);
-
-  // Create a styled HTML document for PDF
-  const fullHtml = `
-<!DOCTYPE html>
-<html>
+const html = `<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    body {
-      font-family: 'Outfit', 'Helvetica Neue', sans-serif;
-      line-height: 1.6;
-      color: #1a1a2e;
-      padding: 0.5in;
-      font-size: 10pt;
-    }
+  body {
+    font-family: 'Outfit', Helvetica, Arial, sans-serif;
+    font-size: 9.5pt;
+    font-weight: 300;
+    line-height: 1.55;
+    color: #111;
+    background: #fff;
+  }
 
-    h1 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 22pt;
-      font-weight: 700;
-      color: #1a1a2e;
-      margin-bottom: 8px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      border-bottom: 3px solid #e94560;
-      padding-bottom: 8px;
-    }
+  h1 {
+    font-size: 18pt;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    margin-bottom: 4px;
+  }
 
-    h2 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 14pt;
-      font-weight: 600;
-      color: #e94560;
-      margin-top: 18px;
-      margin-bottom: 8px;
-      padding-bottom: 4px;
-      border-bottom: 1.5px solid #f8b500;
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
-      page-break-after: avoid;
-    }
+  /* Contact info - first p after h1 */
+  h1 + p {
+    font-size: 8.5pt;
+    color: #444;
+    margin-bottom: 16px;
+    line-height: 1.7;
+  }
+  h1 + p a { color: #444; text-decoration: none; }
 
-    h3 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 11pt;
-      font-weight: 600;
-      color: #0f9b8e;
-      margin-top: 12px;
-      margin-bottom: 4px;
-      page-break-after: avoid;
-    }
+  h2 {
+    font-size: 8pt;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    border-bottom: 0.75pt solid #000;
+    padding-bottom: 2px;
+    margin-top: 16px;
+    margin-bottom: 8px;
+  }
 
-    p {
-      margin-bottom: 6px;
-      text-align: justify;
-    }
+  h3 {
+    font-size: 9.5pt;
+    font-weight: 600;
+    margin-top: 10px;
+    margin-bottom: 1px;
+  }
 
-    ul {
-      list-style: none;
-      padding-left: 16px;
-      margin-bottom: 8px;
-    }
+  /* Date / org line - first p after h3 */
+  h3 + p {
+    font-size: 8pt;
+    color: #555;
+    margin-bottom: 2px;
+  }
 
-    li {
-      margin-bottom: 4px;
-      position: relative;
-      padding-left: 12px;
-    }
+  p {
+    font-size: 9pt;
+    color: #222;
+    margin-bottom: 3px;
+    line-height: 1.5;
+  }
 
-    li::before {
-      content: "\\2022";
-      position: absolute;
-      left: 0;
-      color: #e94560;
-      font-weight: bold;
-    }
+  ul, ol {
+    margin: 4px 0 8px 14px;
+    padding: 0;
+  }
+  li { margin-bottom: 2px; font-size: 9pt; line-height: 1.5; }
 
-    a {
-      color: #0f9b8e;
-      text-decoration: none;
-    }
+  /* Nested list */
+  li > ul, li > ol { margin-top: 2px; margin-bottom: 2px; }
 
-    strong {
-      font-weight: 600;
-    }
+  strong { font-weight: 600; }
+  em { font-style: italic; color: #333; }
+  a { color: #333; text-decoration: none; word-break: break-all; }
 
-    em {
-      font-style: italic;
-    }
+  hr { border: none; border-top: 0.5pt solid #ccc; margin: 8pt 0; }
 
-    /* Avoid page breaks inside these elements */
-    h1, h2, h3, li {
-      page-break-inside: avoid;
-    }
-
-    /* Keep headers with following content */
-    h2 + *, h3 + * {
-      page-break-before: avoid;
-    }
-  </style>
+  @page {
+    size: Letter portrait;
+    margin: 0.65in 0.7in;
+  }
+</style>
 </head>
 <body>
-  ${cvHtml}
+${cvHtml}
 </body>
-</html>
-`;
+</html>`;
 
+async function generatePdf() {
   console.log('Launching browser...');
   const browser = await puppeteer.launch({
     headless: true,
     args: ['--no-sandbox', '--disable-setuid-sandbox'],
   });
 
-  const page = await browser.newPage();
-  await page.setContent(fullHtml, { waitUntil: 'networkidle0' });
+  try {
+    const page = await browser.newPage();
+    await page.setContent(html, { waitUntil: 'networkidle0', timeout: 30_000 });
 
-  // Ensure public directory exists
-  const publicDir = path.join(rootDir, 'public');
-  if (!fs.existsSync(publicDir)) {
-    fs.mkdirSync(publicDir, { recursive: true });
+    console.log('Generating PDF...');
+    const pdfBuffer = await page.pdf({
+      format: 'Letter',
+      margin: { top: '0.65in', right: '0.7in', bottom: '0.65in', left: '0.7in' },
+      printBackground: false,
+    });
+
+    const targets = [
+      path.join(rootDir, 'dist', 'JacobChessloCV.pdf'),
+      path.join(rootDir, 'public', 'JacobChessloCV.pdf'),
+    ];
+
+    for (const dest of targets) {
+      fs.mkdirSync(path.dirname(dest), { recursive: true });
+      fs.writeFileSync(dest, pdfBuffer);
+      console.log(`Written: ${dest}`);
+    }
+  } finally {
+    await browser.close();
   }
 
-  const pdfPath = path.join(publicDir, 'JacobChessloCV.pdf');
-
-  console.log('Generating PDF...');
-  await page.pdf({
-    path: pdfPath,
-    format: 'Letter',
-    margin: {
-      top: '0.5in',
-      right: '0.5in',
-      bottom: '0.5in',
-      left: '0.5in',
-    },
-    printBackground: true,
-  });
-
-  await browser.close();
-
-  console.log(`PDF generated successfully: ${pdfPath}`);
+  console.log('PDF generation complete.');
 }
 
-generatePdf().catch((error) => {
-  console.error('Error generating PDF:', error);
+generatePdf().catch((err) => {
+  console.error('PDF generation failed:', err);
   process.exit(1);
 });

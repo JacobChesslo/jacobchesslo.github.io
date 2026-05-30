@@ -1,170 +1,205 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { marked } from 'marked';
-import fs from 'node:fs';
-import path from 'node:path';
+import cvRaw from '../content/cv.md?raw';
 
-// Read the CV markdown file
-const cvPath = path.join(process.cwd(), 'src/content/cv.md');
-const cvContent = fs.readFileSync(cvPath, 'utf-8');
-const cvHtml = await marked(cvContent);
+const renderer = new marked.Renderer();
+
+// h1 → big name
+renderer.heading = function ({ text, depth }) {
+  if (depth === 1) return `<h1 class="cv-name">${text}</h1>\n`;
+  if (depth === 2) return `<h2 class="cv-section-label">${text}</h2>\n`;
+  if (depth === 3) return `<h3 class="cv-entry-title">${text}</h3>\n`;
+  return `<h${depth}>${text}</h${depth}>\n`;
+};
+
+renderer.paragraph = function ({ text }) {
+  return `<p class="cv-p">${text}</p>\n`;
+};
+
+renderer.list = function ({ items, ordered }) {
+  const tag = ordered ? 'ol' : 'ul';
+  const inner = items.map((item) => {
+    const body = item.tokens.map((t) => (t.type === 'text' ? t.text : '')).join('') || item.text;
+    return `<li>${body}</li>`;
+  }).join('\n');
+  return `<${tag} class="cv-list">\n${inner}\n</${tag}>\n`;
+};
+
+marked.use({ renderer, async: false });
+const cvHtml = marked.parse(cvRaw) as string;
 ---
 
-<Layout>
-  <main class="py-12">
-    <!-- Header -->
-    <div class="text-center mb-8">
-      <h1
-        class="text-4xl md:text-5xl font-bold text-[#fef5e7] mb-4"
-        style="font-family: 'Space Grotesk', sans-serif; text-shadow: 3px 3px 0 #e94560;"
-      >
-        Curriculum Vitae
-      </h1>
-      <div
-        class="w-24 h-1 mx-auto bg-gradient-to-r from-[#e94560] via-[#f8b500] to-[#0f9b8e] rounded-full mb-6"
-      >
-      </div>
+<Layout
+  title="CV | Jacob Chesslo"
+  description="Curriculum vitae of Jacob Chesslo - software engineer, physicist, and researcher."
+>
+<div class="cv-page">
 
-      <!-- Download Button - links to pre-built PDF -->
-      <a
-        href="/JacobChessloCV.pdf"
-        download="JacobChessloCV.pdf"
-        class="retro-btn inline-flex items-center gap-2"
-      >
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-          ></path>
-        </svg>
-        Download PDF
-      </a>
-    </div>
+  <div class="cv-download-bar">
+    <a href="/JacobChessloCV.pdf" download="JacobChessloCV.pdf" class="btn btn-ghost cv-download">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/>
+        <line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+      Download PDF
+    </a>
+  </div>
 
-    <!-- CV Content -->
-    <article id="cv-content" class="cv-article retro-card max-w-4xl mx-auto">
-      <Fragment set:html={cvHtml} />
-    </article>
+  <div class="cv-md-body" set:html={cvHtml} />
 
-    <!-- Decorative bottom element -->
-    <div class="flex justify-center items-center gap-4 mt-12">
-      <span class="text-[#e94560]">*</span>
-      <div class="w-2 h-2 rounded-full bg-[#f8b500]"></div>
-      <span class="text-[#0f9b8e]">*</span>
-    </div>
-  </main>
+</div>
 </Layout>
 
 <style>
-  .cv-article {
-    font-family: 'Outfit', sans-serif;
+  .cv-page {
+    padding: 120px var(--space-lg) var(--space-2xl);
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .cv-download-bar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: var(--space-lg);
+  }
+
+  /* ── Markdown body ─────────────────────────────────────── */
+
+  .cv-md-body :global(.cv-name) {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 12px;
+    overflow-wrap: anywhere;
+    min-width: 0;
+  }
+
+  /* Contact block - first .cv-p after .cv-name */
+  .cv-md-body :global(.cv-name + .cv-p) {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--text-dim);
+    line-height: 2;
+    margin-bottom: var(--space-xl);
+    padding-bottom: var(--space-lg);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .cv-md-body :global(.cv-section-label) {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 400;
+    margin-top: var(--space-xl);
+    margin-bottom: var(--space-md);
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .cv-md-body :global(.cv-entry-title) {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-top: var(--space-md);
+    margin-bottom: 2px;
+  }
+
+  /* Date / org line - first .cv-p after an entry title */
+  .cv-md-body :global(.cv-entry-title + .cv-p) {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    color: var(--tertiary);
+    margin-bottom: 3px;
+  }
+
+  .cv-md-body :global(.cv-p) {
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    font-weight: 300;
+    color: var(--text-dim);
     line-height: 1.7;
+    margin-bottom: 5px;
   }
 
-  .cv-article :global(h1) {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 2rem;
-    font-weight: 700;
-    color: #e94560;
-    margin-bottom: 0.5rem;
-    text-shadow: 2px 2px 0 rgba(233, 69, 96, 0.2);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+  .cv-md-body :global(.cv-list) {
+    margin: 6px 0 14px 22px;
+    padding: 0;
   }
 
-  .cv-article :global(h2) {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #f8b500;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid #f8b500;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+  .cv-md-body :global(.cv-list li) {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: var(--text-dim);
+    line-height: 1.65;
+    margin-bottom: 3px;
   }
 
-  .cv-article :global(h3) {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #0f9b8e;
-    margin-top: 1.5rem;
-    margin-bottom: 0.5rem;
+  .cv-md-body :global(.cv-list .cv-list) {
+    margin-top: 4px;
+    margin-bottom: 4px;
   }
 
-  .cv-article :global(p) {
-    color: #fef5e7;
-    margin-bottom: 0.75rem;
+  .cv-md-body :global(a) {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color var(--dur-fast) var(--ease-out);
+    word-break: break-all;
+  }
+  .cv-md-body :global(a:hover) { color: var(--secondary); }
+
+  .cv-md-body :global(strong) {
+    color: var(--text);
+    font-weight: 500;
   }
 
-  .cv-article :global(ul) {
-    list-style: none;
-    padding-left: 1.5rem;
-    margin-bottom: 1rem;
-  }
-
-  .cv-article :global(li) {
-    color: rgba(254, 245, 231, 0.9);
-    margin-bottom: 0.5rem;
-    position: relative;
-  }
-
-  .cv-article :global(li::before) {
-    content: '*';
-    position: absolute;
-    left: -1.25rem;
-    color: #e94560;
-    font-weight: bold;
-  }
-
-  .cv-article :global(a) {
-    color: #0f9b8e;
-    text-decoration: underline;
-    text-underline-offset: 2px;
-    transition: color 0.2s;
-  }
-
-  .cv-article :global(a:hover) {
-    color: #f8b500;
-  }
-
-  .cv-article :global(strong) {
-    color: #fef5e7;
-    font-weight: 600;
-  }
-
-  .cv-article :global(em) {
-    color: rgba(254, 245, 231, 0.8);
+  .cv-md-body :global(em) {
     font-style: italic;
+    color: var(--secondary);
   }
 
-  /* Print-friendly styles for PDF */
+  .cv-md-body :global(hr) {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: var(--space-lg) 0;
+  }
+
+  /* Responsive */
+  @media (max-width: 700px) {
+    .cv-page { padding: 100px var(--space-md) var(--space-xl); }
+  }
+
+  /* ── Print ─────────────────────────────────────────────── */
   @media print {
-    .cv-article {
-      background: white !important;
-      color: black !important;
-      padding: 0 !important;
-      border: none !important;
+    :root {
+      --bg: #ffffff; --surface: #ffffff;
+      --border: #d0d0d0; --text: #111111; --text-dim: #444444;
+      --text-muted: #888888; --accent: #1a1a1a; --secondary: #1a1a1a;
+      --tertiary: #555555;
     }
 
-    .cv-article :global(h1),
-    .cv-article :global(h2),
-    .cv-article :global(h3) {
-      color: black !important;
-      text-shadow: none !important;
-    }
+    body::before { display: none; }
+    nav, .site-footer, .nav-mobile { display: none !important; }
+    .cv-download-bar { display: none !important; }
 
-    .cv-article :global(p),
-    .cv-article :global(li) {
-      color: black !important;
-    }
+    body { background: #fff; color: #111; }
 
-    .cv-article :global(a) {
-      color: #0066cc !important;
-    }
+    .cv-page { padding: 0; max-width: 100%; }
+
+    .cv-md-body :global(.cv-section-label) { color: #000; border-bottom-color: #bbb; }
+    .cv-md-body :global(a) { color: #333; }
+    .cv-md-body :global(em) { color: #333; }
+    .cv-md-body :global(strong) { color: #000; }
+
+    @page { margin: 0.6in 0.65in; size: letter portrait; }
   }
 </style>

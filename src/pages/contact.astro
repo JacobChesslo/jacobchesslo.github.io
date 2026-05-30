@@ -2,49 +2,70 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout>
-  <main class="py-12">
-    <!-- Header -->
-    <div class="text-center mb-12">
-      <h1
-        class="text-4xl md:text-5xl font-bold text-[#fef5e7] mb-4"
-        style="font-family: 'Space Grotesk', sans-serif; text-shadow: 3px 3px 0 #e94560;"
-      >
-        Contact Me
-      </h1>
-      <div
-        class="w-24 h-1 mx-auto bg-gradient-to-r from-[#e94560] via-[#f8b500] to-[#0f9b8e] rounded-full"
-      >
-      </div>
+<Layout
+  title="Contact | Jacob Chesslo"
+  description="Get in touch with Jacob Chesslo."
+>
+  <main class="contact-main">
+    <div class="contact-header">
+      <h1 class="contact-title">Contact</h1>
+      <div class="contact-rule" aria-hidden="true"></div>
     </div>
 
-    <!-- Contact Card -->
-    <div class="max-w-md mx-auto">
-      <div class="retro-card text-center">
-        <!-- Decorative starburst -->
-        <div class="flex justify-center mb-6">
-          <svg class="w-12 h-12 text-[#f8b500]" viewBox="0 0 24 24" fill="currentColor">
-            <polygon points="12,2 15,9 22,9 16,14 18,22 12,17 6,22 8,14 2,9 9,9"></polygon>
-          </svg>
-        </div>
-
-        <p class="text-[#fef5e7]/80 mb-6" style="font-family: 'Outfit', sans-serif;">
-          Want to get in touch? I'd love to hear from you!
-        </p>
-
-        <a href="mailto:jacobchesslo@gmail.com" class="retro-btn inline-block"> Send Email </a>
-
-        <p class="mt-4 text-[#0f9b8e] text-sm" style="font-family: 'Space Grotesk', sans-serif;">
-          jacobchesslo@gmail.com
-        </p>
+    <div class="contact-card-wrap">
+      <div class="retro-card contact-card">
+        <p class="contact-body">Want to get in touch? I&rsquo;d love to hear from you.</p>
+        <a href="mailto:jacobchesslo@gmail.com" class="retro-btn">Send Email</a>
+        <p class="contact-email">jacobchesslo@gmail.com</p>
       </div>
-    </div>
-
-    <!-- Decorative bottom element -->
-    <div class="flex justify-center items-center gap-4 mt-12">
-      <span class="text-[#e94560]">*</span>
-      <div class="w-2 h-2 rounded-full bg-[#f8b500]"></div>
-      <span class="text-[#0f9b8e]">*</span>
     </div>
   </main>
 </Layout>
+
+<style>
+  /* Hallmark · macrostructure: Long Document · tone: atmospheric · anchor hue: violet */
+
+  .contact-main {
+    padding: 3rem 0 6rem;
+  }
+
+  .contact-header {
+    margin-bottom: 3rem;
+  }
+
+  .contact-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 1rem;
+  }
+
+  .contact-rule {
+    width: 6rem;
+    height: 1px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-bright), var(--secondary));
+  }
+
+  .contact-card-wrap {
+    max-width: 28rem;
+  }
+
+  .contact-card {
+    text-align: center;
+  }
+
+  .contact-body {
+    color: var(--text-dim);
+    margin-bottom: 1.5rem;
+    font-family: var(--font-body);
+  }
+
+  .contact-email {
+    margin-top: 1rem;
+    color: var(--accent-bright);
+    font-size: 0.82rem;
+    font-family: var(--font-mono);
+    letter-spacing: 0.05em;
+  }
+</style>
