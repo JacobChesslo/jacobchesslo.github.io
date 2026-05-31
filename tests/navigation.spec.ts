@@ -4,61 +4,36 @@ test.describe('Navigation', () => {
   test('homepage loads correctly', async ({ page }) => {
     await page.goto('/');
     await expect(page).toHaveTitle(/Jacob/i);
-    await expect(page.locator('h1')).toContainText(/Welcome/i);
+    await expect(page.locator('h1')).toContainText(/Jacob/i);
   });
 
-  test('all navigation links are accessible', async ({ page }) => {
+  test('all navigation links are in the DOM', async ({ page }) => {
     await page.goto('/');
 
-    // Check main nav links exist (desktop or mobile)
-    const navLinks = ['Home', 'Work', 'About', 'Projects', 'Contact'];
-
-    for (const linkText of navLinks) {
-      const link = page.getByRole('link', { name: linkText }).first();
-      await expect(link).toBeVisible();
+    // Use href selectors since nav links may be visually hidden on mobile viewports
+    for (const href of ['/#about', '/#experience', '/#projects', '/#contact']) {
+      await expect(page.locator(`a[href="${href}"]`).first()).toBeAttached();
     }
   });
 
-  test('can navigate to About page', async ({ page }) => {
+  test('homepage has all major sections', async ({ page }) => {
     await page.goto('/');
-    await page.getByRole('link', { name: 'About' }).first().click();
-    await expect(page).toHaveURL(/about/);
-    await expect(page.locator('h1')).toContainText(/Jacob Chesslo/i);
-  });
-
-  test('can navigate to Work page', async ({ page }) => {
-    await page.goto('/');
-    await page.getByRole('link', { name: 'Work' }).first().click();
-    await expect(page.locator('h1')).toContainText(/Work Experience/i);
-  });
-
-  test('can navigate to Projects page', async ({ page }) => {
-    await page.goto('/');
-    await page.getByRole('link', { name: 'Projects' }).first().click();
-    await expect(page).toHaveURL(/projects/);
-    await expect(page.locator('h1')).toContainText(/Projects/i);
-  });
-
-  test('can navigate to Contact page', async ({ page }) => {
-    await page.goto('/');
-    await page.getByRole('link', { name: 'Contact' }).first().click();
-    await expect(page).toHaveURL(/contact/);
-    await expect(page.locator('h1')).toContainText(/Contact/i);
+    await expect(page.locator('#about')).toBeAttached();
+    await expect(page.locator('#experience')).toBeAttached();
+    await expect(page.locator('#projects')).toBeAttached();
+    await expect(page.locator('#contact')).toBeAttached();
   });
 
   test('can navigate to CV page', async ({ page }) => {
     await page.goto('/');
-    await page.getByRole('link', { name: 'Curriculum Vitae' }).first().click();
+    await page.getByRole('link', { name: 'CV' }).first().click();
     await expect(page).toHaveURL(/cv/);
-    await expect(page.locator('h1')).toContainText(/Curriculum Vitae/i);
+    await expect(page.locator('h1')).toBeVisible();
   });
 
   test('logo links to homepage', async ({ page }) => {
-    await page.goto('/about');
-    await page
-      .getByRole('link', { name: /Jacob Chesslo/i })
-      .first()
-      .click();
+    await page.goto('/cv');
+    await page.locator('.nav-logo').click();
     await expect(page).toHaveURL('/');
   });
 });

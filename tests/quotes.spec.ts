@@ -26,29 +26,29 @@ test.describe('Quotes Component', () => {
     expect(author).toMatch(/^-/);
   });
 
-  test('quote rotates after interval', async ({ page }) => {
+  test('quote rotator is wired up', async ({ page }) => {
     await page.goto('/');
 
-    const quoteText = page.locator('#quote-text');
+    // Verify the quote block has the data attributes the rotator script depends on
+    const quoteBlock = page.locator('#quote-block');
+    await expect(quoteBlock).toHaveAttribute('data-quotes');
+    await expect(quoteBlock).toHaveAttribute('data-initial-index');
 
-    // Get initial quote
-    const initialQuote = await quoteText.textContent();
-
-    // Wait for rotation (7 seconds + buffer)
-    await page.waitForTimeout(8000);
-
-    // Quote might have changed (or might be same if random picks same)
-    // At minimum, the element should still be visible
-    await expect(quoteText).toBeVisible();
+    // Quotes array should be non-empty JSON
+    const quotesJson = await quoteBlock.getAttribute('data-quotes');
+    const quotes = JSON.parse(quotesJson!);
+    expect(quotes.length).toBeGreaterThan(0);
   });
 
   test('quote block has proper styling', async ({ page }) => {
     await page.goto('/');
 
-    const quoteBlock = page.locator('#quote-block');
+    // Quote section should be visible with its CSS class
+    const quoteSection = page.locator('.quote-section');
+    await expect(quoteSection).toBeVisible();
 
-    // Should have the retro card styling
-    await expect(quoteBlock).toHaveClass(/border-2/);
-    await expect(quoteBlock).toHaveClass(/shadow-xl/);
+    // Quote block should be inside the section
+    const quoteBlock = page.locator('#quote-block');
+    await expect(quoteBlock).toBeVisible();
   });
 });

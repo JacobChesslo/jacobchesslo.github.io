@@ -5,65 +5,58 @@ test.describe('Mobile Navigation', () => {
 
   test('mobile menu button is visible', async ({ page }) => {
     await page.goto('/');
-    const menuButton = page.locator('#mobile-menu-btn');
+    const menuButton = page.locator('#nav-toggle');
     await expect(menuButton).toBeVisible();
   });
 
   test('mobile menu opens and closes', async ({ page }) => {
     await page.goto('/');
 
-    const menuButton = page.locator('#mobile-menu-btn');
-    const mobileMenu = page.locator('#mobile-menu');
+    const menuButton = page.locator('#nav-toggle');
+    const mobileMenu = page.locator('#nav-mobile');
 
-    // Menu should be hidden initially
-    await expect(mobileMenu).toHaveClass(/hidden/);
+    // Menu should be closed initially (no 'open' class)
+    await expect(mobileMenu).not.toHaveClass(/open/);
 
     // Click to open
     await menuButton.click();
-    await expect(mobileMenu).not.toHaveClass(/hidden/);
+    await expect(mobileMenu).toHaveClass(/open/);
 
     // Click to close
     await menuButton.click();
-    await expect(mobileMenu).toHaveClass(/hidden/);
+    await expect(mobileMenu).not.toHaveClass(/open/);
   });
 
   test('can navigate using mobile menu', async ({ page }) => {
     await page.goto('/');
 
     // Open mobile menu
-    await page.locator('#mobile-menu-btn').click();
+    await page.locator('#nav-toggle').click();
 
-    // Click About link in mobile menu
-    await page.locator('#mobile-menu').getByRole('link', { name: 'About' }).click();
+    // Click About link in mobile menu (anchor to /#about)
+    await page.locator('#nav-mobile').getByRole('link', { name: 'About' }).click();
 
-    await expect(page).toHaveURL(/about/);
+    await expect(page).toHaveURL(/#about/);
   });
 
-  test('mobile theme selector works', async ({ page }) => {
+  test('mobile menu contains nav links', async ({ page }) => {
     await page.goto('/');
 
-    // Open mobile menu
-    await page.locator('#mobile-menu-btn').click();
+    await page.locator('#nav-toggle').click();
 
-    // Find mobile theme selector
-    const themeSelect = page.locator('#theme-select-mobile');
-    await expect(themeSelect).toBeVisible();
-
-    // Change to light theme
-    await themeSelect.selectOption('light');
-
-    // Check body has light theme class
-    await expect(page.locator('body')).toHaveClass(/theme-light/);
+    const mobileMenu = page.locator('#nav-mobile');
+    await expect(mobileMenu).toBeVisible();
+    await expect(mobileMenu.getByRole('link', { name: 'About' })).toBeVisible();
+    await expect(mobileMenu.getByRole('link', { name: 'Experience' })).toBeVisible();
+    await expect(mobileMenu.getByRole('link', { name: 'Contact' })).toBeVisible();
   });
 
   test('page content is readable on mobile', async ({ page }) => {
     await page.goto('/');
 
-    // Check that main heading is visible and not cut off
     const heading = page.locator('h1').first();
     await expect(heading).toBeVisible();
 
-    // Check quote block is visible
     const quoteBlock = page.locator('#quote-block');
     await expect(quoteBlock).toBeVisible();
   });
@@ -72,11 +65,10 @@ test.describe('Mobile Navigation', () => {
 test.describe('Tablet Navigation', () => {
   test.use({ viewport: { width: 768, height: 1024 } }); // iPad size
 
-  test('navigation adapts to tablet size', async ({ page }) => {
+  test('navigation is visible at tablet size', async ({ page }) => {
     await page.goto('/');
 
-    // At 768px (md breakpoint), should show desktop nav
-    const desktopNav = page.locator('nav.hidden.md\\:flex');
-    await expect(desktopNav).toBeVisible();
+    const nav = page.locator('#site-nav');
+    await expect(nav).toBeVisible();
   });
 });

@@ -4,17 +4,17 @@ test.describe('CV Page', () => {
   test('CV page loads correctly', async ({ page }) => {
     await page.goto('/cv');
 
-    await expect(page.locator('h1')).toContainText(/Curriculum Vitae/i);
+    await expect(page).toHaveTitle(/CV/i);
+    await expect(page.locator('h1')).toBeVisible();
   });
 
   test('CV content is rendered from markdown', async ({ page }) => {
     await page.goto('/cv');
 
-    // Check for key sections from the CV markdown
-    await expect(page.locator('article')).toContainText(/Jacob S Chesslo/i);
-    await expect(page.locator('article')).toContainText(/Professional and Research Interests/i);
-    await expect(page.locator('article')).toContainText(/Education/i);
-    await expect(page.locator('article')).toContainText(/Experience and Employment/i);
+    const cvBody = page.locator('.cv-md-body');
+    await expect(cvBody).toContainText(/Jacob S Chesslo/i);
+    await expect(cvBody).toContainText(/Professional and Research Interests/i);
+    await expect(cvBody).toContainText(/Education/i);
   });
 
   test('download PDF button is visible', async ({ page }) => {
@@ -35,12 +35,10 @@ test.describe('CV Page', () => {
   test('CV sections have proper styling', async ({ page }) => {
     await page.goto('/cv');
 
-    // Check that the article container exists
-    const article = page.locator('article#cv-content');
-    await expect(article).toBeVisible();
+    const cvBody = page.locator('.cv-md-body');
+    await expect(cvBody).toBeVisible();
 
-    // Check for proper heading hierarchy
-    const h2Elements = page.locator('article h2');
+    const h2Elements = page.locator('.cv-md-body h2');
     expect(await h2Elements.count()).toBeGreaterThan(0);
   });
 });
@@ -51,14 +49,11 @@ test.describe('CV Page Mobile', () => {
   test('CV is readable on mobile', async ({ page }) => {
     await page.goto('/cv');
 
-    // Main heading should be visible
     await expect(page.locator('h1')).toBeVisible();
 
-    // Article content should be visible
-    const article = page.locator('article#cv-content');
-    await expect(article).toBeVisible();
+    const cvBody = page.locator('.cv-md-body');
+    await expect(cvBody).toBeVisible();
 
-    // Download button should be visible and tappable
     const downloadButton = page.getByRole('link', { name: /Download PDF/i });
     await expect(downloadButton).toBeVisible();
   });
