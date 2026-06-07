@@ -348,7 +348,7 @@ section {
   font-size: 0.72rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--accent-bright);
   margin-bottom: var(--space-sm);
   display: flex;
   align-items: center;
@@ -359,7 +359,7 @@ section {
   display: inline-block;
   width: 24px;
   height: 1px;
-  background: var(--accent);
+  background: var(--accent-bright);
   flex-shrink: 0;
 }
 
@@ -520,13 +520,13 @@ section {
 }
 .exp-tag {
   font-family: var(--font-mono);
-  font-size: 0.6rem;
+  font-size: 0.7rem;
   letter-spacing: 0.1em;
   padding: 2px 8px;
   background: var(--accent-a10);
   border: 1px solid var(--accent-a25);
   border-radius: 2px;
-  color: var(--accent);
+  color: var(--text);
 }
 .exp-role {
   font-family: var(--font-display);
@@ -631,7 +631,7 @@ section {
 .edu-gpa {
   font-family: var(--font-mono);
   font-size: 0.7rem;
-  color: var(--accent);
+  color: var(--accent-bright);
   letter-spacing: 0.08em;
   font-variant-numeric: tabular-nums;
 }
@@ -688,7 +688,7 @@ section {
   font-size: 0.72rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--accent-bright);
   margin-bottom: 12px;
 }
 .proj-name {
@@ -801,7 +801,7 @@ section {
   font-size: 0.85rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--text-dim);
+  color: var(--text);
   text-decoration: none;
   padding: 12px 24px;
   border: 1px solid var(--border);

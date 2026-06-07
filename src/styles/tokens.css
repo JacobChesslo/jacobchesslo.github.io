@@ -12,7 +12,7 @@
 
   /* Text */
   --text: oklch(91% 0.018 295);
-  --text-dim: oklch(47% 0.056 295);
+  --text-dim: oklch(58% 0.056 295);
   --text-muted: oklch(20% 0.038 290);
 
   /* Accent family */
@@ -21,7 +21,7 @@
   --accent-neon: oklch(48% 0.29 300);
 
   /* Secondary · Tertiary · Signal */
-  --secondary: oklch(58% 0.24 340);
+  --secondary: oklch(63% 0.24 340);
   --tertiary: oklch(63% 0.19 35);
   --green: oklch(92% 0.22 131);
 

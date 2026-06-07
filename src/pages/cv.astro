@@ -30,6 +30,12 @@ renderer.list = function ({ items, ordered }) {
 
 marked.use({ renderer, async: false });
 const cvHtml = marked.parse(cvRaw) as string;
+
+const now = new Date();
+const month = now.toLocaleString('en-US', { month: 'short' });
+const day = String(now.getDate()).padStart(2, '0');
+const year = now.getFullYear();
+const cvFilename = `JacobChessloCV-${month}-${day}-${year}.pdf`;
 ---
 
 <Layout
@@ -38,7 +44,7 @@ const cvHtml = marked.parse(cvRaw) as string;
 >
   <div class="cv-page">
     <div class="cv-download-bar">
-      <a href="/JacobChessloCV.pdf" download="JacobChessloCV.pdf" class="btn btn-ghost cv-download">
+      <a href="/JacobChessloCV.pdf" download={cvFilename} class="btn btn-primary cv-download">
         <svg
           width="16"
           height="16"

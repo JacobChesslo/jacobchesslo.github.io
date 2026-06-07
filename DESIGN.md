@@ -45,12 +45,12 @@ Near-void black as the foundation. Electric violet/purple as the primary identit
 | `--surface2`      | `oklch(8% 0.013 268)`  | Hover states, subtle distinction                 |
 | `--border`        | `oklch(12% 0.028 282)` | Borders, dividers, grid lines                    |
 | `--text`          | `oklch(91% 0.018 295)` | Main body text - slightly warm white             |
-| `--text-dim`      | `oklch(47% 0.056 295)` | Secondary text, descriptions                     |
+| `--text-dim`      | `oklch(58% 0.056 295)` | Secondary text, descriptions                     |
 | `--text-muted`    | `oklch(20% 0.038 290)` | Placeholders, disabled, ghost elements           |
 | `--accent`        | `oklch(55% 0.22 295)`  | Primary - electric violet/purple                 |
 | `--accent-bright` | `oklch(65% 0.17 295)`  | Hover states, highlights                         |
 | `--accent-neon`   | `oklch(48% 0.29 300)`  | Max energy - once per page absolute limit        |
-| `--secondary`     | `oklch(58% 0.24 340)`  | Fuchsia - key stats, contact glow                |
+| `--secondary`     | `oklch(63% 0.24 340)`  | Fuchsia - key stats, contact glow                |
 | `--tertiary`      | `oklch(63% 0.19 35)`   | Coral - dates, metadata, timeline, project links |
 | `--green`         | `oklch(92% 0.22 131)`  | Acid green - 1–2 uses per page max, signal only  |
 
