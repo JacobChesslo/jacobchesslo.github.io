@@ -54,7 +54,10 @@ renderer.list = function ({ items, ordered }) {
         .filter((t: Token): t is Tokens.List => t.type === 'list')
         .map((t: Tokens.List) => renderer.list({ items: t.items, ordered: t.ordered }))
         .join('');
-      const textToken = item.tokens.find((t: Token): t is Tokens.Text => t.type === 'text');
+      const textToken = item.tokens.find(
+        (t: Token): t is Tokens.Text | Tokens.Paragraph =>
+          t.type === 'text' || t.type === 'paragraph'
+      );
       const body = textToken ? (marked.parseInline(textToken.text) as string) : item.text;
       return `<li>${body}${nestedLists}</li>`;
     })
