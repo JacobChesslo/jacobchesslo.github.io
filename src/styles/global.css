@@ -84,7 +84,7 @@ body::before {
 }
 .nav-links a {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.8rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--text-dim);
@@ -149,6 +149,8 @@ body::before {
   padding: 0 var(--space-lg);
   position: relative;
   overflow: hidden;
+  max-width: none;
+  margin: 0;
 }
 
 .stars {
@@ -287,7 +289,7 @@ body::before {
 /* ─── BUTTONS ─────────────────────────────────────────────────── */
 .btn {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   padding: 12px 28px;
@@ -345,7 +347,7 @@ section {
 
 .section-label {
   font-family: var(--font-body);
-  font-size: 0.72rem;
+  font-size: 0.8rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--accent-bright);
@@ -407,7 +409,7 @@ section {
 }
 .tag {
   font-family: var(--font-body);
-  font-size: 0.72rem;
+  font-size: 0.8rem;
   letter-spacing: 0.04em;
   padding: 5px 12px;
   border: 1px solid var(--border);
@@ -427,7 +429,7 @@ section {
 
 .about-interests h3 {
   font-family: var(--font-body);
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--accent);
@@ -514,13 +516,13 @@ section {
 }
 .exp-date {
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 0.72rem;
   letter-spacing: 0.12em;
   color: var(--tertiary);
 }
 .exp-tag {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   letter-spacing: 0.1em;
   padding: 2px 8px;
   background: var(--accent-a10);
@@ -609,7 +611,7 @@ section {
 }
 .edu-year {
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 0.72rem;
   letter-spacing: 0.15em;
   color: var(--tertiary);
   margin-bottom: 12px;
@@ -630,7 +632,7 @@ section {
 }
 .edu-gpa {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   color: var(--accent-bright);
   letter-spacing: 0.08em;
   font-variant-numeric: tabular-nums;
@@ -685,7 +687,7 @@ section {
 }
 .proj-domain {
   font-family: var(--font-body);
-  font-size: 0.72rem;
+  font-size: 0.8rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--accent-bright);
@@ -731,7 +733,7 @@ section {
 }
 .skill-group h3 {
   font-family: var(--font-body);
-  font-size: 0.72rem;
+  font-size: 0.8rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--accent);
@@ -746,7 +748,7 @@ section {
 }
 .skill-chip {
   font-family: var(--font-body);
-  font-size: 0.72rem;
+  font-size: 0.8rem;
   padding: 4px 10px;
   background: var(--accent-a05);
   border: 1px solid var(--accent-a15);
@@ -830,7 +832,7 @@ section {
   justify-content: space-between;
   align-items: center;
   font-family: var(--font-body);
-  font-size: 0.72rem;
+  font-size: 0.8rem;
   letter-spacing: 0.08em;
   color: var(--text-dim);
 }
@@ -927,7 +929,7 @@ section {
   border: none;
   padding: 0.75rem 2rem;
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.8rem;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.18em;
