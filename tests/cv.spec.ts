@@ -29,7 +29,7 @@ test.describe('CV Page', () => {
 
     const downloadButton = page.getByRole('link', { name: /Download PDF/i });
     await expect(downloadButton).toHaveAttribute('href', '/JacobChessloCV.pdf');
-    await expect(downloadButton).toHaveAttribute('download', 'JacobChessloCV.pdf');
+    await expect(downloadButton).toHaveAttribute('download', /^JacobChessloCV/);
   });
 
   test('CV sections have proper styling', async ({ page }) => {

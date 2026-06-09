@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { marked } from 'marked';
+import { marked, type Token, type Tokens } from 'marked';
 import cvRaw from '../content/curriculum-vitae/README.md?raw';
 
 const renderer = new marked.Renderer();
@@ -51,11 +51,11 @@ renderer.list = function ({ items, ordered }) {
   const inner = items
     .map((item) => {
       const nestedLists = item.tokens
-        .filter((t: any) => t.type === 'list')
-        .map((t: any) => renderer.list({ items: t.items, ordered: t.ordered }))
+        .filter((t: Token): t is Tokens.List => t.type === 'list')
+        .map((t: Tokens.List) => renderer.list({ items: t.items, ordered: t.ordered }))
         .join('');
-      const textToken = item.tokens.find((t: any) => t.type === 'text');
-      const body = textToken ? (marked.parseInline((textToken as any).text) as string) : item.text;
+      const textToken = item.tokens.find((t: Token): t is Tokens.Text => t.type === 'text');
+      const body = textToken ? (marked.parseInline(textToken.text) as string) : item.text;
       return `<li>${body}${nestedLists}</li>`;
     })
     .join('\n');
