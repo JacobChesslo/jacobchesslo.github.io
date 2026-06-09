@@ -5,24 +5,58 @@ import cvRaw from '../content/curriculum-vitae/README.md?raw';
 
 const renderer = new marked.Renderer();
 
-// h1 → big name
+let currentSection = '';
+let isContactParagraph = false;
+
 renderer.heading = function ({ text, depth }) {
-  if (depth === 1) return `<h1 class="cv-name">${text}</h1>\n`;
-  if (depth === 2) return `<h2 class="cv-section-label">${text}</h2>\n`;
+  if (depth === 1) {
+    isContactParagraph = true;
+    return `<h1 class="cv-name">${text}</h1>\n`;
+  }
+  if (depth === 2) {
+    currentSection = text;
+    isContactParagraph = false;
+    return `<h2 class="cv-section-label">${text}</h2>\n`;
+  }
   if (depth === 3) return `<h3 class="cv-entry-title">${text}</h3>\n`;
   return `<h${depth}>${text}</h${depth}>\n`;
 };
 
 renderer.paragraph = function ({ text }) {
+  if (isContactParagraph) {
+    isContactParagraph = false;
+    const items = text.split('\n').filter(Boolean);
+    const inner = items.map((s) => `<span class="cv-contact-item">${s}</span>`).join('');
+    return `<div class="cv-contact-block">${inner}</div>\n`;
+  }
   return `<p class="cv-p">${text}</p>\n`;
 };
 
+renderer.link = function ({ href, title, text }) {
+  const isExternal = href && (href.startsWith('http') || href.startsWith('//'));
+  const attrs = isExternal ? ' target="_blank" rel="noopener noreferrer"' : '';
+  const titleAttr = title ? ` title="${title}"` : '';
+  return `<a href="${href}"${titleAttr}${attrs}>${text}</a>`;
+};
+
 renderer.list = function ({ items, ordered }) {
+  if (currentSection === 'Professional and Research Interests') {
+    const chips = items
+      .map((item) => `<span class="cv-interest-chip">${item.text}</span>`)
+      .join('');
+    return `<div class="cv-interests">${chips}</div>\n`;
+  }
+
   const tag = ordered ? 'ol' : 'ul';
   const inner = items
     .map((item) => {
-      const body = item.tokens.map((t) => (t.type === 'text' ? t.text : '')).join('') || item.text;
-      return `<li>${body}</li>`;
+      const nestedLists = item.tokens
+        .filter((t: any) => t.type === 'list')
+        .map((t: any) => renderer.list({ items: t.items, ordered: t.ordered }))
+        .join('');
+      const textToken = item.tokens.find((t: any) => t.type === 'text');
+      const body = textToken ? (marked.parseInline((textToken as any).text) as string) : item.text;
+      return `<li>${body}${nestedLists}</li>`;
     })
     .join('\n');
   return `<${tag} class="cv-list">\n${inner}\n</${tag}>\n`;
@@ -89,26 +123,34 @@ const cvFilename = `JacobChessloCV-${month}-${day}-${year}.pdf`;
     font-weight: 800;
     color: var(--text);
     line-height: 1;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
     overflow-wrap: anywhere;
     min-width: 0;
   }
 
-  /* Contact block - first .cv-p after .cv-name */
-  .cv-md-body :global(.cv-name + .cv-p) {
+  /* Contact block */
+  .cv-md-body :global(.cv-contact-block) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 20px;
     font-family: var(--font-mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
     color: var(--text-dim);
-    line-height: 2;
     margin-bottom: var(--space-xl);
     padding-bottom: var(--space-lg);
     border-bottom: 1px solid var(--border);
   }
 
+  .cv-md-body :global(.cv-contact-item) {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+  }
+
   .cv-md-body :global(.cv-section-label) {
     font-family: var(--font-mono);
-    font-size: 0.65rem;
+    font-size: 0.8rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--accent);
@@ -128,10 +170,10 @@ const cvFilename = `JacobChessloCV-${month}-${day}-${year}.pdf`;
     margin-bottom: 2px;
   }
 
-  /* Date / org line - first .cv-p after an entry title */
+  /* Date / org line */
   .cv-md-body :global(.cv-entry-title + .cv-p) {
     font-family: var(--font-mono);
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     letter-spacing: 0.05em;
     color: var(--tertiary);
     margin-bottom: 3px;
@@ -144,6 +186,25 @@ const cvFilename = `JacobChessloCV-${month}-${day}-${year}.pdf`;
     color: var(--text-dim);
     line-height: 1.7;
     margin-bottom: 5px;
+  }
+
+  /* Interests chips */
+  .cv-md-body :global(.cv-interests) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: var(--space-md);
+  }
+
+  .cv-md-body :global(.cv-interest-chip) {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    padding: 4px 12px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    color: var(--text-dim);
+    background: var(--surface);
+    line-height: 1.4;
   }
 
   .cv-md-body :global(.cv-list) {
@@ -169,10 +230,21 @@ const cvFilename = `JacobChessloCV-${month}-${day}-${year}.pdf`;
     color: var(--accent);
     text-decoration: none;
     transition: color var(--dur-fast) var(--ease-out);
-    word-break: break-all;
   }
   .cv-md-body :global(a:hover) {
     color: var(--secondary);
+    text-decoration: underline;
+  }
+
+  /* Long reference URLs in presentations/posters */
+  .cv-md-body :global(.cv-list li a[href^='http']) {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    word-break: break-all;
+    color: var(--text-muted);
+  }
+  .cv-md-body :global(.cv-list li a[href^='http']:hover) {
+    color: var(--accent);
   }
 
   .cv-md-body :global(strong) {
