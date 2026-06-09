@@ -22,14 +22,15 @@ renderer.heading = function ({ text, depth }) {
   return `<h${depth}>${text}</h${depth}>\n`;
 };
 
-renderer.paragraph = function ({ text }) {
+renderer.paragraph = function ({ tokens }) {
+  const rendered = this.parser.parseInline(tokens);
   if (isContactParagraph) {
     isContactParagraph = false;
-    const items = text.split('\n').filter(Boolean);
+    const items = rendered.split('\n').filter(Boolean);
     const inner = items.map((s) => `<span class="cv-contact-item">${s}</span>`).join('');
     return `<div class="cv-contact-block">${inner}</div>\n`;
   }
-  return `<p class="cv-p">${text}</p>\n`;
+  return `<p class="cv-p">${rendered}</p>\n`;
 };
 
 renderer.link = function ({ href, title, text }) {
