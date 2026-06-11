@@ -1049,6 +1049,37 @@ section {
   }
 }
 @media (max-width: 600px) {
+  .exp-role {
+    font-size: 1.05rem;
+  }
+  #experience .timeline {
+    padding-left: 20px;
+  }
+  .exp-item {
+    padding-left: 20px;
+    margin-bottom: 44px;
+  }
+  .exp-dot-wrapper {
+    left: -28px;
+  }
+  .nebula-1 {
+    width: 320px;
+    height: 320px;
+    top: -80px;
+    right: -60px;
+  }
+  .nebula-2 {
+    width: 240px;
+    height: 240px;
+  }
+  .nebula-3 {
+    width: 180px;
+    height: 180px;
+  }
+  .nebula-4 {
+    width: 140px;
+    height: 140px;
+  }
   .nav-links {
     display: none;
   }
