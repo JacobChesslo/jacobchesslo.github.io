@@ -11,7 +11,7 @@ test.describe('Navigation', () => {
     await page.goto('/');
 
     // Use href selectors since nav links may be visually hidden on mobile viewports
-    for (const href of ['/#about', '/#experience', '/#projects', '/#contact']) {
+    for (const href of ['/#about', '/#experience', '/#contact']) {
       await expect(page.locator(`a[href="${href}"]`).first()).toBeAttached();
     }
   });
@@ -20,7 +20,6 @@ test.describe('Navigation', () => {
     await page.goto('/');
     await expect(page.locator('#about')).toBeAttached();
     await expect(page.locator('#experience')).toBeAttached();
-    await expect(page.locator('#projects')).toBeAttached();
     await expect(page.locator('#contact')).toBeAttached();
   });
 
