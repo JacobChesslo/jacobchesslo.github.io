@@ -1,0 +1,221 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Consulting — Jacob Chesslo"
+  description="Jacob Chesslo offers consulting in two areas: science and simulation software engineering, and tech for LGBTQ+, kink, and lifestyle communities."
+>
+  <section class="consult-hub">
+    <div class="hub-bg" aria-hidden="true">
+      <div class="orb orb-science"></div>
+      <div class="orb orb-lifestyle"></div>
+      <div class="grid-overlay"></div>
+    </div>
+
+    <div class="hub-content">
+      <div class="hub-label">Consulting</div>
+      <h1 class="hub-title">Let's work together.</h1>
+      <p class="hub-sub">
+        I consult in two areas. They're different audiences — pick the one that fits.
+      </p>
+
+      <div class="hub-tracks">
+        <a href="/consulting/science" class="track-card track-science">
+          <div class="track-tag">Science &amp; Engineering</div>
+          <h2 class="track-name">Research code that ships.</h2>
+          <p class="track-desc">
+            Prototype Python, legacy Fortran, slow simulations, HPC pipelines that don't scale. I
+            bridge the gap between research software and production engineering.
+          </p>
+          <div class="track-cta">Explore &rarr;</div>
+        </a>
+
+        <a href="/consulting/lifestyle" class="track-card track-lifestyle">
+          <div class="track-tag">LGBTQ+ &amp; Lifestyle</div>
+          <h2 class="track-name">Tech built for your world.</h2>
+          <p class="track-desc">
+            Web, apps, and community platforms for LGBTQ+, kink, and lifestyle communities — built
+            by someone who's actually in these spaces.
+          </p>
+          <div class="track-cta">Explore &rarr;</div>
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .consult-hub {
+    position: relative;
+    overflow: hidden;
+    padding: 5rem 0 4rem;
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* ── Atmospheric background ─────────────────────────── */
+  .hub-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    animation: orb-drift 12s ease-in-out infinite alternate;
+  }
+
+  .orb-science {
+    width: 500px;
+    height: 500px;
+    top: -100px;
+    left: -100px;
+    background: radial-gradient(ellipse, oklch(55% 0.22 295 / 0.18) 0%, transparent 70%);
+    animation-delay: 0s;
+  }
+
+  .orb-lifestyle {
+    width: 400px;
+    height: 400px;
+    bottom: -80px;
+    right: -80px;
+    background: radial-gradient(ellipse, oklch(63% 0.24 340 / 0.15) 0%, transparent 70%);
+    animation-delay: -6s;
+  }
+
+  @keyframes orb-drift {
+    0% {
+      transform: translate(0, 0) scale(1);
+    }
+    100% {
+      transform: translate(40px, 30px) scale(1.1);
+    }
+  }
+
+  .grid-overlay {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(oklch(55% 0.22 295 / 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, oklch(55% 0.22 295 / 0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+  }
+
+  /* ── Content ────────────────────────────────────────── */
+  .hub-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hub-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 1rem;
+  }
+
+  .hub-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--text);
+    margin-bottom: 1rem;
+  }
+
+  .hub-sub {
+    font-size: 1.05rem;
+    color: var(--text-dim);
+    max-width: 42ch;
+    margin-bottom: 3rem;
+  }
+
+  /* ── Track cards ────────────────────────────────────── */
+  .hub-tracks {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .track-card {
+    display: block;
+    text-decoration: none;
+    padding: 2rem;
+    border-radius: 12px;
+    background: oklch(5% 0.009 264 / 0.7);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(8px);
+    transition:
+      border-color var(--dur-mid) var(--ease-out),
+      transform var(--dur-mid) var(--ease-out),
+      background var(--dur-mid) var(--ease-out);
+  }
+
+  .track-card:hover {
+    transform: translateY(-3px);
+  }
+
+  .track-science:hover {
+    border-color: var(--accent);
+    background: oklch(5% 0.009 264 / 0.85);
+  }
+
+  .track-lifestyle:hover {
+    border-color: var(--secondary);
+    background: oklch(5% 0.009 264 / 0.85);
+  }
+
+  .track-tag {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .track-science .track-tag {
+    color: var(--accent-bright);
+  }
+  .track-lifestyle .track-tag {
+    color: var(--secondary);
+  }
+
+  .track-name {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+  }
+
+  .track-desc {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+  }
+
+  .track-cta {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+
+  .track-science:hover .track-cta {
+    color: var(--accent-bright);
+  }
+  .track-lifestyle:hover .track-cta {
+    color: var(--secondary);
+  }
+</style>

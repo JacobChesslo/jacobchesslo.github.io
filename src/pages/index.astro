@@ -29,7 +29,7 @@ import Quotes from '../components/Quotes.astro';
       </p>
       <p class="hero-sub">
         Went from simulating dark matter at CERN to shipping the software that runs avionics test
-        campaigns at Blue Origin.
+        campaigns and HPC workloads at Blue Origin.
       </p>
       <div class="hero-ctas">
         <a href="/#experience" class="btn btn-primary">View My Work</a>
@@ -46,29 +46,18 @@ import Quotes from '../components/Quotes.astro';
 
     <div class="about-grid">
       <div class="about-text">
+        <p>Hey y'all — I'm Jacob.</p>
         <p>
-          I'm Jacob. I work at <strong>Blue Origin</strong> in Kent, WA on the software that runs avionics
-          verification for New Glenn and other programs - the testing infrastructure between the engineers
-          and the flight hardware.
+          Physics degree from Florida Tech. Dark matter at CERN. Quantum chemistry and spectroscopy
+          on HPC clusters at ENSCO. Now building avionics verification and HPC platforms at <strong
+            >Blue Origin</strong
+          >.
         </p>
+        <p>The common thread: computation has to be correct when the stakes are real.</p>
         <p>
-          Physics undergrad at Florida Tech, particle research at <strong>CERN</strong>, then HPC
-          scientific software at ENSCO before moving to aerospace. The common thread has been making
-          computation fast and correct when the stakes are high.
+          I've also spent years running organizations — student government, LGBTQ+ groups,
+          fraternity boards. People problems are harder than software problems.
         </p>
-        <p>
-          I've also spent a lot of time running organizations - student government, LGBTQ+ groups,
-          fraternity boards. That side of things taught me things about people that no amount of
-          code review does.
-        </p>
-        <div class="about-tags">
-          <span class="tag">aerospace</span>
-          <span class="tag">avionics</span>
-          <span class="tag">particle physics</span>
-          <span class="tag">HPC</span>
-          <span class="tag">DEI</span>
-          <span class="tag">open source</span>
-        </div>
       </div>
 
       <div class="about-interests">
@@ -98,44 +87,16 @@ import Quotes from '../components/Quotes.astro';
         </div>
         <div class="exp-meta">
           <span class="exp-date">2022 Oct - Present</span>
-          <span class="exp-tag">Aerospace</span>
         </div>
-        <div class="exp-role">Software Engineer I &rarr; II &rarr; III</div>
-        <div class="exp-org">
-          Blue Origin &middot; Engineering Productivity &middot; Systems &amp; Avionics CoE &middot;
-          Kent, WA
-        </div>
-        <div class="exp-desc">
-          Built and led K9 — Blue Origin's avionics task orchestration platform running millions of
-          tasks per year at 99.99%+ uptime across hundreds of environments, on the critical path to
-          launch campaigns. Currently leading K9X, a ground-up successor built against NIST 800-53
-          and NASA NPR 7123 with first-class HPC-scale workload support.
-        </div>
+        <div class="exp-role">Software Engineer I &rarr; II &rarr; III @ Blue Origin</div>
         <div class="exp-highlights">
           <div class="exp-highlight">
-            Implemented K9 Task Caching, saving <strong
-              >over <span class="stat-signal">386 days</span></strong
-            > of compute time across major programs within 3 months
+            Kept rockets on schedule — the verification platform every major program depended on
           </div>
           <div class="exp-highlight">
-            Leading <strong>K9X</strong> — ground-up platform rewrite designed for HPC-scale workloads,
-            built compliance-first against NIST 800-53, NIST 800-171, and NASA NPR 7123 using an AI-first
-            development methodology
+            Sole engineer on K9 through New Glenn's most critical campaign
           </div>
-          <div class="exp-highlight">
-            Maintained <strong>99.99%+ uptime</strong> running millions of tasks per year across hundreds
-            of environments — sole engineer on K9 through the most critical period of New Glenn's verification
-            campaign
-          </div>
-          <div class="exp-highlight">
-            Delivered automated ingestion pipeline between Holocron, Jama, and GitLab for multi-BU
-            verification reporting — work that became the foundation for verification workflows
-            relied on across the company
-          </div>
-          <div class="exp-highlight">
-            Outstanding Contribution Award (2024) — recognized for platform stability and delivery
-            under launch campaign pressure
-          </div>
+          <div class="exp-highlight">Now leading K9X, the HPC-scale successor</div>
         </div>
       </div>
 
@@ -145,30 +106,15 @@ import Quotes from '../components/Quotes.astro';
         </div>
         <div class="exp-meta">
           <span class="exp-date">2021 Mar - 2022 Oct</span>
-          <span class="exp-tag">Defense &middot; Science</span>
         </div>
-        <div class="exp-role">Scientist II</div>
-        <div class="exp-org">ENSCO, Inc. - Mission Systems Group &middot; Melbourne, FL</div>
-        <div class="exp-desc">
-          Scientific software for defense and research: quantum chemistry simulation, infrared
-          spectroscopy analysis, acoustic propagation modeling. Mostly Python and Fortran on HPC
-          clusters, with a lot of time spent making existing code run orders of magnitude faster.
-        </div>
+        <div class="exp-role">Scientist II @ ENSCO</div>
         <div class="exp-highlights">
           <div class="exp-highlight">
-            Creator of <strong>Fermantic</strong> - Python IR spectroscopy package; reduced bottleneck
-            algorithm runtime by <strong>5 orders of magnitude</strong> (hours &rarr; milliseconds)
+            Five orders of magnitude — hours to milliseconds — on scientist-written HPC code
           </div>
           <div class="exp-highlight">
-            Migrated legacy DoD Matlab seismic software to modern Python/MySQL architecture
-          </div>
-          <div class="exp-highlight">
-            Built <strong>PyCluster</strong> - HPC workload manager abstraction toolkit (Slurm, PBS, Torque)
-          </div>
-          <div class="exp-highlight">
-            Reduced end-to-end analysis workflow time for six scientists by <strong
-              >10&times;</strong
-            >
+            Tenfold throughput gain for the research team &nbsp;&middot;&nbsp; published at two
+            national conferences
           </div>
         </div>
       </div>
@@ -179,29 +125,14 @@ import Quotes from '../components/Quotes.astro';
         </div>
         <div class="exp-meta">
           <span class="exp-date">2018 Aug - 2020 Dec</span>
-          <span class="exp-tag">Research &middot; CERN</span>
         </div>
-        <div class="exp-role">Research Assistant</div>
-        <div class="exp-org">
-          Florida Tech - High Energy Particle Physics Group &middot; Melbourne, FL
-        </div>
-        <div class="exp-desc">
-          Hohlmann Research Group at Florida Tech. Ran dark matter particle simulations for the CMS
-          experiment at CERN, and built physical hardware - machined carbon-fiber bodywork for a GEM
-          detector prototype for the Electron-Ion Collider.
-        </div>
+        <div class="exp-role">Research Assistant @ Florida Tech &middot; HEP Lab A</div>
         <div class="exp-highlights">
           <div class="exp-highlight">
-            Simulated dark photon decay signatures using MadGraph, Pythia8, and CERN ROOT on LXPLUS
-            HPC clusters
+            Searched for dark matter at the CMS experiment — <strong>beyond Standard Model</strong> physics
           </div>
           <div class="exp-highlight">
-            Designed and machined carbon-fiber composite bodywork for a modular Gas Electron
-            Multiplier (GEM) detector prototype
-          </div>
-          <div class="exp-highlight">
-            Automated combinatorial input generation for CMS Monte Carlo sample requests via Bash
-            scripting
+            Built hardware for a next-generation particle detector prototype
           </div>
         </div>
       </div>
@@ -222,67 +153,15 @@ import Quotes from '../components/Quotes.astro';
             >(unfinished)</span
           >
         </div>
-        <div class="edu-school">University of Central Florida &middot; Orlando, FL</div>
-        <div class="edu-gpa">GPA: 4.00 / 4.00</div>
-        <div class="edu-honors">
-          Coursework: Quantum Computing &middot; Left to join Blue Origin
-        </div>
+        <div class="edu-school">University of Central Florida</div>
+        <div class="edu-honors">Left to join Blue Origin</div>
       </div>
 
       <div class="edu-card">
         <div class="edu-year">2017 Aug - 2020 Dec</div>
         <div class="edu-degree">B.S. Physics, Minor: Chemistry</div>
-        <div class="edu-school">Florida Institute of Technology &middot; Melbourne, FL</div>
-        <div class="edu-gpa">GPA: 3.48 &middot; Department: 3.08</div>
+        <div class="edu-school">Florida Institute of Technology</div>
         <div class="edu-honors">Cum Laude &middot; Dean's List &times; 4</div>
-      </div>
-
-      <div class="edu-card">
-        <div class="edu-year">2013 Aug - 2017 Jun</div>
-        <div class="edu-degree">High School Diploma</div>
-        <div class="edu-school">Albert Gallatin Senior High School &middot; Uniontown, PA</div>
-        <div class="edu-gpa">GPA: 4.5 / 4.0</div>
-        <div class="edu-honors">Summa Cum Laude &middot; Graduation Speaker</div>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <!-- PROJECTS -->
-  <section id="projects">
-    <div class="section-label">04 &nbsp; Personal Projects</div>
-    <h2 class="section-title">Personal projects.</h2>
-
-    <div class="proj-grid">
-      <div class="proj-card">
-        <div class="proj-domain">Python &middot; Behavioral Science</div>
-        <div class="proj-name">BehaviorPy</div>
-        <div class="proj-desc">
-          Python library for applied behavior analysis — statistical tools and data workflows for
-          behavioral science research.
-        </div>
-        <a
-          href="https://github.com/JacobChesslo/behaviorpy"
-          class="proj-link"
-          target="_blank"
-          rel="noopener noreferrer">github.com/JacobChesslo/behaviorpy</a
-        >
-      </div>
-
-      <div class="proj-card">
-        <div class="proj-domain">Research &middot; CERN</div>
-        <div class="proj-name">DarkSector Models</div>
-        <div class="proj-desc">
-          Beyond the Standard Model particle physics models for dark photon signature simulation at
-          the CMS experiment, using MadGraph5.
-        </div>
-        <a
-          href="https://github.com/JacobChesslo/DarkSector"
-          class="proj-link"
-          target="_blank"
-          rel="noopener noreferrer">github.com/JacobChesslo/DarkSector</a
-        >
       </div>
     </div>
   </section>

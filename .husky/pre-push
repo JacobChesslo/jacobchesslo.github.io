@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# Run lint and format check in parallel
+npm run lint &
+LINT_PID=$!
+npm run format:check &
+FORMAT_PID=$!
+
+wait $LINT_PID
+LINT_EXIT=$?
+wait $FORMAT_PID
+FORMAT_EXIT=$?
+
+if [ $LINT_EXIT -ne 0 ] || [ $FORMAT_EXIT -ne 0 ]; then
+  echo "Pre-push: lint or format check failed. Fix issues before pushing."
+  exit 1
+fi
+
+npm run build && npm run test
