@@ -1,46 +1,58 @@
-# Astro Starter Kit: Basics
+# jacobchesslo.github.io
 
-```sh
-npm create astro@latest -- --template basics
-```
+Personal website and consulting site for **Jacob Chesslo** — software engineer and physicist. A fast, accessible, statically-rendered site with cinematic scroll-driven canvas scenes (a Lorenz attractor on the science page, connecting community clusters on the lifestyle page).
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+**Live:** https://jacobchesslo.github.io
 
-## 🚀 Project Structure
+## Stack
 
-Inside of your Astro project, you'll see the following folders and files:
+- **[Astro](https://astro.build)** — static site generation
+- **[SolidJS](https://solidjs.com)** — interactive islands
+- **TypeScript** · **TailwindCSS**
+- **[Playwright](https://playwright.dev)** — cross-browser test suite
+
+## Structure
 
 ```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+src/
+├── pages/
+│   ├── index.astro              # Home
+│   ├── consulting/
+│   │   ├── index.astro          # Consulting hub
+│   │   ├── science.astro        # Scientific / HPC software consulting
+│   │   └── lifestyle.astro      # Web & community-platform consulting
+│   └── cv.astro                 # Curriculum vitae (rendered from the submodule)
+├── components/                  # Header, Footer, Quotes, shared constants
+├── layouts/Layout.astro         # Shared shell — head, nav, JSON-LD schema
+├── styles/global.css            # Design tokens + global styles
+└── content/curriculum-vitae/    # CV content (git submodule)
+scripts/generate-cv-pdf.mjs      # Renders the CV to a downloadable PDF (puppeteer)
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Getting started
 
-## 🧞 Commands
+The CV content lives in a git submodule, so pull it in after cloning:
 
-All commands are run from the root of the project, from a terminal:
+```sh
+git clone --recurse-submodules https://github.com/JacobChesslo/jacobchesslo.github.io.git
+# already cloned without submodules?
+git submodule update --init
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+npm install
+npm run dev        # http://localhost:4321
+```
 
-## 👀 Want to learn more?
+## Commands
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+| Command                | Action                                       |
+| :--------------------- | :------------------------------------------- |
+| `npm run dev`          | Dev server at `localhost:4321`               |
+| `npm run build`        | Generate the CV PDF, then build to `./dist/` |
+| `npm run preview`      | Preview the production build locally         |
+| `npm run test`         | Run the Playwright suite                     |
+| `npm run lint`         | ESLint                                       |
+| `npm run format:check` | Prettier formatting check                    |
+
+## Deployment
+
+Pushing to `main` triggers the GitHub Actions pipeline (`.github/workflows/`): lint + Prettier, a cross-browser Playwright matrix, then a build (with a freshly-generated CV PDF) deployed to GitHub Pages. A Husky pre-push hook runs the same lint/format/build/test gates locally first.

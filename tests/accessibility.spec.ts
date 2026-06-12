@@ -84,6 +84,34 @@ test.describe('Accessibility', () => {
   });
 });
 
+test.describe('Reduced motion & print', () => {
+  test('reduced-motion: looping animations run once and scrolling is instant', async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/consulting/science');
+    await page.waitForTimeout(200);
+    const r = await page.evaluate(() => ({
+      iter: getComputedStyle(document.querySelector('.scroll-cue')!).animationIterationCount,
+      scroll: getComputedStyle(document.documentElement).scrollBehavior,
+    }));
+    expect(r.iter).toBe('1'); // infinite loops collapsed to one iteration (no 1ms flicker)
+    expect(r.scroll).toBe('auto'); // smooth-scroll motion disabled
+  });
+
+  test('print: dark ink, decoration and nav hidden, scene collapsed', async ({ page }) => {
+    await page.goto('/consulting/science');
+    await page.emulateMedia({ media: 'print' });
+    await page.waitForTimeout(200);
+    const r = await page.evaluate(() => ({
+      bodyText: getComputedStyle(document.querySelector('.content-section p')!).color,
+      canvas: getComputedStyle(document.querySelector('canvas')!).display,
+      nav: getComputedStyle(document.querySelector('.site-nav')!).display,
+    }));
+    expect(r.bodyText).toBe('rgb(17, 17, 17)'); // forced to near-black for paper
+    expect(r.canvas).toBe('none');
+    expect(r.nav).toBe('none');
+  });
+});
+
 test.describe('Keyboard Navigation', () => {
   test('can tab through navigation', async ({ page, browserName }) => {
     if (browserName === 'webkit') return; // WebKit doesn't reliably fire :focus on keyboard Tab

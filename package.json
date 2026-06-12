@@ -1,10 +1,20 @@
 {
   "name": "website",
+  "private": true,
   "type": "module",
   "version": "0.0.1",
+  "description": "Personal website and consulting site for Jacob Chesslo — software engineer and physicist.",
+  "author": "Jacob Chesslo",
+  "license": "UNLICENSED",
+  "homepage": "https://jacobchesslo.github.io",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JacobChesslo/jacobchesslo.github.io.git"
+  },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && npm run generate:cv",
+    "build": "npm run generate:cv && astro check && astro build",
+    "check": "astro check",
     "preview": "astro preview",
     "astro": "astro",
     "generate:cv": "node scripts/generate-cv-pdf.mjs",
@@ -22,21 +32,15 @@
     "@astrojs/solid-js": "^5.1.0",
     "@tailwindcss/vite": "^4.1.11",
     "astro": "^5.12.9",
-    "html2pdf.js": "^0.12.1",
     "marked": "^17.0.1",
     "motion": "^12.40.0",
-    "solid-icons": "^1.1.0",
-    "tailwindcss": "^4.1.11",
-    "three": "^0.181.2",
-    "vite": "^7.2.6"
+    "tailwindcss": "^4.1.11"
   },
   "devDependencies": {
-    "@astrojs/mdx": "^4.3.3",
-    "@astrojs/preact": "^4.1.0",
+    "@astrojs/check": "^0.9.9",
     "@astrojs/sitemap": "^3.4.2",
     "@eslint/js": "^9.39.1",
     "@playwright/test": "^1.57.0",
-    "@types/three": "^0.181.0",
     "@typescript-eslint/parser": "^8.48.1",
     "eslint": "^9.39.1",
     "eslint-config-prettier": "^10.1.8",
@@ -47,6 +51,7 @@
     "prettier": "^3.7.4",
     "prettier-plugin-astro": "^0.14.1",
     "puppeteer": "^24.32.0",
+    "typescript": "^5.9.3",
     "typescript-eslint": "^8.48.1"
   }
 }

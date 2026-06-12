@@ -71,3 +71,23 @@ export const SOCIALS: IHref[] = [
   { label: 'GitHub', href: GITHUB_URL },
   { label: 'LinkedIn', href: 'https://linkedin.com/in/jacobchesslo' },
 ];
+
+// Canonical brand-entity (schema.org Person) shared by the homepage and CV. Spread it and add a
+// runtime `url` per page: `{ ...PERSON_BASE, url: Astro.url.origin + '/' }`. sameAs derives from
+// SOCIALS so the profile links never drift.
+export const PERSON_BASE = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Jacob Chesslo',
+  jobTitle: 'Software Development Engineer',
+  worksFor: { '@type': 'Organization', name: 'Blue Origin' },
+  knowsAbout: [
+    'Physics',
+    'Scientific computing',
+    'High-performance computing',
+    'Software engineering',
+    'Simulation',
+    'Web development',
+  ],
+  sameAs: SOCIALS.map((s) => s.href),
+};

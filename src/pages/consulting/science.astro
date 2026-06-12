@@ -4,22 +4,74 @@ import Layout from '../../layouts/Layout.astro';
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
-  name: 'Jacob Chesslo — Science & Simulation Consulting',
+  name: 'Jacob Chesslo - Science & Simulation Consulting',
   description:
     'Scientific software engineering consulting. HPC optimization, simulation pipelines, legacy code modernization, research-to-production bridging.',
-  url: 'https://jacobchesslo.com/consulting/science',
+  url: Astro.url.href,
   email: 'jacobchesslo@gmail.com',
-  founder: { '@type': 'Person', name: 'Jacob Chesslo', url: 'https://jacobchesslo.com' },
+  areaServed: 'Worldwide',
+  serviceType: 'Scientific software engineering consulting',
+  founder: {
+    '@type': 'Person',
+    name: 'Jacob Chesslo',
+    url: Astro.url.origin + '/',
+    jobTitle: 'Software Engineer & Physicist',
+    knowsAbout: [
+      'High-performance computing',
+      'Scientific computing',
+      'Computational physics',
+      'Simulation pipelines',
+      'Research software engineering',
+      'Legacy code modernization',
+    ],
+    sameAs: ['https://github.com/JacobChesslo', 'https://linkedin.com/in/jacobchesslo'],
+  },
 };
+
+// Single source of truth: renders both the FAQ accordion and FAQPage structured data
+const faqs = [
+  {
+    q: 'Are you taking on work right now?',
+    a: "Yes - a project or two at a time, so I stay hands-on. If timing is tight, say so and I'll be straight about whether I can do it justice.",
+  },
+  {
+    q: 'Remote or on-site?',
+    a: 'Remote by default. I can travel for a kickoff or for work that has to happen on-site.',
+  },
+  {
+    q: 'How do you price?',
+    a: 'No rate cards yet. We scope a small first piece, agree on it, and go from there - hourly or fixed, whatever fits the work.',
+  },
+  {
+    q: 'Can you handle sensitive work?',
+    a: "I've worked in defense and aerospace under NDA and compliance regimes (NIST 800-53, NASA NPR 7123). Happy to sign an NDA before we get into specifics.",
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
+// Single prefilled mailto reused by every CTA (cover, sticky, body) so they never drift
+const mailto =
+  'mailto:jacobchesslo@gmail.com?subject=Science%20%26%20simulation%20consulting&body=Hi%20Jacob%2C%0A%0AI%27m%20working%20on%20%5Bproject%5D%20and%20could%20use%20help%20with%20%5Bthe%20problem%5D.%20A%20bit%20of%20context%3A%0A%0A';
 ---
 
 <Layout
-  title="Science & Simulation Consulting — Jacob Chesslo"
-  description="Jacob Chesslo consults on scientific software engineering — HPC optimization, simulation pipelines, and bridging research code to production."
+  title="Science & Simulation Consulting - Jacob Chesslo"
+  description="Jacob Chesslo consults on scientific software engineering - HPC optimization, simulation pipelines, and bridging research code to production."
   fullWidth={true}
+  ogImage="/og/consulting-science.png"
 >
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   </Fragment>
 
   <div class="scroll-scene" id="science-scene">
@@ -34,82 +86,154 @@ const schema = {
         </div>
         <div class="pill-body">
           <p class="page-sub">
-            I bridge the gap between research software and engineering-grade systems — making
-            computation fast, correct, and deployable when the stakes are high.
+            I turn research code into production systems - fast, correct, and deployable when the
+            stakes are high.
           </p>
-          <a href="mailto:jacobchesslo@gmail.com" class="cta-btn">Let's talk &rarr;</a>
+          <div class="pill-actions">
+            <a href={mailto} class="cta-btn">Let's talk <span class="arr">&rarr;</span></a>
+          </div>
         </div>
       </div>
 
-      <div class="overlay" id="ov1">
+      <div class="scene-progress" aria-hidden="true">
+        <div class="scene-progress-fill" id="science-progress"></div>
+      </div>
+
+      <div class="overlay" id="ov1" aria-hidden="true">
         <p class="ov-line">Prototype Python.</p>
         <p class="ov-line">Legacy Fortran.</p>
         <p class="ov-line">Simulations too slow to iterate on.</p>
       </div>
-      <div class="overlay" id="ov2">
-        <p class="ov-hero">Every complex system<br />has structure.</p>
-        <p class="ov-sub">I find it — and make it ship.</p>
+      <div class="overlay" id="ov2" aria-hidden="true">
+        <p class="ov-hero">Every complex system has structure.</p>
+        <p class="ov-sub">I find it - and make it ship.</p>
       </div>
-      <div class="overlay" id="ov3">
+      <div class="overlay" id="ov3" aria-hidden="true">
         <p class="ov-eq">dx/dt = σ(y−x)</p>
         <p class="ov-eq">dy/dt = x(ρ−z)−y</p>
         <p class="ov-eq">dz/dt = xy−βz</p>
-        <p class="ov-params">σ=10 &ensp; ρ=28 &ensp; β=8/3</p>
+        <p class="ov-eq-caption">Elegant on paper. Brutal at scale.</p>
       </div>
 
-      <div class="phase-label" id="science-phase">raw simulation data</div>
-      <div class="scroll-hint" id="scroll-hint">scroll to explore &darr;</div>
+      <a
+        href="#science-proof"
+        class="scroll-cue"
+        id="scroll-hint"
+        aria-label="Skip the intro animation"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          width="26"
+          height="26"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.75"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M6 9l6 6 6-6"></path>
+        </svg>
+      </a>
     </div>
   </div>
 
-  <article class="consult-body">
+  <section class="proof-band" id="science-proof" aria-label="Track record">
+    <p class="proof-lead">Structure, found and shipped &mdash; in the real world:</p>
+    <div class="proof-metrics">
+      <div class="proof-metric">
+        <span class="proof-num" aria-label="5 orders" data-to="5" data-dec="0" data-suffix=" orders"
+          >5 orders</span
+        >
+        <span class="proof-cap">of magnitude faster &mdash; hours to milliseconds</span>
+      </div>
+      <div class="proof-metric">
+        <span class="proof-num" aria-label="10 times" data-to="10" data-dec="0" data-suffix="×"
+          >10&times;</span
+        >
+        <span class="proof-cap">faster end-to-end workflows</span>
+      </div>
+      <div class="proof-metric">
+        <span
+          class="proof-num"
+          aria-label="99.99 percent or more"
+          data-to="99.99"
+          data-dec="2"
+          data-suffix="%+">99.99%+</span
+        >
+        <span class="proof-cap">uptime across millions of tasks</span>
+      </div>
+    </div>
+    <div class="proof-affil">
+      <span>CERN</span><span class="proof-dot">&middot;</span><span>Defense Lab</span><span
+        class="proof-dot">&middot;</span
+      ><span>Aerospace</span>
+    </div>
+    <a href="/cv" class="proof-link">See the full background <span class="arr">&rarr;</span></a>
+  </section>
+
+  <article class="consult-body" id="science-details">
     <section class="content-section">
+      <span class="section-kicker">01</span>
       <h2 class="section-heading">The problem I solve</h2>
       <p>
-        Scientists write code that works scientifically. It runs on their laptop, produces correct
-        results, and solves the problem they had. Then someone asks it to run at scale, be handed
-        off to another team, or survive a production environment — and it falls apart.
+        Research code works on a laptop. Then it has to run at scale, get handed to another team, or
+        survive production - and it falls apart. Not because the scientist erred: research code and
+        production software optimize for different things.
       </p>
       <p>
-        That's the gap. Not because the scientist did something wrong, but because research code and
-        production software are optimized for different things. I've lived on both sides of that
-        line — physics research at CERN, HPC scientific software at a defense lab, and now building
-        systems that run millions of tasks at 99.99%+ uptime in aerospace.
+        I've lived on both sides of that line - physics at CERN, HPC at a defense lab, and now
+        systems running millions of tasks at 99.99%+ uptime in aerospace.
       </p>
     </section>
 
     <div class="divider-line"></div>
 
     <section class="content-section">
+      <span class="section-kicker">02</span>
       <h2 class="section-heading">What I bring</h2>
       <div class="capability-grid">
         <div class="cap-card">
-          <div class="cap-title">HPC &amp; Scientific Computing</div>
-          <div class="cap-body">
-            Python, Fortran, C/C++, Slurm, PBS, Torque. Simulation pipelines at scale. I've reduced
-            bottleneck runtimes by 5 orders of magnitude and cut end-to-end workflows by 10&times;.
-          </div>
+          <svg class="cap-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="5" y="5" width="14" height="14" rx="2"></rect>
+            <rect x="9" y="9" width="6" height="6"></rect>
+            <path
+              d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"
+              stroke-linecap="round"></path>
+          </svg>
+          <h3 class="cap-title">HPC &amp; Computing</h3>
+          <div class="cap-body">Simulation pipelines that scale.</div>
+          <div class="cap-tech">Python · Fortran · C/C++ · Slurm/PBS</div>
         </div>
         <div class="cap-card">
-          <div class="cap-title">Physics Domain</div>
-          <div class="cap-body">
-            Particle physics (CERN ROOT, MadGraph5, Pythia8), IR spectroscopy, acoustic propagation,
-            aerospace avionics verification. I understand the science, not just the code.
-          </div>
+          <svg class="cap-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"></circle>
+            <ellipse cx="12" cy="12" rx="10" ry="4.2"></ellipse>
+            <ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(60 12 12)"></ellipse>
+            <ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(120 12 12)"></ellipse>
+          </svg>
+          <h3 class="cap-title">Physics Domain</h3>
+          <div class="cap-body">I understand the science, not just the code.</div>
+          <div class="cap-tech">Particle physics · Spectroscopy · Avionics</div>
         </div>
         <div class="cap-card">
-          <div class="cap-title">Modernization</div>
-          <div class="cap-body">
-            Legacy MATLAB and Fortran to modern Python. Architecture that a team can maintain and
-            extend. Type-safe, tested, documented — not just "it runs."
-          </div>
+          <svg class="cap-icon" viewBox="0 0 24 24" aria-hidden="true" stroke-linecap="round">
+            <path d="M21 4v6h-6"></path>
+            <path d="M3 20v-6h6"></path>
+            <path d="M3.5 9a9 9 0 0 1 14.9-3.4L21 8M3 16l2.6 2.4A9 9 0 0 0 20.5 15"></path>
+          </svg>
+          <h3 class="cap-title">Modernization</h3>
+          <div class="cap-body">Legacy MATLAB &amp; Fortran &rarr; modern Python.</div>
+          <div class="cap-tech">Tested · Typed · Documented</div>
         </div>
         <div class="cap-card">
-          <div class="cap-title">Production Engineering</div>
-          <div class="cap-body">
-            Systems that survive contact with real environments. Compliance-aware design (NIST
-            800-53, NASA NPR 7123). Deployment, monitoring, and handoff that stick.
-          </div>
+          <svg class="cap-icon" viewBox="0 0 24 24" aria-hidden="true" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            <path d="M9 12l2 2 4-4" stroke-linecap="round"></path>
+          </svg>
+          <h3 class="cap-title">Production</h3>
+          <div class="cap-body">Built to survive real environments.</div>
+          <div class="cap-tech">NIST 800-53 · NASA NPR 7123</div>
         </div>
       </div>
     </section>
@@ -117,10 +241,11 @@ const schema = {
     <div class="divider-line"></div>
 
     <section class="content-section">
+      <span class="section-kicker">03</span>
       <h2 class="section-heading">Good fit for</h2>
       <ul class="fit-list">
         <li>
-          Research labs or universities with prototype code that needs to scale or be handed off
+          Research labs or universities with prototype code that needs to scale or survive a handoff
         </li>
         <li>
           Teams stuck on legacy MATLAB or Fortran that needs modernizing without breaking the
@@ -133,21 +258,96 @@ const schema = {
 
     <div class="divider-line"></div>
 
+    <section class="content-section">
+      <span class="section-kicker">04</span>
+      <h2 class="section-heading">How we'd start</h2>
+      <ol class="process-list">
+        <li class="process-step">
+          <span class="process-num">01</span>
+          <div class="process-text">
+            <strong>You email me what you're stuck on.</strong>
+            A slow simulation, a handoff that keeps breaking, legacy code no one wants to touch.
+          </div>
+        </li>
+        <li class="process-step">
+          <span class="process-num">02</span>
+          <div class="process-text">
+            <strong>A 30-minute call to see if it's a fit.</strong>
+            No pitch deck - I'll tell you straight whether I'm the right person for it.
+          </div>
+        </li>
+        <li class="process-step">
+          <span class="process-num">03</span>
+          <div class="process-text">
+            <strong>We start with a small, scoped piece.</strong>
+            Something concrete with a clear outcome, so you can judge the work before committing to more.
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <div class="divider-line"></div>
+
+    <section class="content-section">
+      <span class="section-kicker">05</span>
+      <h2 class="section-heading">Questions</h2>
+      <div class="faq-list">
+        {
+          faqs.map((f) => (
+            <details class="faq-item">
+              <summary class="faq-q">
+                {f.q}
+                <svg class="faq-chevron" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M6 9l6 6 6-6" />
+                </svg>
+              </summary>
+              <p class="faq-a">{f.a}</p>
+            </details>
+          ))
+        }
+      </div>
+    </section>
+
+    <div class="divider-line"></div>
+
     <section class="cta-section">
       <p class="cta-note">
-        I'm new to consulting, so I'm selective and engaged — not juggling ten clients at once. If
-        this sounds like a fit, send me an email and we'll figure out if it makes sense.
+        Tell me what you're working on and where it's stuck. If it's a fit, we'll start small; if
+        not, I'll point you the right way. Either way, I reply within a day.
       </p>
-      <a href="mailto:jacobchesslo@gmail.com" class="cta-btn-body">jacobchesslo@gmail.com</a>
+      <div class="cta-actions">
+        <a href={mailto} class="cta-btn-body"
+          >Start the conversation <span class="arr">&rarr;</span></a
+        >
+        <button
+          type="button"
+          class="cta-copy"
+          data-email="jacobchesslo@gmail.com"
+          aria-label="Copy email address jacobchesslo@gmail.com to clipboard"
+        >
+          <svg class="cta-copy-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          <span class="cta-copy-label" aria-live="polite">jacobchesslo@gmail.com</span>
+        </button>
+      </div>
     </section>
   </article>
+
+  <a href={mailto} class="sticky-cta" id="science-sticky">
+    <span class="sticky-cta-tag">Science &amp; Engineering</span>
+    <span class="sticky-cta-action">Let's talk <span class="arr">&rarr;</span></span>
+  </a>
 </Layout>
 
 <script>
   const scene = document.getElementById('science-scene')! as HTMLElement;
   const canvas = document.getElementById('science-canvas')! as HTMLCanvasElement;
-  const phaseEl = document.getElementById('science-phase')! as HTMLElement;
   const hintEl = document.getElementById('scroll-hint')! as HTMLElement;
+  const progressEl = document.getElementById('science-progress')! as HTMLElement;
+  const pillEl = document.querySelector('.text-pill')! as HTMLElement;
+  const stickyEl = document.getElementById('science-sticky')! as HTMLElement;
   const ctx = canvas.getContext('2d')!;
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -162,7 +362,6 @@ const schema = {
 
   const N = 64,
     TRAIL = 90;
-  const PHASES = ['raw simulation data', 'lorenz attractor'];
 
   interface Particle {
     rx: number;
@@ -182,6 +381,9 @@ const schema = {
     H = 0;
   let rawProgress = 0,
     displayProgress = 0;
+  let sceneOffscreen = false; // true once scrolled past the scene → throttle the backdrop
+  let ctaInView = false; // true when the final CTA is on screen → hide the redundant sticky CTA
+  let lastDraw = 0;
   let pts: Particle[] = [];
   let clouds: { x: number; y: number; r: number }[] = [];
 
@@ -233,7 +435,7 @@ const schema = {
     W = newW;
     H = newH;
     if (widthChanged || pts.length === 0) {
-      // Only reset canvas dimensions on a real resize — assigning these clears the canvas
+      // Only reset canvas dimensions on a real resize - assigning these clears the canvas
       canvas.width = Math.round(W * devicePixelRatio);
       canvas.height = Math.round(H * devicePixelRatio);
       ctx.scale(devicePixelRatio, devicePixelRatio);
@@ -251,16 +453,16 @@ const schema = {
   function phase(p: number, start: number, len: number) {
     return clamp((p - start) / len, 0, 1);
   }
-  function plateau(p: number, s: number, e: number) {
-    const c = (s + e) / 2,
-      hw = (e - s) / 2;
-    return Math.max(0, 1 - Math.abs(p - c) / hw);
+  // Trapezoidal hold: quick fade in, full opacity across the band, quick fade out
+  function band(p: number, a: number, b: number, f = 0.04) {
+    return clamp((p - a) / f, 0, 1) * clamp((b - p) / f, 0, 1);
   }
 
   function draw(_ts: number) {
     ctx.clearRect(0, 0, W, H);
-    displayProgress += (rawProgress - displayProgress) * (reduced ? 1 : 0.045);
-    const prog = reduced ? 1 : displayProgress;
+    displayProgress += (rawProgress - displayProgress) * (reduced ? 1 : 0.09);
+    const prog = reduced ? 1 : displayProgress; // smoothed: drives the animation morph
+    const ui = reduced ? 0 : rawProgress; // raw scroll drives captions + chrome; the tall scene gives each beat its dwell distance
 
     const lorenz = eio(phase(prog, 0.12, 0.48)); // scatter → attractor, done ~0.60
 
@@ -269,7 +471,7 @@ const schema = {
     if (cloudA > 0.01) {
       for (const cl of clouds) {
         const g = ctx.createRadialGradient(cl.x, cl.y, 0, cl.x, cl.y, cl.r);
-        g.addColorStop(0, `oklch(55% 0.22 295 / ${cloudA * 0.11})`);
+        g.addColorStop(0, `oklch(58% 0.22 295 / ${cloudA * 0.17})`);
         g.addColorStop(1, 'transparent');
         ctx.beginPath();
         ctx.arc(cl.x, cl.y, cl.r, 0, Math.PI * 2);
@@ -306,45 +508,50 @@ const schema = {
         ctx.beginPath();
         ctx.moveTo(p.trail[0][0], p.trail[0][1]);
         for (let i = 1; i < p.trail.length; i++) ctx.lineTo(p.trail[i][0], p.trail[i][1]);
-        ctx.strokeStyle = `oklch(62% 0.22 ${p.hue} / ${trailA * 0.28})`;
-        ctx.lineWidth = 0.6;
+        ctx.strokeStyle = `oklch(66% 0.22 ${p.hue} / ${trailA * 0.5})`;
+        ctx.lineWidth = 0.9;
         ctx.stroke();
       }
     }
 
-    // Particles
+    // Particles (glow so the scene reads as the hero, not a void)
+    ctx.shadowBlur = 8;
     for (const p of pts) {
       ctx.beginPath();
-      ctx.arc(p.x, p.y, 1.5, 0, Math.PI * 2);
-      ctx.fillStyle = `oklch(70% 0.2 ${p.hue} / ${0.3 + lorenz * 0.35})`;
+      ctx.arc(p.x, p.y, 1.9, 0, Math.PI * 2);
+      ctx.shadowColor = `oklch(72% 0.2 ${p.hue})`;
+      ctx.fillStyle = `oklch(74% 0.2 ${p.hue} / ${0.5 + lorenz * 0.4})`;
       ctx.fill();
     }
+    ctx.shadowBlur = 0;
 
-    // HTML overlay alphas
-    ov1El.style.opacity = String(plateau(prog, 0.03, 0.28));
-    ov2El.style.opacity = String(plateau(prog, 0.3, 0.58));
-    ov3El.style.opacity = String(plateau(prog, 0.68, 0.95));
+    // Beat captions: solid holds, back-to-back so the story never stalls or ghosts
+    ov1El.style.opacity = String(band(ui, 0.12, 0.36));
+    ov2El.style.opacity = String(band(ui, 0.4, 0.64));
+    ov3El.style.opacity = String(band(ui, 0.68, 0.99));
 
-    // Phase label
-    const idx = prog < 0.6 ? 0 : 1;
-    if (phaseEl.dataset.idx !== String(idx)) {
-      phaseEl.dataset.idx = String(idx);
-      phaseEl.style.opacity = '0';
-      setTimeout(() => {
-        phaseEl.textContent = PHASES[idx];
-        phaseEl.style.opacity = '1';
-      }, 120);
-    }
-    hintEl.style.opacity = String(clamp(1 - prog * 12, 0, 1));
+    // Cover fades into the beat captions; sticky CTA carries conversion once we're past it
+    pillEl.classList.toggle('compact', ui > 0.07);
+    stickyEl.classList.toggle('visible', ui > 0.12 && !ctaInView);
+    const hintOpacity = clamp((0.9 - ui) / 0.1, 0, 1); // persist the "keep scrolling" chevron through the scene, fade as the proof nears
+    hintEl.style.opacity = String(hintOpacity);
+    hintEl.style.visibility = hintOpacity < 0.05 ? 'hidden' : 'visible'; // drop from tab order when faded
+    progressEl.style.transform = `scaleX(${ui})`;
   }
 
   function updateProgress() {
     const rect = scene.getBoundingClientRect();
     const scrollable = scene.offsetHeight - window.innerHeight;
     if (scrollable > 0) rawProgress = Math.max(0, Math.min(1, -rect.top / scrollable));
+    // Once we're past the scene into the body, fade the canvas to a faint backdrop
+    const past = -rect.top - scrollable;
+    const fade = clamp(past / (window.innerHeight * 0.6), 0, 1);
+    canvas.style.opacity = String(1 - fade * 0.88);
+    sceneOffscreen = past > window.innerHeight * 0.6; // fully faded → no longer the focus
   }
 
   resize();
+  updateProgress();
   window.addEventListener(
     'resize',
     () => {
@@ -355,12 +562,148 @@ const schema = {
   );
   window.addEventListener('scroll', updateProgress, { passive: true });
 
+  // Gentle scroll-reveal for the body sections (added in JS so no-JS still shows everything)
+  if (!reduced) {
+    const revealEls = document.querySelectorAll<HTMLElement>(
+      '.proof-band, .consult-body .content-section, .cta-section'
+    );
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) {
+            e.target.classList.add('in');
+            io.unobserve(e.target);
+          }
+        }
+      },
+      { rootMargin: '0px 0px -12% 0px' }
+    );
+    revealEls.forEach((el) => {
+      el.classList.add('reveal');
+      io.observe(el);
+    });
+  }
+
+  // Hide the sticky CTA once the real CTA section is on screen (avoid redundant CTAs at conversion)
+  const ctaSection = document.querySelector('.cta-section');
+  if (ctaSection) {
+    new IntersectionObserver(
+      ([entry]) => {
+        ctaInView = entry.isIntersecting;
+      },
+      { rootMargin: '0px 0px -10% 0px' }
+    ).observe(ctaSection);
+  }
+
+  // Count the proof metrics up from zero the first time they enter view
+  if (!reduced) {
+    const nums = document.querySelectorAll<HTMLElement>('.proof-num[data-to]');
+    const fmt = (v: number, dec: number, suffix: string) => v.toFixed(dec) + suffix;
+    nums.forEach((el) => {
+      el.textContent = fmt(0, Number(el.dataset.dec || 0), el.dataset.suffix || '');
+    });
+    const countUp = (el: HTMLElement) => {
+      const to = Number(el.dataset.to);
+      const dec = Number(el.dataset.dec || 0);
+      const suffix = el.dataset.suffix || '';
+      const t0 = performance.now();
+      const tick = (now: number) => {
+        const t = Math.min(1, (now - t0) / 1100);
+        const e = 1 - Math.pow(1 - t, 3); // easeOutCubic
+        el.textContent = fmt(to * e, dec, suffix);
+        if (t < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+    const band = document.querySelector('.proof-band');
+    if (band) {
+      const co = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((e) => e.isIntersecting)) {
+            nums.forEach(countUp);
+            co.disconnect();
+          }
+        },
+        { rootMargin: '0px 0px -20% 0px' }
+      );
+      co.observe(band);
+    }
+    // On print/PDF the count-up may be mid-animation - force final values so a
+    // saved PDF never shows weaker, wrong proof numbers.
+    window.addEventListener('beforeprint', () => {
+      nums.forEach((el) => {
+        el.textContent = fmt(
+          Number(el.dataset.to),
+          Number(el.dataset.dec || 0),
+          el.dataset.suffix || ''
+        );
+      });
+    });
+  }
+
+  // Copy-email fallback so the address is capturable even when mailto does nothing
+  const copyBtn = document.querySelector<HTMLButtonElement>('.cta-copy');
+  if (copyBtn) {
+    const label = copyBtn.querySelector<HTMLElement>('.cta-copy-label')!;
+    const original = label.textContent;
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(copyBtn.dataset.email || '');
+      } catch {
+        // Clipboard blocked (insecure context / old browser) - select the address for manual copy
+        const sel = window.getSelection();
+        if (sel) {
+          const range = document.createRange();
+          range.selectNodeContents(label);
+          sel.removeAllRanges();
+          sel.addRange(range);
+        }
+        return;
+      }
+      copyBtn.classList.add('copied');
+      label.textContent = 'Copied to clipboard ✓';
+      window.setTimeout(() => {
+        copyBtn.classList.remove('copied');
+        label.textContent = original;
+      }, 1800);
+    });
+  }
+
+  // Snappier "skip" than the native 1.2s smooth-scroll over the long scene (eased ~0.65s)
+  const skipCue = document.getElementById('scroll-hint');
+  const proof = document.getElementById('science-proof');
+  if (skipCue && proof && !reduced) {
+    skipCue.addEventListener('click', (e) => {
+      e.preventDefault();
+      const startY = window.scrollY;
+      const dist = proof.offsetTop - 84 - startY;
+      const t0 = performance.now();
+      const ease = (t: number) => 1 - Math.pow(1 - t, 3);
+      const step = (now: number) => {
+        const t = Math.min(1, (now - t0) / 650);
+        // behavior:'instant' so our easing drives it, not the global scroll-behavior:smooth
+        window.scrollTo({ top: startY + dist * ease(t), behavior: 'instant' });
+        if (t < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    });
+  }
+
   if (reduced) {
     rawProgress = 1;
     draw(0);
   } else {
     function tick(ts: number) {
-      draw(ts);
+      // Skip all physics/drawing while the tab is hidden - nobody's watching, save the battery
+      if (document.hidden) {
+        requestAnimationFrame(tick);
+        return;
+      }
+      // Full 60fps while the scene is the focus; throttle to ~12fps once it's a faint backdrop
+      if (!sceneOffscreen || ts - lastDraw > 80) {
+        draw(ts);
+        lastDraw = ts;
+      }
       requestAnimationFrame(tick);
     }
     requestAnimationFrame(tick);
@@ -368,8 +711,10 @@ const schema = {
 </script>
 
 <style>
+  /* No scroll-snap: page-level snap blocked scrolling to the footer. Instead the scene is
+     generously tall so each beat occupies enough scroll to read at a natural pace. */
   .scroll-scene {
-    height: 700vh;
+    height: 1000vh;
     position: relative;
   }
 
@@ -380,11 +725,15 @@ const schema = {
     overflow: hidden;
   }
 
+  /* Fixed full-viewport: the scene plays full-strength, then lingers as a faint
+     backdrop behind the body content (opacity driven by scroll in JS). */
   #science-canvas {
-    position: absolute;
+    position: fixed;
     inset: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
   }
 
   .sticky-stage::after {
@@ -398,30 +747,54 @@ const schema = {
     pointer-events: none;
   }
 
-  /* Text pill: always visible, frosted glass, bottom-left */
+  /* Cover: centered narrative column, bottom-center, aligned under the animation */
   .text-pill {
     position: absolute;
-    bottom: 3rem;
-    left: clamp(1.5rem, 5vw, 4rem);
-    max-width: 380px;
+    bottom: 3.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    /* 600px (was 560) so the full-size "Research code" hero line stays unbroken on large desktop */
+    width: min(600px, calc(100vw - 3rem));
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
-    background: oklch(3% 0.006 264 / 0.78);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1.75rem 2rem;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
     z-index: 2;
+    visibility: visible;
+    transition:
+      opacity var(--dur-mid) var(--ease-out),
+      transform var(--dur-mid) var(--ease-out),
+      visibility 0s;
+  }
+  .text-pill .pill-header,
+  .text-pill .pill-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  /* The cover fully fades into the beat captions once the story starts.
+     visibility:hidden also drops its CTA/back-link from the keyboard tab order. */
+  .text-pill.compact {
+    opacity: 0;
+    transform: translateX(-50%) translateY(12px);
+    pointer-events: none;
+    visibility: hidden;
+    transition:
+      opacity var(--dur-mid) var(--ease-out),
+      transform var(--dur-mid) var(--ease-out),
+      visibility 0s linear var(--dur-mid);
   }
 
   .back-link {
+    display: inline-block;
     font-family: var(--font-mono);
     font-size: 0.7rem;
     letter-spacing: 0.12em;
     color: var(--text-dim);
     text-decoration: none;
+    padding: 6px 10px; /* tap target ≥24px (WCAG 2.5.8) without enlarging the text */
     transition: color var(--dur-fast);
   }
   .back-link:hover {
@@ -438,13 +811,25 @@ const schema = {
 
   .page-title {
     font-family: var(--font-display);
-    font-size: clamp(2.1rem, 4vw, 3.2rem);
+    /* Max capped at 3rem so the compound "Research code" stays on one line at large desktop
+       (at 3.2rem the wide Syne face overflowed its 560px container and split the two-word unit) */
+    font-size: clamp(2.1rem, 4vw, 3rem);
     font-weight: 800;
     line-height: 1.08;
     color: var(--text);
   }
   .page-title .accent {
     color: var(--accent-bright);
+    /* Same jewel-like gradient as the proof figures; solid color falls back where unsupported */
+    background: linear-gradient(
+      120deg,
+      oklch(80% 0.13 295),
+      var(--accent-bright) 60%,
+      var(--accent)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   .page-sub {
@@ -452,6 +837,34 @@ const schema = {
     color: var(--text-dim);
     font-weight: 400;
     line-height: 1.65;
+  }
+
+  /* Staggered entrance on the cover - matches the homepage hero / hub cascade.
+     Applied to the flex children (not the translateX-centered pill) so centering is preserved. */
+  .pill-header .back-link {
+    animation: cover-in 0.7s var(--ease-out) 0.06s both;
+  }
+  .pill-header .page-tag {
+    animation: cover-in 0.7s var(--ease-out) 0.14s both;
+  }
+  .pill-header .page-title {
+    animation: cover-in 0.7s var(--ease-out) 0.24s both;
+  }
+  .pill-body .page-sub {
+    animation: cover-in 0.7s var(--ease-out) 0.36s both;
+  }
+  .pill-body .pill-actions {
+    animation: cover-in 0.7s var(--ease-out) 0.46s both;
+  }
+  @keyframes cover-in {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .cta-btn {
@@ -474,69 +887,62 @@ const schema = {
     transform: translateY(-1px);
   }
 
-  .phase-label {
-    position: absolute;
-    top: 5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--accent-bright);
-    white-space: nowrap;
-    background: oklch(3% 0.006 264 / 0.72);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid oklch(55% 0.22 295 / 0.25);
-    border-radius: 100px;
-    padding: 0.45rem 1.1rem;
-    opacity: 0;
-    transition: opacity 0.35s ease;
-    z-index: 2;
+  .arr {
+    display: inline-block;
+    transition: transform var(--dur-fast) var(--ease-out);
+  }
+  .cta-btn:hover .arr,
+  .cta-btn-body:hover .arr,
+  .sticky-cta:hover .arr,
+  .proof-link:hover .arr {
+    transform: translateX(3px);
   }
 
-  /* Scroll hint: bottom-center */
-  .scroll-hint {
+  /* Scroll cue: a single down-chevron, both the scroll hint and the skip-to-details jump.
+     Bounce animates transform only so the JS can still fade opacity on scroll. */
+  .scroll-cue {
     position: absolute;
-    bottom: 1.5rem;
+    bottom: 1.25rem;
     left: 50%;
     transform: translateX(-50%);
-    font-family: var(--font-mono);
-    font-size: 0.62rem;
-    letter-spacing: 0.15em;
+    display: flex;
     color: var(--text-dim);
-    transition: opacity 0.3s ease;
     z-index: 2;
-    animation: hint-pulse 2s ease-in-out infinite;
+    transition:
+      opacity 0.3s ease,
+      color var(--dur-fast);
+    animation: chevron-bounce 2s ease-in-out infinite;
   }
-  @keyframes hint-pulse {
+  .scroll-cue:hover {
+    color: var(--accent-bright);
+  }
+  @keyframes chevron-bounce {
     0%,
     100% {
-      opacity: 0.35;
+      transform: translateX(-50%) translateY(0);
     }
     50% {
-      opacity: 1;
+      transform: translateX(-50%) translateY(5px);
     }
   }
 
-  /* ── Scroll overlays ──────────────────────────────── */
+  /* ── Beat captions: single centered column, same spot as the cover ─── */
   .overlay {
     position: absolute;
-    right: clamp(2rem, 6vw, 5rem);
-    top: 50%;
-    transform: translateY(-50%);
-    text-align: right;
+    bottom: 3.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
     opacity: 0;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.25s ease;
     z-index: 2;
     pointer-events: none;
-    max-width: 260px;
+    width: min(640px, calc(100vw - 3rem));
   }
 
   .ov-line {
     font-family: var(--font-mono);
-    font-size: 0.82rem;
+    font-size: 1rem;
     letter-spacing: 0.04em;
     color: var(--text-dim);
     line-height: 2;
@@ -545,16 +951,16 @@ const schema = {
 
   .ov-hero {
     font-family: var(--font-display);
-    font-size: clamp(1.3rem, 2.5vw, 1.7rem);
-    font-weight: 700;
+    font-size: clamp(1.7rem, 3.6vw, 2.5rem);
+    font-weight: 800;
     color: var(--text);
-    line-height: 1.2;
-    margin: 0 0 0.6rem;
+    line-height: 1.15;
+    margin: 0 0 0.7rem;
   }
 
   .ov-sub {
     font-family: var(--font-mono);
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     letter-spacing: 0.06em;
     color: var(--accent-bright);
     margin: 0;
@@ -562,19 +968,20 @@ const schema = {
 
   .ov-eq {
     font-family: var(--font-mono);
-    font-size: 0.9rem;
+    font-size: clamp(1rem, 2vw, 1.2rem);
     letter-spacing: 0.03em;
-    color: oklch(72% 0.18 295);
+    color: oklch(78% 0.18 295);
     line-height: 1.9;
     margin: 0;
   }
 
-  .ov-params {
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.1em;
-    color: var(--text-dim);
-    margin: 0.4rem 0 0;
+  .ov-eq-caption {
+    font-family: var(--font-display);
+    font-size: clamp(1.35rem, 2.8vw, 1.9rem);
+    font-weight: 600;
+    color: var(--text);
+    margin: 1.4rem 0 0;
+    text-wrap: balance;
   }
 
   /* ── Article body ─────────────────────────────────── */
@@ -584,18 +991,55 @@ const schema = {
     padding: 4rem 1.5rem;
   }
 
+  /* Scroll-reveal: sections rise + fade in as they enter */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.6s var(--ease-out),
+      transform 0.6s var(--ease-out);
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: none;
+  }
+
   .divider-line {
     height: 1px;
-    background: var(--border);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--border) 18%,
+      var(--border) 82%,
+      transparent
+    );
     margin: 2.5rem 0;
+  }
+
+  .section-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    color: var(--accent-bright);
+    margin-bottom: 0.7rem;
+  }
+  .section-kicker::before {
+    content: '';
+    width: 1.6rem;
+    height: 1px;
+    background: var(--accent-bright);
   }
 
   .section-heading {
     font-family: var(--font-display);
-    font-size: 1.2rem;
+    font-size: 1.35rem;
     font-weight: 700;
     color: var(--text);
     margin-bottom: 1rem;
+    letter-spacing: -0.01em;
   }
 
   .content-section p {
@@ -612,26 +1056,83 @@ const schema = {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem;
   }
+  /* Uniform card heights only when the grid is multi-column; single-column (mobile) stays natural */
+  @media (min-width: 480px) {
+    .capability-grid {
+      grid-auto-rows: 1fr;
+    }
+  }
 
   .cap-card {
-    padding: 1.25rem;
-    background: var(--surface);
+    position: relative;
+    overflow: hidden;
+    /* Break long single-word titles ("Modernization") instead of clipping them at large text
+       zoom - the card's overflow:hidden would otherwise cut them off (WCAG 1.4.4 Resize Text) */
+    overflow-wrap: break-word;
+    padding: 1.5rem 1.35rem;
+    background: oklch(8% 0.012 264 / 0.55);
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: 10px;
+    transition:
+      border-color var(--dur-mid) var(--ease-out),
+      background var(--dur-mid) var(--ease-out),
+      transform var(--dur-mid) var(--ease-out);
+  }
+  /* Top accent bar reveals on hover - matches the site's card-hover language */
+  .cap-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-bright));
+    opacity: 0;
+    transition: opacity var(--dur-mid) var(--ease-out);
+  }
+  .cap-card:hover {
+    border-color: var(--accent-a30);
+    background: oklch(10% 0.015 264 / 0.7);
+    transform: translateY(-3px);
+  }
+  .cap-card:hover::before {
+    opacity: 1;
+  }
+
+  .cap-icon {
+    width: 26px;
+    height: 26px;
+    fill: none;
+    stroke: var(--accent-bright);
+    stroke-width: 1.6;
+    margin-bottom: 0.9rem;
+    transition:
+      transform var(--dur-mid) var(--ease-out),
+      filter var(--dur-mid) var(--ease-out);
+  }
+  .cap-card:hover .cap-icon {
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 8px var(--accent-a50));
   }
 
   .cap-title {
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--accent-bright);
-    margin-bottom: 0.5rem;
+    font-family: var(--font-display);
+    font-size: 1.02rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.35rem;
   }
   .cap-body {
-    font-size: 0.87rem;
+    font-size: 0.9rem;
     color: var(--text-dim);
-    line-height: 1.65;
+    line-height: 1.55;
+    margin-bottom: 0.7rem;
+  }
+  .cap-tech {
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.04em;
+    color: var(--tertiary);
   }
 
   .fit-list {
@@ -639,20 +1140,26 @@ const schema = {
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.6rem;
+    gap: 0.7rem;
+    --check-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E");
   }
   .fit-list li {
     font-size: 0.92rem;
     color: var(--text-dim);
-    padding-left: 1.2rem;
+    padding-left: 1.6rem;
     position: relative;
     line-height: 1.6;
   }
   .fit-list li::before {
-    content: '—';
+    content: '';
     position: absolute;
     left: 0;
-    color: var(--accent);
+    top: 0.35em;
+    width: 0.85rem;
+    height: 0.85rem;
+    background-color: var(--accent-bright);
+    -webkit-mask: var(--check-icon) center / contain no-repeat;
+    mask: var(--check-icon) center / contain no-repeat;
   }
 
   .cta-note {
@@ -660,6 +1167,46 @@ const schema = {
     color: var(--text-dim);
     line-height: 1.7;
     margin-bottom: 1.25rem;
+  }
+
+  .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.85rem 1.1rem;
+  }
+  .cta-copy {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.03em;
+    color: var(--text-dim);
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.6rem 1rem;
+    cursor: pointer;
+    transition:
+      border-color var(--dur-fast) var(--ease-out),
+      color var(--dur-fast) var(--ease-out);
+  }
+  .cta-copy:hover {
+    border-color: var(--accent);
+    color: var(--text);
+  }
+  .cta-copy.copied {
+    border-color: var(--green);
+    color: var(--green);
+  }
+  .cta-copy-icon {
+    width: 15px;
+    height: 15px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    flex-shrink: 0;
   }
 
   .cta-btn-body {
@@ -681,63 +1228,364 @@ const schema = {
     transform: translateY(-1px);
   }
 
+  /* ── Hero actions ─────────────────────────────────── */
+  .pill-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  /* ── Scene scroll-progress rail ───────────────────── */
+  .scene-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--border);
+    z-index: 3;
+  }
+  .scene-progress-fill {
+    height: 100%;
+    width: 100%;
+    transform: scaleX(0);
+    transform-origin: left center;
+    background: linear-gradient(90deg, var(--accent), var(--accent-bright));
+    box-shadow: 0 0 12px var(--accent-a50);
+  }
+
+  /* ── Proof band (scene → body hinge) ──────────────── */
+  .proof-band {
+    max-width: 64rem;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 1.5rem;
+    text-align: center;
+    scroll-margin-top: 84px; /* clear the fixed nav when skipped to */
+    /* Faint atmospheric glow lifts the metrics like a lit credentials badge */
+    background: radial-gradient(ellipse 65% 75% at 50% 38%, var(--accent-a08), transparent 72%);
+  }
+  .proof-lead {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 2rem;
+  }
+  .proof-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .proof-metric {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  .proof-num {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 800;
+    line-height: 1;
+    color: var(--accent-bright);
+    font-variant-numeric: tabular-nums;
+    /* Jewel-like gradient; falls back to the solid color where unsupported */
+    background: linear-gradient(
+      165deg,
+      oklch(78% 0.15 295),
+      var(--accent-bright) 55%,
+      var(--accent)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 22px var(--accent-a30));
+  }
+  .proof-cap {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+    max-width: 22ch;
+  }
+  .proof-affil {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+  .proof-dot {
+    color: var(--accent);
+  }
+  .proof-link {
+    display: block;
+    width: fit-content;
+    margin: 1.25rem auto 0;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--text-dim);
+    text-decoration: none;
+    padding: 6px 12px; /* tap target ≥24px (WCAG 2.5.8) without enlarging the text */
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+  .proof-link:hover {
+    color: var(--accent-bright);
+  }
+
+  /* ── How we'd start (process) ─────────────────────── */
+  .process-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    position: relative;
+  }
+  /* Connector line threading the step nodes into a single path */
+  .process-list::before {
+    content: '';
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    bottom: 1rem;
+    width: 1px;
+    background: linear-gradient(180deg, var(--accent-bright), var(--accent-a30), transparent);
+    transform-origin: top center;
+    transition: transform 0.9s var(--ease-out) 0.15s;
+  }
+  /* The connector draws downward as the section reveals (JS-only; visible by default otherwise) */
+  .content-section.reveal .process-list::before {
+    transform: scaleY(0);
+  }
+  .content-section.reveal.in .process-list::before {
+    transform: scaleY(1);
+  }
+  .process-step {
+    display: grid;
+    grid-template-columns: 2rem 1fr;
+    gap: 1.1rem;
+    align-items: start;
+  }
+  .process-num {
+    position: relative;
+    z-index: 1;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--accent-bright);
+    background: var(--bg);
+    border: 1px solid var(--accent-a30);
+    border-radius: 50%;
+    font-variant-numeric: tabular-nums;
+    transition:
+      border-color var(--dur-fast) var(--ease-out),
+      box-shadow var(--dur-fast) var(--ease-out);
+  }
+  .process-step:hover .process-num {
+    border-color: var(--accent-bright);
+    box-shadow: 0 0 14px var(--accent-a50);
+  }
+  .process-text {
+    font-size: 0.92rem;
+    color: var(--text-dim);
+    line-height: 1.65;
+    padding-top: 0.25rem;
+  }
+  .process-text strong {
+    display: block;
+    color: var(--text);
+    font-weight: 500;
+    margin-bottom: 0.2rem;
+  }
+
+  /* ── FAQ (objection handling) ─────────────────────── */
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+  }
+  .faq-item:first-child {
+    border-top: 1px solid var(--border);
+  }
+  .faq-q {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.1rem 0;
+    cursor: pointer;
+    list-style: none;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text);
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+  .faq-q::-webkit-details-marker {
+    display: none;
+  }
+  .faq-q:hover {
+    color: var(--accent-bright);
+  }
+  .faq-chevron {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: var(--accent-bright);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+    transition: transform var(--dur-mid) var(--ease-out);
+  }
+  .faq-item[open] .faq-chevron {
+    transform: rotate(180deg);
+  }
+  .faq-a {
+    margin: 0;
+    padding: 0 0 1.2rem;
+    max-width: 60ch;
+    color: var(--text-dim);
+    font-size: 0.92rem;
+    line-height: 1.7;
+  }
+  .faq-item[open] .faq-a {
+    animation: faq-reveal var(--dur-mid) var(--ease-out);
+  }
+  @keyframes faq-reveal {
+    from {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* ── Sticky CTA (follows through article) ─────────── */
+  .sticky-cta {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    background: oklch(4% 0.008 264 / 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--accent-a30);
+    box-shadow: 0 8px 30px var(--black-a50);
+    text-decoration: none;
+    opacity: 0;
+    transform: translateY(12px);
+    pointer-events: none;
+    visibility: hidden; /* keep it out of the tab order until revealed */
+    transition:
+      opacity var(--dur-mid) var(--ease-out),
+      transform var(--dur-mid) var(--ease-out),
+      border-color var(--dur-fast),
+      visibility 0s linear var(--dur-mid);
+  }
+  .sticky-cta.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    visibility: visible;
+    transition:
+      opacity var(--dur-mid) var(--ease-out),
+      transform var(--dur-mid) var(--ease-out),
+      border-color var(--dur-fast),
+      visibility 0s;
+  }
+  .sticky-cta:hover {
+    border-color: var(--accent-bright);
+  }
+  .sticky-cta-tag {
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .sticky-cta-action {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--accent-bright);
+  }
+
   @media (max-width: 640px) {
     .sticky-stage {
       height: 100svh;
     }
 
-    .text-pill {
-      display: contents;
-    }
-
-    .pill-header {
-      position: absolute;
-      top: 1.25rem;
-      left: 1.25rem;
-      max-width: calc(100vw - 2.5rem);
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-      background: oklch(3% 0.006 264 / 0.82);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1rem 1.25rem;
-      z-index: 2;
-    }
-
-    .pill-body {
-      position: absolute;
-      bottom: 1.5rem;
-      left: 1.25rem;
-      max-width: calc(100vw - 2.5rem);
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-      background: oklch(3% 0.006 264 / 0.82);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1rem 1.25rem;
-      z-index: 2;
-    }
-
-    .page-title {
-      font-size: 1.6rem;
-    }
-
+    /* Mobile keeps the same centered-caption model as desktop, scaled down -
+       cover recedes into the beats, sticky CTA carries the action (no duplicate). */
+    .text-pill,
     .overlay {
+      bottom: 5.5rem;
+      width: calc(100vw - 2rem);
+    }
+    .page-title {
+      font-size: 1.85rem;
+    }
+    .page-sub {
+      font-size: 0.9rem;
+    }
+    .ov-line {
+      font-size: 0.9rem;
+      line-height: 1.85;
+    }
+    .ov-hero {
+      font-size: 1.5rem;
+    }
+    .ov-eq {
+      font-size: 0.95rem;
+    }
+    .scroll-cue {
       display: none;
     }
 
-    .phase-label {
-      display: none;
+    .proof-metrics {
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+    }
+    /* Tighten the affiliation row so it clears the smallest phones (320px) comfortably */
+    .proof-affil {
+      gap: 0.5rem;
+      letter-spacing: 0.1em;
+      font-size: 0.66rem;
     }
 
-    .scroll-hint {
-      display: none;
+    .sticky-cta {
+      bottom: 1rem;
+      right: 1rem;
+      padding: 0.6rem 1rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .scene-progress-fill {
+      transition: none;
+    }
+    /* The scroll animation is gated for reduced-motion (cover + static scene), so the 540vh
+       runway would be 5+ screens of frozen empty scroll. Collapse to ~one screen → cover → body.
+       105vh (not 100) keeps `scene.offsetHeight - innerHeight` > 0 so the progress math never /0. */
+    .scroll-scene {
+      height: 105vh;
     }
   }
 </style>

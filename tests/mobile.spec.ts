@@ -27,6 +27,26 @@ test.describe('Mobile Navigation', () => {
     await expect(mobileMenu).not.toHaveClass(/open/);
   });
 
+  test('mobile menu is a keyboard-accessible modal (focus in, trap, Escape)', async ({ page }) => {
+    await page.goto('/');
+    const toggle = page.locator('#nav-toggle');
+    const mobileMenu = page.locator('#nav-mobile');
+
+    // Opening moves focus into the menu (first link)
+    await toggle.click();
+    await expect(mobileMenu).toHaveClass(/open/);
+    await expect(mobileMenu.locator('a').first()).toBeFocused();
+
+    // Focus is trapped: Shift+Tab from the first link wraps to the last, staying in the menu
+    await page.keyboard.press('Shift+Tab');
+    await expect(mobileMenu.locator('a').last()).toBeFocused();
+
+    // Escape closes the menu and returns focus to the toggle
+    await page.keyboard.press('Escape');
+    await expect(mobileMenu).not.toHaveClass(/open/);
+    await expect(toggle).toBeFocused();
+  });
+
   test('can navigate using mobile menu', async ({ page }) => {
     await page.goto('/');
 

@@ -1,0 +1,117 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="404 - Lost in space - Jacob Chesslo"
+  description="This page drifted off into the void. Head back home or explore consulting."
+  fullWidth={true}
+>
+  <section class="notfound">
+    <div class="stars" aria-hidden="true"></div>
+    <div class="nebula nebula-1" aria-hidden="true"></div>
+    <div class="nebula nebula-2" aria-hidden="true"></div>
+    <div class="grid-bg" aria-hidden="true"></div>
+
+    <div class="nf-content">
+      <div class="nf-code" aria-hidden="true">404</div>
+      <h1 class="nf-title">Lost in space.</h1>
+      <p class="nf-sub">This page drifted off into the void. Let's get you back on course.</p>
+      <div class="nf-actions">
+        <a href="/" class="btn btn-primary">&larr; Back home</a>
+        <a href="/consulting" class="btn btn-ghost"
+          >See consulting <span class="arr">&rarr;</span></a
+        >
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .notfound {
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 var(--space-lg);
+  }
+
+  .nf-content {
+    position: relative;
+    z-index: 2;
+    max-width: 640px;
+  }
+
+  .nf-code {
+    font-family: var(--font-display);
+    font-size: clamp(5rem, 18vw, 11rem);
+    font-weight: 800;
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    color: var(--accent);
+    text-shadow: 0 0 60px var(--accent-a30);
+    opacity: 0;
+    animation:
+      fadeUp 0.9s var(--ease-out) 0.1s forwards,
+      nf-drift 7s ease-in-out 1s infinite alternate;
+  }
+
+  .nf-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    font-weight: 800;
+    color: var(--text);
+    margin-top: 0.5rem;
+    line-height: 1.1;
+    opacity: 0;
+    animation: fadeUp 0.9s var(--ease-out) 0.25s forwards;
+  }
+
+  .nf-sub {
+    font-size: 1.05rem;
+    color: var(--text-dim);
+    margin-top: 1rem;
+    max-width: 44ch;
+    line-height: 1.65;
+    opacity: 0;
+    animation: fadeUp 0.9s var(--ease-out) 0.4s forwards;
+  }
+
+  .nf-actions {
+    display: flex;
+    gap: var(--space-sm);
+    margin-top: 2.5rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.9s var(--ease-out) 0.55s forwards;
+  }
+
+  .arr {
+    display: inline-block;
+    transition: transform var(--dur-fast) var(--ease-out);
+  }
+  .btn-ghost:hover .arr {
+    transform: translateX(3px);
+  }
+
+  @keyframes nf-drift {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-10px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nf-code,
+    .nf-title,
+    .nf-sub,
+    .nf-actions {
+      opacity: 1;
+      animation: none;
+    }
+  }
+</style>

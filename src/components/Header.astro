@@ -1,5 +1,9 @@
 ---
-// No props - nav links are anchor links to index page sections
+// Main nav links are anchor links to index page sections; the page-level links
+// (Consulting, CV) get aria-current so the current section is announced + visibly marked.
+const path = Astro.url.pathname;
+const onConsulting = path.startsWith('/consulting');
+const onCv = path.startsWith('/cv');
 ---
 
 <nav id="site-nav" class="site-nav">
@@ -10,8 +14,16 @@
     <li><a href="/#education">Education</a></li>
     <li><a href="/#contact">Contact</a></li>
     <li class="nav-divider" aria-hidden="true"></li>
-    <li><a href="/consulting" style="color: var(--secondary);">Consulting</a></li>
-    <li><a href="/cv" style="color: var(--tertiary);">CV</a></li>
+    <li>
+      <a
+        href="/consulting"
+        style="color: var(--secondary);"
+        aria-current={onConsulting ? 'page' : undefined}>Consulting</a
+      >
+    </li>
+    <li>
+      <a href="/cv" style="color: var(--tertiary);" aria-current={onCv ? 'page' : undefined}>CV</a>
+    </li>
   </ul>
   <button
     class="nav-toggle"
@@ -43,8 +55,12 @@
   <a href="/#experience">Experience</a>
   <a href="/#education">Education</a>
   <a href="/#contact">Contact</a>
-  <a href="/consulting" style="color: var(--secondary);">Consulting</a>
-  <a href="/cv" style="color: var(--tertiary);">CV</a>
+  <a
+    href="/consulting"
+    style="color: var(--secondary);"
+    aria-current={onConsulting ? 'page' : undefined}>Consulting</a
+  >
+  <a href="/cv" style="color: var(--tertiary);" aria-current={onCv ? 'page' : undefined}>CV</a>
 </div>
 
 <script is:inline>
@@ -60,17 +76,42 @@
     { passive: true }
   );
 
+  const setMenu = (open) => {
+    mobile.classList.toggle('open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    mobile.setAttribute('aria-hidden', String(!open));
+  };
+
   toggle?.addEventListener('click', () => {
-    const isOpen = mobile.classList.toggle('open');
-    toggle.setAttribute('aria-expanded', String(isOpen));
-    mobile.setAttribute('aria-hidden', String(!isOpen));
+    const open = !mobile.classList.contains('open');
+    setMenu(open);
+    if (open) mobile.querySelector('a')?.focus(); // move focus into the opened menu
   });
 
   mobile.querySelectorAll('a').forEach((a) => {
-    a.addEventListener('click', () => {
-      mobile.classList.remove('open');
-      toggle.setAttribute('aria-expanded', 'false');
-      mobile.setAttribute('aria-hidden', 'true');
-    });
+    a.addEventListener('click', () => setMenu(false));
+  });
+
+  // Escape closes the overlay menu and returns focus to the toggle (expected behavior)
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobile.classList.contains('open')) {
+      setMenu(false);
+      toggle.focus();
+    }
+  });
+
+  // Trap Tab within the open overlay so focus can't land on the page hidden behind it
+  mobile.addEventListener('keydown', (e) => {
+    if (e.key !== 'Tab' || !mobile.classList.contains('open')) return;
+    const links = mobile.querySelectorAll('a');
+    const first = links[0];
+    const last = links[links.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
   });
 </script>

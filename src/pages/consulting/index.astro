@@ -3,8 +3,9 @@ import Layout from '../../layouts/Layout.astro';
 ---
 
 <Layout
-  title="Consulting — Jacob Chesslo"
+  title="Consulting - Jacob Chesslo"
   description="Jacob Chesslo offers consulting in two areas: science and simulation software engineering, and tech for LGBTQ+, kink, and lifestyle communities."
+  ogImage="/og/consulting.png"
 >
   <section class="consult-hub">
     <div class="hub-bg" aria-hidden="true">
@@ -15,30 +16,48 @@ import Layout from '../../layouts/Layout.astro';
 
     <div class="hub-content">
       <div class="hub-label">Consulting</div>
-      <h1 class="hub-title">Let's work together.</h1>
+      <h1 class="hub-title">Let's work <span class="hub-accent">together.</span></h1>
       <p class="hub-sub">
-        I consult in two areas. They're different audiences — pick the one that fits.
+        I consult in two areas. They're different audiences - pick the one that fits.
       </p>
 
       <div class="hub-tracks">
         <a href="/consulting/science" class="track-card track-science">
+          <svg class="track-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"></circle>
+            <ellipse cx="12" cy="12" rx="10" ry="4.2"></ellipse>
+            <ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(60 12 12)"></ellipse>
+            <ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(120 12 12)"></ellipse>
+          </svg>
           <div class="track-tag">Science &amp; Engineering</div>
           <h2 class="track-name">Research code that ships.</h2>
           <p class="track-desc">
-            Prototype Python, legacy Fortran, slow simulations, HPC pipelines that don't scale. I
-            bridge the gap between research software and production engineering.
+            Slow simulations, legacy Fortran, HPC pipelines that don't scale - bridged from research
+            code to production.
           </p>
-          <div class="track-cta">Explore &rarr;</div>
+          <div class="track-cta">Explore <span class="arr">&rarr;</span></div>
         </a>
 
         <a href="/consulting/lifestyle" class="track-card track-lifestyle">
+          <svg
+            class="track-icon"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
           <div class="track-tag">LGBTQ+ &amp; Lifestyle</div>
           <h2 class="track-name">Tech built for your world.</h2>
           <p class="track-desc">
-            Web, apps, and community platforms for LGBTQ+, kink, and lifestyle communities — built
-            by someone who's actually in these spaces.
+            Web, apps, and community platforms for LGBTQ+, kink, and lifestyle communities - built
+            from the inside.
           </p>
-          <div class="track-cta">Explore &rarr;</div>
+          <div class="track-cta">Explore <span class="arr">&rarr;</span></div>
         </a>
       </div>
     </div>
@@ -130,6 +149,14 @@ import Layout from '../../layouts/Layout.astro';
     color: var(--text);
     margin-bottom: 1rem;
   }
+  /* The two paths converge here - a violet→magenta blend of the science & lifestyle hues */
+  .hub-title .hub-accent {
+    color: oklch(82% 0.12 320); /* solid fallback for a11y where background-clip is unsupported */
+    background: linear-gradient(120deg, var(--accent-bright), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 
   .hub-sub {
     font-size: 1.05rem;
@@ -171,6 +198,39 @@ import Layout from '../../layouts/Layout.astro';
   .track-lifestyle:hover {
     border-color: var(--secondary);
     background: oklch(5% 0.009 264 / 0.85);
+  }
+
+  .track-icon {
+    width: 30px;
+    height: 30px;
+    fill: none;
+    stroke-width: 1.5;
+    margin-bottom: 1.25rem;
+    transition:
+      transform var(--dur-mid) var(--ease-out),
+      filter var(--dur-mid) var(--ease-out);
+  }
+  .track-science .track-icon {
+    stroke: var(--accent-bright);
+  }
+  .track-lifestyle .track-icon {
+    stroke: var(--secondary);
+  }
+  .track-science:hover .track-icon {
+    transform: scale(1.08) rotate(8deg);
+    filter: drop-shadow(0 0 10px var(--accent-a50));
+  }
+  .track-lifestyle:hover .track-icon {
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 10px oklch(63% 0.24 340 / 0.5));
+  }
+
+  .arr {
+    display: inline-block;
+    transition: transform var(--dur-fast) var(--ease-out);
+  }
+  .track-card:hover .arr {
+    transform: translateX(4px);
   }
 
   .track-tag {
@@ -217,5 +277,25 @@ import Layout from '../../layouts/Layout.astro';
   }
   .track-lifestyle:hover .track-cta {
     color: var(--secondary);
+  }
+
+  /* Staggered entrance (instant under reduced-motion via the global override) */
+  .hub-label {
+    animation: fadeUp 0.7s var(--ease-out) 0.05s both;
+  }
+  .hub-title {
+    animation: fadeUp 0.7s var(--ease-out) 0.15s both;
+  }
+  .hub-sub {
+    animation: fadeUp 0.7s var(--ease-out) 0.25s both;
+  }
+  .track-card {
+    animation: fadeUp 0.7s var(--ease-out) both;
+  }
+  .track-science {
+    animation-delay: 0.38s;
+  }
+  .track-lifestyle {
+    animation-delay: 0.5s;
   }
 </style>

@@ -4,26 +4,74 @@ import Layout from '../../layouts/Layout.astro';
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
-  name: 'Jacob Chesslo — LGBTQ+ & Lifestyle Tech Consulting',
+  name: 'Jacob Chesslo - LGBTQ+ & Lifestyle Tech Consulting',
   description:
-    'Tech consulting for LGBTQ+, kink, and lifestyle communities. Web development, apps, community platforms — built by someone in these spaces.',
-  url: 'https://jacobchesslo.com/consulting/lifestyle',
+    'Tech consulting for LGBTQ+, kink, and lifestyle communities. Web development, apps, community platforms - built by someone in these spaces.',
+  url: Astro.url.href,
   email: 'jacobchesslo@gmail.com',
+  areaServed: 'Worldwide',
+  serviceType: 'Web, app, and community-platform development for LGBTQ+ and lifestyle communities',
   founder: {
     '@type': 'Person',
     name: 'Jacob Chesslo',
-    url: 'https://jacobchesslo.com',
+    url: Astro.url.origin + '/',
+    jobTitle: 'Software Engineer',
+    knowsAbout: [
+      'Web development',
+      'Application development',
+      'Community platforms',
+      'Event technology',
+      'Data privacy',
+      'LGBTQ+ and lifestyle community technology',
+    ],
+    sameAs: ['https://github.com/JacobChesslo', 'https://linkedin.com/in/jacobchesslo'],
   },
 };
+
+// Single source of truth: renders both the FAQ accordion and FAQPage structured data
+const faqs = [
+  {
+    q: 'Will you get what our community needs?',
+    a: "Probably - I'm queer, in kink and lifestyle spaces myself, and I've run LGBTQ+ orgs. You won't be explaining the basics. If it's a corner I don't know well, I'll say so.",
+  },
+  {
+    q: 'How do you handle member privacy?',
+    a: "As a first-class concern. Data minimization, real access controls, and not collecting what you don't need. People in these spaces have real reasons to care - so do I.",
+  },
+  {
+    q: 'Can you work discreetly?',
+    a: "Yes. A lot of this work is sensitive. I'll sign an NDA and keep names and details to myself.",
+  },
+  {
+    q: 'How do you price, and are you available?',
+    a: "No rate cards yet - we scope a small first piece and go from there. I take on a couple of projects at a time, so reach out and we'll see if the timing works.",
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
+// Single prefilled mailto reused by every CTA (cover, sticky, body) so they never drift
+const mailto =
+  'mailto:jacobchesslo@gmail.com?subject=LGBTQ%2B%20%26%20lifestyle%20tech&body=Hi%20Jacob%2C%0A%0AI%27m%20with%20%5Bcommunity%2Forg%5D%20and%20we%27re%20looking%20to%20build%2Ffix%20%5Bthe%20thing%5D.%20A%20bit%20of%20context%3A%0A%0A';
 ---
 
 <Layout
-  title="LGBTQ+ & Lifestyle Tech Consulting — Jacob Chesslo"
-  description="Jacob Chesslo builds web, apps, and community platforms for LGBTQ+, kink, and lifestyle communities — software from someone actually in these spaces."
+  title="LGBTQ+ & Lifestyle Tech Consulting - Jacob Chesslo"
+  description="Jacob Chesslo builds web, apps, and community platforms for LGBTQ+, kink, and lifestyle communities - software from someone actually in these spaces."
   fullWidth={true}
+  ogImage="/og/consulting-lifestyle.png"
 >
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   </Fragment>
 
   <!-- ── SCROLL SCENE ─────────────────────────────────────── -->
@@ -39,67 +87,163 @@ const schema = {
         </div>
         <div class="pill-body">
           <p class="page-sub">
-            Web, apps, and community platforms for LGBTQ+, kink, and lifestyle communities. Built by
-            someone who lives in these spaces.
+            Web, apps, and community platforms for LGBTQ+, kink, and lifestyle communities - built
+            by someone who lives in these spaces.
           </p>
-          <a href="mailto:jacobchesslo@gmail.com" class="cta-btn">Let's talk &rarr;</a>
+          <div class="pill-actions">
+            <a href={mailto} class="cta-btn">Let's talk <span class="arr">&rarr;</span></a>
+          </div>
         </div>
       </div>
 
-      <div class="phase-label" id="lifestyle-phase">isolated individuals</div>
-      <div class="scroll-hint" id="lifestyle-hint">scroll to explore &darr;</div>
+      <div class="scene-progress" aria-hidden="true">
+        <div class="scene-progress-fill" id="lifestyle-progress"></div>
+      </div>
+
+      <div class="overlay" id="ov1" aria-hidden="true">
+        <p class="ov-line">Generic platforms.</p>
+        <p class="ov-line">Communities treated as edge cases.</p>
+        <p class="ov-line">Privacy as an afterthought.</p>
+      </div>
+      <div class="overlay" id="ov2" aria-hidden="true">
+        <p class="ov-hero">Software built<br />for your people.</p>
+        <p class="ov-sub">Not a generic SaaS with your logo on it.</p>
+      </div>
+      <div class="overlay" id="ov3" aria-hidden="true">
+        <p class="ov-hero">Built from the inside.</p>
+        <p class="ov-sub">Queer. In kink &amp; lifestyle. Years running LGBTQ+ orgs.</p>
+      </div>
+
+      <a
+        href="#lifestyle-proof"
+        class="scroll-cue"
+        id="lifestyle-hint"
+        aria-label="Skip the intro animation"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          width="26"
+          height="26"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.75"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M6 9l6 6 6-6"></path>
+        </svg>
+      </a>
     </div>
   </div>
 
+  <!-- ── PROOF / CREDIBILITY BAND ──────────────────────────── -->
+  <section class="proof-band" id="lifestyle-proof" aria-label="Why me">
+    <p class="proof-lead">Tech for communities I&rsquo;m actually part of:</p>
+    <div class="proof-metrics">
+      <div class="proof-metric">
+        <span class="proof-num">Insider</span>
+        <span class="proof-cap">queer, in kink &amp; lifestyle spaces myself</span>
+      </div>
+      <div class="proof-metric">
+        <span class="proof-num">Years in</span>
+        <span class="proof-cap">running LGBTQ+ orgs &amp; events</span>
+      </div>
+      <div class="proof-metric">
+        <span class="proof-num">Privacy-first</span>
+        <span class="proof-cap">real stakes, handled as first-class</span>
+      </div>
+    </div>
+    <div class="proof-affil">
+      <span>LGBTQ+</span><span class="proof-dot">&middot;</span><span>Kink</span><span
+        class="proof-dot">&middot;</span
+      ><span>Lifestyle</span><span class="proof-dot">&middot;</span><span>Events</span>
+    </div>
+  </section>
+
   <!-- ── CONTENT ───────────────────────────────────────────── -->
-  <article class="consult-body">
+  <article class="consult-body" id="lifestyle-details">
     <section class="content-section">
+      <span class="section-kicker">01</span>
       <h2 class="section-heading">Why this matters</h2>
       <p>
-        Most tech vendors treat LGBTQ+ and kink communities as edge cases to accommodate, not people
-        to build for. The result is software that technically works but misses everything that
-        actually matters — the culture, the trust requirements, the privacy needs, the specific ways
-        people in these spaces connect and organize.
+        Most vendors treat LGBTQ+ and kink communities as edge cases to accommodate - not people to
+        build for. You get software that technically works but misses what matters: the culture, the
+        trust, the privacy, the way people actually connect.
       </p>
       <p>
-        I'm not coming in as an outsider. I'm queer, I'm in kink and lifestyle communities, and I've
-        spent years running LGBTQ+ organizations. I know what you actually need because I use and
-        depend on this kind of software too.
+        I'm not an outsider here. I'm queer, in kink and lifestyle communities, and I've spent years
+        running LGBTQ+ orgs. I know what you need because I depend on this software too.
       </p>
     </section>
 
     <div class="divider-line"></div>
 
     <section class="content-section">
+      <span class="section-kicker">02</span>
       <h2 class="section-heading">What I can help with</h2>
       <div class="capability-grid">
         <div class="cap-card">
-          <div class="cap-title">Web &amp; App Development</div>
-          <div class="cap-body">
-            Full-stack web applications, landing pages, member portals. Modern stack (TypeScript,
-            Astro, React/SolidJS) — fast, accessible, and actually maintained.
-          </div>
+          <svg
+            class="cap-icon"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="16 18 22 12 16 6"></polyline>
+            <polyline points="8 6 2 12 8 18"></polyline>
+          </svg>
+          <h3 class="cap-title">Web &amp; App Dev</h3>
+          <div class="cap-body">Full-stack sites, portals, and member areas.</div>
+          <div class="cap-tech">TypeScript · Astro · React/Solid</div>
         </div>
         <div class="cap-card">
-          <div class="cap-title">Community Platforms</div>
-          <div class="cap-body">
-            Member management, events, forums, onboarding flows. Spaces that feel right to the
-            people in them — not a generic SaaS product with your logo on it.
-          </div>
+          <svg
+            class="cap-icon"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+          <h3 class="cap-title">Community Platforms</h3>
+          <div class="cap-body">Members, events, and forums that feel right.</div>
+          <div class="cap-tech">Onboarding · Forums · Memberships</div>
         </div>
         <div class="cap-card">
-          <div class="cap-title">Privacy &amp; Trust</div>
-          <div class="cap-body">
-            Members in these communities have real reasons to care about data privacy. I build with
-            that as a first-class concern, not an afterthought.
-          </div>
+          <svg
+            class="cap-icon"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect x="3" y="11" width="18" height="11" rx="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+          <h3 class="cap-title">Privacy &amp; Trust</h3>
+          <div class="cap-body">Real privacy, built in from the start.</div>
+          <div class="cap-tech">Data minimization · Access control</div>
         </div>
         <div class="cap-card">
-          <div class="cap-title">Event Tech</div>
-          <div class="cap-body">
-            Registration, waivers, scheduling, check-in flows. The operational side of running
-            events — built for the reality of how these events actually run.
-          </div>
+          <svg
+            class="cap-icon"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+            <path d="M16 2v4M8 2v4M3 10h18"></path>
+          </svg>
+          <h3 class="cap-title">Event Tech</h3>
+          <div class="cap-body">Registration, waivers, and check-in that work.</div>
+          <div class="cap-tech">Tickets · Waivers · Scheduling</div>
         </div>
       </div>
     </section>
@@ -107,47 +251,117 @@ const schema = {
     <div class="divider-line"></div>
 
     <section class="content-section">
+      <span class="section-kicker">03</span>
       <h2 class="section-heading">Good fit for</h2>
       <ul class="fit-list">
         <li>LGBTQ+ organizations or community groups that have outgrown their current tools</li>
         <li>Kink or lifestyle event organizers who need better event infrastructure</li>
         <li>Small businesses serving these communities that need a real web presence</li>
-        <li>
-          Anyone who's tired of explaining their community's needs from scratch to every vendor
-        </li>
+        <li>Anyone tired of explaining their community's needs from scratch to every vendor</li>
       </ul>
+    </section>
+
+    <div class="divider-line"></div>
+
+    <section class="content-section">
+      <span class="section-kicker">04</span>
+      <h2 class="section-heading">How we'd start</h2>
+      <ol class="process-list">
+        <li class="process-step">
+          <span class="process-num">01</span>
+          <div class="process-text">
+            <strong>You tell me what your community needs.</strong>
+            A platform that's outgrown its tools, an event that needs better infrastructure, a site that
+            finally fits.
+          </div>
+        </li>
+        <li class="process-step">
+          <span class="process-num">02</span>
+          <div class="process-text">
+            <strong>A relaxed call - no pitch.</strong>
+            I won't make you explain your community from scratch. We just see whether it's a fit.
+          </div>
+        </li>
+        <li class="process-step">
+          <span class="process-num">03</span>
+          <div class="process-text">
+            <strong>We start small and concrete.</strong>
+            One real piece with a clear outcome, so you can judge the work before going further.
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <div class="divider-line"></div>
+
+    <section class="content-section">
+      <span class="section-kicker">05</span>
+      <h2 class="section-heading">Questions</h2>
+      <div class="faq-list">
+        {
+          faqs.map((f) => (
+            <details class="faq-item">
+              <summary class="faq-q">
+                {f.q}
+                <svg class="faq-chevron" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M6 9l6 6 6-6" />
+                </svg>
+              </summary>
+              <p class="faq-a">{f.a}</p>
+            </details>
+          ))
+        }
+      </div>
     </section>
 
     <div class="divider-line"></div>
 
     <section class="cta-section">
       <p class="cta-note">
-        This is a newer direction for me, so I'm starting by having real conversations — no
-        packages, no rate cards. If you have something you want to build or fix, reach out and let's
-        see if it's a fit.
+        This is a newer direction for me, so I'm starting with real conversations - no packages, no
+        rate cards. If you have something to build or fix, reach out &mdash; I reply within a day.
       </p>
-      <a href="mailto:jacobchesslo@gmail.com" class="cta-btn-body">jacobchesslo@gmail.com</a>
+      <div class="cta-actions">
+        <a href={mailto} class="cta-btn-body"
+          >Start the conversation <span class="arr">&rarr;</span></a
+        >
+        <button
+          type="button"
+          class="cta-copy"
+          data-email="jacobchesslo@gmail.com"
+          aria-label="Copy email address jacobchesslo@gmail.com to clipboard"
+        >
+          <svg class="cta-copy-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          <span class="cta-copy-label" aria-live="polite">jacobchesslo@gmail.com</span>
+        </button>
+      </div>
     </section>
   </article>
+
+  <a href={mailto} class="sticky-cta" id="lifestyle-sticky">
+    <span class="sticky-cta-tag">LGBTQ+ &amp; Lifestyle</span>
+    <span class="sticky-cta-action">Let's talk <span class="arr">&rarr;</span></span>
+  </a>
 </Layout>
 
 <script>
   const scene = document.getElementById('lifestyle-scene')! as HTMLElement;
   const canvas = document.getElementById('lifestyle-canvas')! as HTMLCanvasElement;
-  const phaseEl = document.getElementById('lifestyle-phase')! as HTMLElement;
   const hintEl = document.getElementById('lifestyle-hint')! as HTMLElement;
+  const progressEl = document.getElementById('lifestyle-progress')! as HTMLElement;
+  const pillEl = document.querySelector('.text-pill')! as HTMLElement;
+  const stickyEl = document.getElementById('lifestyle-sticky')! as HTMLElement;
+  const ov1El = document.getElementById('ov1')! as HTMLElement;
+  const ov2El = document.getElementById('ov2')! as HTMLElement;
+  const ov3El = document.getElementById('ov3')! as HTMLElement;
   const ctx = canvas.getContext('2d')!;
 
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  const PHASES = [
-    'isolated individuals',
-    'finding community',
-    'connections forming',
-    'thriving together',
-  ];
-
-  // Pride rainbow — one hue per cluster
+  // Pride rainbow - one hue per cluster
   const CLUSTER_COLORS = [
     'oklch(62% 0.25 18', // red
     'oklch(66% 0.22 55', // orange
@@ -161,6 +375,9 @@ const schema = {
     H = 0;
   let rawProgress = 0,
     displayProgress = 0;
+  let sceneOffscreen = false; // true once scrolled past the scene → throttle the backdrop
+  let ctaInView = false; // true when the final CTA is on screen → hide the redundant sticky CTA
+  let lastDraw = 0;
 
   // ── Cluster setup ─────────────────────────────────────────
   const CLUSTER_N = 6;
@@ -242,15 +459,23 @@ const schema = {
   function eio(t: number) {
     return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
   }
+  function clamp(v: number, a: number, b: number) {
+    return Math.max(a, Math.min(b, v));
+  }
+  // Trapezoidal hold: quick fade in, full opacity across the band, quick fade out
+  function band(p: number, a: number, b: number, f = 0.04) {
+    return clamp((p - a) / f, 0, 1) * clamp((b - p) / f, 0, 1);
+  }
 
   function draw(ts: number) {
     ctx.clearRect(0, 0, W, H);
 
-    displayProgress += (rawProgress - displayProgress) * (reduced ? 1 : 0.045);
-    const prog = reduced ? 1 : displayProgress;
-    const gather = Math.max(0, Math.min(1, (prog - 0.1) / 0.3)); // nodes converge to clusters
-    const intra = Math.max(0, Math.min(1, (prog - 0.48) / 0.24)); // within-cluster connections
-    const inter = Math.max(0, Math.min(1, (prog - 0.78) / 0.2)); // between-cluster bridges
+    displayProgress += (rawProgress - displayProgress) * (reduced ? 1 : 0.09);
+    const prog = reduced ? 1 : displayProgress; // smoothed: drives the animation morph
+    const ui = reduced ? 0 : rawProgress; // raw scroll drives captions + chrome; reduced keeps the cover
+    const gather = clamp((prog - 0.1) / 0.3, 0, 1); // nodes converge to clusters
+    const intra = clamp((prog - 0.48) / 0.24, 0, 1); // within-cluster connections
+    const inter = clamp((prog - 0.78) / 0.2, 0, 1); // between-cluster bridges
 
     // Update node positions
     for (const n of nodes) {
@@ -276,10 +501,10 @@ const schema = {
             dy = nodes[j].y - nodes[i].y;
           const d = Math.sqrt(dx * dx + dy * dy);
           if (d < maxD) {
-            const a = (1 - d / maxD) * intra * 0.55;
+            const a = (1 - d / maxD) * intra * 0.7;
             ctx.beginPath();
             ctx.strokeStyle = `${CLUSTER_COLORS[nodes[i].cluster]} / ${a})`;
-            ctx.lineWidth = 0.6 + inter * 0.3;
+            ctx.lineWidth = 0.7 + inter * 0.3;
             ctx.moveTo(nodes[i].x, nodes[i].y);
             ctx.lineTo(nodes[j].x, nodes[j].y);
             ctx.stroke();
@@ -310,11 +535,11 @@ const schema = {
           }
         }
         const grad = ctx.createLinearGradient(aN[bai].x, aN[bai].y, bN[bbj].x, bN[bbj].y);
-        grad.addColorStop(0, `${CLUSTER_COLORS[ci]} / ${inter * 0.4})`);
-        grad.addColorStop(1, `${CLUSTER_COLORS[cj]} / ${inter * 0.4})`);
+        grad.addColorStop(0, `${CLUSTER_COLORS[ci]} / ${inter * 0.45})`);
+        grad.addColorStop(1, `${CLUSTER_COLORS[cj]} / ${inter * 0.45})`);
         ctx.beginPath();
         ctx.strokeStyle = grad;
-        ctx.lineWidth = 0.8;
+        ctx.lineWidth = 0.9;
         ctx.setLineDash([3, 5]);
         ctx.moveTo(aN[bai].x, aN[bai].y);
         ctx.lineTo(bN[bbj].x, bN[bbj].y);
@@ -327,12 +552,13 @@ const schema = {
     for (const n of nodes) {
       const col = CLUSTER_COLORS[n.cluster];
       const pulse = Math.sin(ts * 0.001 * n.sp + n.ph) * 0.5 + 0.5;
-      const baseA = 0.2 + gather * 0.45 + inter * 0.15;
-      const r = 1.5 + pulse * 0.7 + inter * 0.8;
+      // Isolated nodes read as distinct points of light, then settle as they gather
+      const baseA = 0.44 + gather * 0.4 + inter * 0.18;
+      const r = 1.7 + (1 - gather) * 0.5 + pulse * 0.7 + inter * 0.8;
 
       if (intra > 0) {
         const gr = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, r * 5);
-        gr.addColorStop(0, `${col} / ${intra * 0.2})`);
+        gr.addColorStop(0, `${col} / ${intra * 0.22})`);
         gr.addColorStop(1, 'transparent');
         ctx.beginPath();
         ctx.arc(n.x, n.y, r * 5, 0, Math.PI * 2);
@@ -346,27 +572,35 @@ const schema = {
       ctx.fill();
     }
 
-    // Phase label
-    const idx = prog < 0.18 ? 0 : prog < 0.52 ? 1 : prog < 0.8 ? 2 : 3;
-    if (phaseEl.dataset.idx !== String(idx)) {
-      phaseEl.dataset.idx = String(idx);
-      phaseEl.style.opacity = '0';
-      setTimeout(() => {
-        phaseEl.textContent = PHASES[idx];
-        phaseEl.style.opacity = '1';
-      }, 120);
-    }
+    // Beat captions: solid holds mapped to the cluster animation phases
+    ov1El.style.opacity = String(band(ui, 0.08, 0.32));
+    ov2El.style.opacity = String(band(ui, 0.38, 0.64));
+    ov3El.style.opacity = String(band(ui, 0.7, 0.99));
 
-    hintEl.style.opacity = String(Math.max(0, 1 - prog * 18));
+    // Cover fades into the beat captions; sticky CTA carries conversion once we're past it
+    pillEl.classList.toggle('compact', ui > 0.07);
+    stickyEl.classList.toggle('visible', ui > 0.12 && !ctaInView);
+    const hintOpacity = clamp(1 - ui * 14, 0, 1);
+    hintEl.style.opacity = String(hintOpacity);
+    hintEl.style.visibility = hintOpacity < 0.05 ? 'hidden' : 'visible'; // drop from tab order when faded
+    progressEl.style.transform = `scaleX(${ui})`;
   }
 
   function updateProgress() {
     const rect = scene.getBoundingClientRect();
     const scrollable = scene.offsetHeight - window.innerHeight;
     if (scrollable > 0) rawProgress = Math.max(0, Math.min(1, -rect.top / scrollable));
+    // Once we're past the scene into the body, fade the canvas to a faint backdrop
+    const past = -rect.top - scrollable;
+    const fade = clamp(past / (window.innerHeight * 0.6), 0, 1);
+    // Floor at ~0.09: the multi-colour clusters are busier than Science's mono attractor,
+    // so the body-state backdrop is kept a touch fainter for text readability.
+    canvas.style.opacity = String(1 - fade * 0.91);
+    sceneOffscreen = past > window.innerHeight * 0.6; // fully faded → no longer the focus
   }
 
   resize();
+  updateProgress();
   window.addEventListener(
     'resize',
     () => {
@@ -377,12 +611,102 @@ const schema = {
   );
   window.addEventListener('scroll', updateProgress, { passive: true });
 
+  // Gentle scroll-reveal for the body sections (added in JS so no-JS still shows everything)
+  if (!reduced) {
+    const revealEls = document.querySelectorAll<HTMLElement>(
+      '.proof-band, .consult-body .content-section, .cta-section'
+    );
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) {
+            e.target.classList.add('in');
+            io.unobserve(e.target);
+          }
+        }
+      },
+      { rootMargin: '0px 0px -12% 0px' }
+    );
+    revealEls.forEach((el) => {
+      el.classList.add('reveal');
+      io.observe(el);
+    });
+  }
+
+  // Hide the sticky CTA once the real CTA section is on screen (avoid redundant CTAs at conversion)
+  const ctaSection = document.querySelector('.cta-section');
+  if (ctaSection) {
+    new IntersectionObserver(
+      ([entry]) => {
+        ctaInView = entry.isIntersecting;
+      },
+      { rootMargin: '0px 0px -10% 0px' }
+    ).observe(ctaSection);
+  }
+
+  // Copy-email fallback so the address is capturable even when mailto does nothing
+  const copyBtn = document.querySelector<HTMLButtonElement>('.cta-copy');
+  if (copyBtn) {
+    const label = copyBtn.querySelector<HTMLElement>('.cta-copy-label')!;
+    const original = label.textContent;
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(copyBtn.dataset.email || '');
+      } catch {
+        // Clipboard blocked (insecure context / old browser) - select the address for manual copy
+        const sel = window.getSelection();
+        if (sel) {
+          const range = document.createRange();
+          range.selectNodeContents(label);
+          sel.removeAllRanges();
+          sel.addRange(range);
+        }
+        return;
+      }
+      copyBtn.classList.add('copied');
+      label.textContent = 'Copied to clipboard ✓';
+      window.setTimeout(() => {
+        copyBtn.classList.remove('copied');
+        label.textContent = original;
+      }, 1800);
+    });
+  }
+
+  // Snappier "skip" than the native 1.2s smooth-scroll over the long scene (eased ~0.65s)
+  const skipCue = document.getElementById('lifestyle-hint');
+  const proof = document.getElementById('lifestyle-proof');
+  if (skipCue && proof && !reduced) {
+    skipCue.addEventListener('click', (e) => {
+      e.preventDefault();
+      const startY = window.scrollY;
+      const dist = proof.offsetTop - 84 - startY;
+      const t0 = performance.now();
+      const ease = (t: number) => 1 - Math.pow(1 - t, 3);
+      const step = (now: number) => {
+        const t = Math.min(1, (now - t0) / 650);
+        // behavior:'instant' so our easing drives it, not the global scroll-behavior:smooth
+        window.scrollTo({ top: startY + dist * ease(t), behavior: 'instant' });
+        if (t < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    });
+  }
+
   if (reduced) {
     rawProgress = 1;
     draw(0);
   } else {
     function tick(ts: number) {
-      draw(ts);
+      // Skip all physics/drawing while the tab is hidden - nobody's watching, save the battery
+      if (document.hidden) {
+        requestAnimationFrame(tick);
+        return;
+      }
+      // Full 60fps while the scene is the focus; throttle to ~12fps once it's a faint backdrop
+      if (!sceneOffscreen || ts - lastDraw > 80) {
+        draw(ts);
+        lastDraw = ts;
+      }
       requestAnimationFrame(tick);
     }
     requestAnimationFrame(tick);
@@ -391,7 +715,7 @@ const schema = {
 
 <style>
   .scroll-scene {
-    height: 420vh;
+    height: 460vh;
     position: relative;
   }
 
@@ -402,11 +726,15 @@ const schema = {
     overflow: hidden;
   }
 
+  /* Fixed full-viewport: the scene plays full-strength, then lingers as a faint
+     backdrop behind the body content (opacity driven by scroll in JS). */
   #lifestyle-canvas {
-    position: absolute;
+    position: fixed;
     inset: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
   }
 
   .sticky-stage::after {
@@ -415,34 +743,58 @@ const schema = {
     bottom: 0;
     left: 0;
     right: 0;
-    height: 180px;
+    height: 140px;
     background: linear-gradient(to bottom, transparent, var(--bg));
     pointer-events: none;
   }
 
+  /* Cover: centered narrative column, bottom-center, aligned under the animation */
   .text-pill {
     position: absolute;
-    bottom: 3rem;
-    left: clamp(1.5rem, 5vw, 4rem);
-    max-width: 380px;
+    bottom: 3.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    /* 600px (was 560) so the "for your world." accent line stays unbroken on large desktop */
+    width: min(600px, calc(100vw - 3rem));
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
-    background: oklch(3% 0.006 264 / 0.78);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1.75rem 2rem;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
     z-index: 2;
+    visibility: visible;
+    transition:
+      opacity var(--dur-mid) var(--ease-out),
+      transform var(--dur-mid) var(--ease-out),
+      visibility 0s;
+  }
+  .text-pill .pill-header,
+  .text-pill .pill-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  /* visibility:hidden also drops the receded cover's CTA/back-link from the keyboard tab order */
+  .text-pill.compact {
+    opacity: 0;
+    transform: translateX(-50%) translateY(12px);
+    pointer-events: none;
+    visibility: hidden;
+    transition:
+      opacity var(--dur-mid) var(--ease-out),
+      transform var(--dur-mid) var(--ease-out),
+      visibility 0s linear var(--dur-mid);
   }
 
   .back-link {
+    display: inline-block;
     font-family: var(--font-mono);
     font-size: 0.7rem;
     letter-spacing: 0.12em;
     color: var(--text-dim);
     text-decoration: none;
+    padding: 6px 10px; /* tap target ≥24px (WCAG 2.5.8) without enlarging the text */
     transition: color var(--dur-fast);
   }
   .back-link:hover {
@@ -459,25 +811,63 @@ const schema = {
 
   .page-title {
     font-family: var(--font-display);
-    font-size: clamp(2.1rem, 4vw, 3.2rem);
+    /* Max capped at 3rem (parity with science) to keep the accent line unbroken at large desktop */
+    font-size: clamp(2.1rem, 4vw, 3rem);
     font-weight: 800;
     line-height: 1.08;
     color: var(--text);
   }
   .page-title .accent {
     color: var(--secondary);
+    /* Same jewel-like gradient as the credibility figures; solid color falls back where unsupported */
+    background: linear-gradient(
+      120deg,
+      oklch(82% 0.13 340),
+      var(--secondary) 60%,
+      oklch(55% 0.24 340)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   .page-sub {
     font-size: 0.97rem;
-    color: oklch(78% 0.018 295);
+    color: var(--text-dim);
     font-weight: 400;
     line-height: 1.65;
   }
 
+  /* Staggered entrance on the cover - matches the homepage hero / hub cascade.
+     Applied to the flex children (not the translateX-centered pill) so centering is preserved. */
+  .pill-header .back-link {
+    animation: cover-in 0.7s var(--ease-out) 0.06s both;
+  }
+  .pill-header .page-tag {
+    animation: cover-in 0.7s var(--ease-out) 0.14s both;
+  }
+  .pill-header .page-title {
+    animation: cover-in 0.7s var(--ease-out) 0.24s both;
+  }
+  .pill-body .page-sub {
+    animation: cover-in 0.7s var(--ease-out) 0.36s both;
+  }
+  .pill-body .pill-actions {
+    animation: cover-in 0.7s var(--ease-out) 0.46s both;
+  }
+  @keyframes cover-in {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   .cta-btn {
     display: inline-block;
-    align-self: flex-start;
     font-family: var(--font-mono);
     font-size: 0.76rem;
     letter-spacing: 0.1em;
@@ -495,72 +885,139 @@ const schema = {
     transform: translateY(-1px);
   }
 
-  .phase-label {
-    position: absolute;
-    top: 5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--secondary);
-    white-space: nowrap;
-    background: oklch(3% 0.006 264 / 0.72);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid oklch(63% 0.24 340 / 0.25);
-    border-radius: 100px;
-    padding: 0.45rem 1.1rem;
-    opacity: 0;
-    transition: opacity 0.35s ease;
-    z-index: 2;
+  .arr {
+    display: inline-block;
+    transition: transform var(--dur-fast) var(--ease-out);
+  }
+  .cta-btn:hover .arr,
+  .cta-btn-body:hover .arr,
+  .sticky-cta:hover .arr,
+  .proof-link:hover .arr {
+    transform: translateX(3px);
   }
 
-  .scroll-hint {
+  /* Scroll cue: a single down-chevron. Bounce animates transform only so JS can fade opacity. */
+  .scroll-cue {
     position: absolute;
-    bottom: 1.5rem;
+    bottom: 1.25rem;
     left: 50%;
     transform: translateX(-50%);
-    font-family: var(--font-mono);
-    font-size: 0.62rem;
-    letter-spacing: 0.15em;
+    display: flex;
     color: var(--text-dim);
-    transition: opacity 0.3s ease;
     z-index: 2;
-    animation: hint-pulse 2s ease-in-out infinite;
+    transition:
+      opacity 0.3s ease,
+      color var(--dur-fast);
+    animation: chevron-bounce 2s ease-in-out infinite;
   }
-  @keyframes hint-pulse {
+  .scroll-cue:hover {
+    color: var(--secondary);
+  }
+  @keyframes chevron-bounce {
     0%,
     100% {
-      opacity: 0.35;
+      transform: translateX(-50%) translateY(0);
     }
     50% {
-      opacity: 1;
+      transform: translateX(-50%) translateY(5px);
     }
   }
 
-  /* ── Article body ─────────────────────────────────────── */
+  /* ── Beat captions: single centered column, same spot as the cover ─── */
+  .overlay {
+    position: absolute;
+    bottom: 3.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    z-index: 2;
+    pointer-events: none;
+    width: min(640px, calc(100vw - 3rem));
+  }
+
+  .ov-line {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    letter-spacing: 0.04em;
+    color: var(--text-dim);
+    line-height: 2;
+    margin: 0;
+  }
+
+  .ov-hero {
+    font-family: var(--font-display);
+    font-size: clamp(1.7rem, 3.6vw, 2.5rem);
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1.15;
+    margin: 0 0 0.7rem;
+  }
+
+  .ov-sub {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
+    color: var(--secondary);
+    margin: 0;
+  }
+
+  /* ── Article body ─────────────────────────────────── */
   .consult-body {
     max-width: 64ch;
-    padding-left: max(1.5rem, calc((100% - 64ch) / 2));
-    padding-right: max(1.5rem, calc((100% - 64ch) / 2));
-    padding-top: 4rem;
-    padding-bottom: 4rem;
+    margin: 0 auto;
+    padding: 4rem 1.5rem;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.6s var(--ease-out),
+      transform 0.6s var(--ease-out);
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: none;
   }
 
   .divider-line {
     height: 1px;
-    background: var(--border);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--border) 18%,
+      var(--border) 82%,
+      transparent
+    );
     margin: 2.5rem 0;
+  }
+
+  .section-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    color: var(--secondary);
+    margin-bottom: 0.7rem;
+  }
+  .section-kicker::before {
+    content: '';
+    width: 1.6rem;
+    height: 1px;
+    background: var(--secondary);
   }
 
   .section-heading {
     font-family: var(--font-display);
-    font-size: 1.2rem;
+    font-size: 1.35rem;
     font-weight: 700;
     color: var(--text);
     margin-bottom: 1rem;
+    letter-spacing: -0.01em;
   }
 
   .content-section p {
@@ -577,27 +1034,82 @@ const schema = {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem;
   }
+  /* Uniform card heights only when the grid is multi-column; single-column (mobile) stays natural */
+  @media (min-width: 480px) {
+    .capability-grid {
+      grid-auto-rows: 1fr;
+    }
+  }
 
   .cap-card {
-    padding: 1.25rem;
-    background: var(--surface);
+    position: relative;
+    overflow: hidden;
+    /* Break long titles ("Community Platforms") instead of clipping at large text zoom (WCAG 1.4.4) */
+    overflow-wrap: break-word;
+    padding: 1.5rem 1.35rem;
+    background: oklch(8% 0.012 264 / 0.55);
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: 10px;
+    transition:
+      border-color var(--dur-mid) var(--ease-out),
+      background var(--dur-mid) var(--ease-out),
+      transform var(--dur-mid) var(--ease-out);
+  }
+  /* Top accent bar reveals on hover - matches the site's card-hover language */
+  .cap-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, oklch(52% 0.24 340), var(--secondary));
+    opacity: 0;
+    transition: opacity var(--dur-mid) var(--ease-out);
+  }
+  .cap-card:hover {
+    border-color: oklch(63% 0.24 340 / 0.4);
+    background: oklch(10% 0.015 340 / 0.7);
+    transform: translateY(-3px);
+  }
+  .cap-card:hover::before {
+    opacity: 1;
+  }
+
+  .cap-icon {
+    width: 26px;
+    height: 26px;
+    fill: none;
+    stroke: var(--secondary);
+    stroke-width: 1.6;
+    margin-bottom: 0.9rem;
+    transition:
+      transform var(--dur-mid) var(--ease-out),
+      filter var(--dur-mid) var(--ease-out);
+  }
+  .cap-card:hover .cap-icon {
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 8px oklch(63% 0.24 340 / 0.5));
   }
 
   .cap-title {
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--secondary);
-    margin-bottom: 0.5rem;
+    font-family: var(--font-display);
+    font-size: 1.02rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.35rem;
   }
-
   .cap-body {
-    font-size: 0.87rem;
+    font-size: 0.9rem;
     color: var(--text-dim);
-    line-height: 1.65;
+    line-height: 1.55;
+    margin-bottom: 0.7rem;
+  }
+  .cap-tech {
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.04em;
+    color: var(--tertiary);
   }
 
   .fit-list {
@@ -605,26 +1117,26 @@ const schema = {
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.6rem;
+    gap: 0.7rem;
+    --check-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E");
   }
-
   .fit-list li {
     font-size: 0.92rem;
     color: var(--text-dim);
-    padding-left: 1.2rem;
+    padding-left: 1.6rem;
     position: relative;
     line-height: 1.6;
   }
-
   .fit-list li::before {
-    content: '—';
+    content: '';
     position: absolute;
     left: 0;
-    color: var(--secondary);
-  }
-
-  .cta-section {
-    text-align: left;
+    top: 0.35em;
+    width: 0.85rem;
+    height: 0.85rem;
+    background-color: var(--secondary);
+    -webkit-mask: var(--check-icon) center / contain no-repeat;
+    mask: var(--check-icon) center / contain no-repeat;
   }
 
   .cta-note {
@@ -632,6 +1144,46 @@ const schema = {
     color: var(--text-dim);
     line-height: 1.7;
     margin-bottom: 1.25rem;
+  }
+
+  .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.85rem 1.1rem;
+  }
+  .cta-copy {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.03em;
+    color: var(--text-dim);
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.6rem 1rem;
+    cursor: pointer;
+    transition:
+      border-color var(--dur-fast) var(--ease-out),
+      color var(--dur-fast) var(--ease-out);
+  }
+  .cta-copy:hover {
+    border-color: var(--secondary);
+    color: var(--text);
+  }
+  .cta-copy.copied {
+    border-color: var(--green);
+    color: var(--green);
+  }
+  .cta-copy-icon {
+    width: 15px;
+    height: 15px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    flex-shrink: 0;
   }
 
   .cta-btn-body {
@@ -653,59 +1205,344 @@ const schema = {
     transform: translateY(-1px);
   }
 
+  .pill-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  /* ── Scene scroll-progress rail ───────────────────── */
+  .scene-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--border);
+    z-index: 3;
+  }
+  .scene-progress-fill {
+    height: 100%;
+    width: 100%;
+    transform: scaleX(0);
+    transform-origin: left center;
+    background: linear-gradient(90deg, oklch(52% 0.24 340), var(--secondary));
+    box-shadow: 0 0 12px oklch(63% 0.24 340 / 0.5);
+  }
+
+  /* ── Proof / credibility band (scene → body hinge) ── */
+  .proof-band {
+    max-width: 64rem;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 1.5rem;
+    text-align: center;
+    scroll-margin-top: 84px; /* clear the fixed nav when skipped to */
+    /* Faint atmospheric glow lifts the credentials like a lit badge */
+    background: radial-gradient(
+      ellipse 65% 75% at 50% 38%,
+      oklch(63% 0.24 340 / 0.08),
+      transparent 72%
+    );
+  }
+  .proof-lead {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 2rem;
+  }
+  .proof-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .proof-metric {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  .proof-num {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--secondary);
+    /* Jewel-like gradient; falls back to the solid color where unsupported */
+    background: linear-gradient(
+      165deg,
+      oklch(82% 0.14 340),
+      var(--secondary) 55%,
+      oklch(55% 0.24 340)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 22px oklch(63% 0.24 340 / 0.3));
+  }
+  .proof-cap {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+    max-width: 22ch;
+  }
+  .proof-affil {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+  .proof-dot {
+    color: var(--secondary);
+  }
+
+  /* ── How we'd start (process) ─────────────────────── */
+  .process-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    position: relative;
+  }
+  .process-list::before {
+    content: '';
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    bottom: 1rem;
+    width: 1px;
+    background: linear-gradient(180deg, var(--secondary), oklch(63% 0.24 340 / 0.3), transparent);
+    transform-origin: top center;
+    transition: transform 0.9s var(--ease-out) 0.15s;
+  }
+  /* The connector draws downward as the section reveals (JS-only; visible by default otherwise) */
+  .content-section.reveal .process-list::before {
+    transform: scaleY(0);
+  }
+  .content-section.reveal.in .process-list::before {
+    transform: scaleY(1);
+  }
+  .process-step {
+    display: grid;
+    grid-template-columns: 2rem 1fr;
+    gap: 1.1rem;
+    align-items: start;
+  }
+  .process-num {
+    position: relative;
+    z-index: 1;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--secondary);
+    background: var(--bg);
+    border: 1px solid oklch(63% 0.24 340 / 0.3);
+    border-radius: 50%;
+    font-variant-numeric: tabular-nums;
+    transition:
+      border-color var(--dur-fast) var(--ease-out),
+      box-shadow var(--dur-fast) var(--ease-out);
+  }
+  .process-step:hover .process-num {
+    border-color: var(--secondary);
+    box-shadow: 0 0 14px oklch(63% 0.24 340 / 0.5);
+  }
+  .process-text {
+    font-size: 0.92rem;
+    color: var(--text-dim);
+    line-height: 1.65;
+    padding-top: 0.25rem;
+  }
+  .process-text strong {
+    display: block;
+    color: var(--text);
+    font-weight: 500;
+    margin-bottom: 0.2rem;
+  }
+
+  /* ── FAQ (objection handling) ─────────────────────── */
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+  }
+  .faq-item:first-child {
+    border-top: 1px solid var(--border);
+  }
+  .faq-q {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.1rem 0;
+    cursor: pointer;
+    list-style: none;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text);
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+  .faq-q::-webkit-details-marker {
+    display: none;
+  }
+  .faq-q:hover {
+    color: var(--secondary);
+  }
+  .faq-chevron {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: var(--secondary);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+    transition: transform var(--dur-mid) var(--ease-out);
+  }
+  .faq-item[open] .faq-chevron {
+    transform: rotate(180deg);
+  }
+  .faq-a {
+    margin: 0;
+    padding: 0 0 1.2rem;
+    max-width: 60ch;
+    color: var(--text-dim);
+    font-size: 0.92rem;
+    line-height: 1.7;
+  }
+  .faq-item[open] .faq-a {
+    animation: faq-reveal var(--dur-mid) var(--ease-out);
+  }
+  @keyframes faq-reveal {
+    from {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* ── Sticky CTA (follows through article) ─────────── */
+  .sticky-cta {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    background: oklch(4% 0.008 340 / 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid oklch(63% 0.24 340 / 0.3);
+    box-shadow: 0 8px 30px var(--black-a50);
+    text-decoration: none;
+    opacity: 0;
+    transform: translateY(12px);
+    pointer-events: none;
+    visibility: hidden;
+    transition:
+      opacity var(--dur-mid) var(--ease-out),
+      transform var(--dur-mid) var(--ease-out),
+      border-color var(--dur-fast),
+      visibility 0s linear var(--dur-mid);
+  }
+  .sticky-cta.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    visibility: visible;
+    transition:
+      opacity var(--dur-mid) var(--ease-out),
+      transform var(--dur-mid) var(--ease-out),
+      border-color var(--dur-fast),
+      visibility 0s;
+  }
+  .sticky-cta:hover {
+    border-color: var(--secondary);
+  }
+  .sticky-cta-tag {
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .sticky-cta-action {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--secondary);
+  }
+
   @media (max-width: 640px) {
     .sticky-stage {
       height: 100svh;
     }
 
-    .text-pill {
-      display: contents;
+    .text-pill,
+    .overlay {
+      bottom: 5.5rem;
+      width: calc(100vw - 2rem);
     }
-
-    .pill-header {
-      position: absolute;
-      top: 1.25rem;
-      left: 1.25rem;
-      max-width: calc(100vw - 2.5rem);
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-      background: oklch(3% 0.006 264 / 0.82);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1rem 1.25rem;
-      z-index: 2;
-    }
-
-    .pill-body {
-      position: absolute;
-      bottom: 1.5rem;
-      left: 1.25rem;
-      max-width: calc(100vw - 2.5rem);
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-      background: oklch(3% 0.006 264 / 0.82);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1rem 1.25rem;
-      z-index: 2;
-    }
-
     .page-title {
-      font-size: 1.6rem;
+      font-size: 1.85rem;
     }
-
-    .phase-label {
+    .page-sub {
+      font-size: 0.9rem;
+    }
+    .ov-line {
+      font-size: 0.9rem;
+      line-height: 1.85;
+    }
+    .ov-hero {
+      font-size: 1.5rem;
+    }
+    .scroll-cue {
       display: none;
     }
 
-    .scroll-hint {
-      display: none;
+    .proof-metrics {
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+    }
+    /* Tighten the 4-item affiliation row so it clears the smallest phones (320px) comfortably */
+    .proof-affil {
+      gap: 0.5rem;
+      letter-spacing: 0.1em;
+      font-size: 0.66rem;
+    }
+
+    .sticky-cta {
+      bottom: 1rem;
+      right: 1rem;
+      padding: 0.6rem 1rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .scene-progress-fill {
+      transition: none;
+    }
+    /* Collapse the scroll runway to ~one screen for reduced-motion (animation is gated) - avoids
+       5+ screens of frozen empty scroll. 105vh keeps the progress math from dividing by zero. */
+    .scroll-scene {
+      height: 105vh;
     }
   }
 </style>

@@ -1,13 +1,21 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Quotes from '../components/Quotes.astro';
+import { PERSON_BASE } from '../components/constants';
+
+// Canonical brand entity for Google's knowledge graph (the homepage is the hub for "Jacob Chesslo")
+const personSchema = { ...PERSON_BASE, url: Astro.url.origin + '/' };
 ---
 
 <Layout
-  title="Jacob Chesslo"
-  description="Software Development Engineer at Blue Origin - physicist, builder, and space enthusiast."
+  title="Jacob Chesslo - Software Engineer & Physicist"
+  description="Software Development Engineer at Blue Origin - physicist, builder, and space enthusiast. Available for science and community-tech consulting."
   fullWidth={true}
 >
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+  </Fragment>
+
   <!-- HERO -->
   <section id="hero">
     <div class="stars" aria-hidden="true"></div>
@@ -19,6 +27,11 @@ import Quotes from '../components/Quotes.astro';
     <div class="scanlines" aria-hidden="true"></div>
 
     <div class="hero-content">
+      <a href="/consulting" class="hero-availability">
+        <span class="avail-dot" aria-hidden="true"></span>
+        Available for consulting
+        <span class="arr" aria-hidden="true">&rarr;</span>
+      </a>
       <h1 class="hero-name">
         Jacob
         <span class="accent-line">Chesslo.</span>
@@ -46,7 +59,7 @@ import Quotes from '../components/Quotes.astro';
 
     <div class="about-grid">
       <div class="about-text">
-        <p>Hey y'all — I'm Jacob.</p>
+        <p>Hey y'all - I'm Jacob.</p>
         <p>
           Physics degree from Florida Tech. Dark matter at CERN. Quantum chemistry and spectroscopy
           on HPC clusters at ENSCO. Now building avionics verification and HPC platforms at <strong
@@ -55,7 +68,7 @@ import Quotes from '../components/Quotes.astro';
         </p>
         <p>The common thread: computation has to be correct when the stakes are real.</p>
         <p>
-          I've also spent years running organizations — student government, LGBTQ+ groups,
+          I've also spent years running organizations - student government, LGBTQ+ groups,
           fraternity boards. People problems are harder than software problems.
         </p>
       </div>
@@ -91,7 +104,7 @@ import Quotes from '../components/Quotes.astro';
         <div class="exp-role">Software Engineer I &rarr; II &rarr; III @ Blue Origin</div>
         <div class="exp-highlights">
           <div class="exp-highlight">
-            Kept rockets on schedule — the verification platform every major program depended on
+            Kept rockets on schedule - the verification platform every major program depended on
           </div>
           <div class="exp-highlight">
             Sole engineer on K9 through New Glenn's most critical campaign
@@ -110,7 +123,7 @@ import Quotes from '../components/Quotes.astro';
         <div class="exp-role">Scientist II @ ENSCO</div>
         <div class="exp-highlights">
           <div class="exp-highlight">
-            Five orders of magnitude — hours to milliseconds — on scientist-written HPC code
+            Five orders of magnitude - hours to milliseconds - on scientist-written HPC code
           </div>
           <div class="exp-highlight">
             Tenfold throughput gain for the research team &nbsp;&middot;&nbsp; published at two
@@ -129,7 +142,7 @@ import Quotes from '../components/Quotes.astro';
         <div class="exp-role">Research Assistant @ Florida Tech &middot; HEP Lab A</div>
         <div class="exp-highlights">
           <div class="exp-highlight">
-            Searched for dark matter at the CMS experiment — <strong>beyond Standard Model</strong> physics
+            Searched for dark matter at the CMS experiment - <strong>beyond Standard Model</strong> physics
           </div>
           <div class="exp-highlight">
             Built hardware for a next-generation particle detector prototype
@@ -167,6 +180,49 @@ import Quotes from '../components/Quotes.astro';
   </section>
 
   <Quotes />
+
+  <div class="divider"></div>
+
+  <!-- CONSULTING -->
+  <section id="consulting-cta">
+    <div class="section-label">Work with me</div>
+    <h2 class="section-title">Available for consulting.</h2>
+    <p class="cc-sub">Two practices, beyond the day job - pick the one that fits.</p>
+
+    <div class="cc-grid">
+      <a href="/consulting/science" class="cc-card cc-science">
+        <svg class="cc-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"></circle>
+          <ellipse cx="12" cy="12" rx="10" ry="4.2"></ellipse>
+          <ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(60 12 12)"></ellipse>
+          <ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(120 12 12)"></ellipse>
+        </svg>
+        <div class="cc-tag">Science &amp; Engineering</div>
+        <h3 class="cc-name">Research code that ships.</h3>
+        <p class="cc-desc">Slow simulations, legacy code, HPC that won't scale.</p>
+        <span class="cc-cta">Explore <span class="arr">&rarr;</span></span>
+      </a>
+
+      <a href="/consulting/lifestyle" class="cc-card cc-lifestyle">
+        <svg
+          class="cc-icon"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+          <circle cx="9" cy="7" r="4"></circle>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+        </svg>
+        <div class="cc-tag">LGBTQ+ &amp; Lifestyle</div>
+        <h3 class="cc-name">Tech built for your world.</h3>
+        <p class="cc-desc">Web, apps &amp; community platforms, built from the inside.</p>
+        <span class="cc-cta">Explore <span class="arr">&rarr;</span></span>
+      </a>
+    </div>
+  </section>
 
   <div class="divider"></div>
 
@@ -216,11 +272,11 @@ import Quotes from '../components/Quotes.astro';
     }
 
     // ── Exp items: entrance (once per element) ─────────────────
-    // motion v12 inView has no `once` option — track manually
+    // motion v12 inView has no `once` option - track manually
     const enteredItems = new Set<Element>();
 
-    inView('.exp-item', (entry) => {
-      const item = entry.target as HTMLElement;
+    inView('.exp-item', (el) => {
+      const item = el as HTMLElement;
       if (enteredItems.has(item)) return;
       enteredItems.add(item);
 
@@ -242,7 +298,7 @@ import Quotes from '../components/Quotes.astro';
           highlights,
           { x: [-16, 0], opacity: [0, 1] },
           {
-            delay: stagger(0.06, { start: 0.4 }),
+            delay: stagger(0.06, { startDelay: 0.4 }),
             duration: 0.45,
             ease: [0.16, 1, 0.3, 1],
           }
@@ -253,8 +309,8 @@ import Quotes from '../components/Quotes.astro';
     // ── Exp dot ring: radar pulse while item is in view ─────────
     inView(
       '.exp-item',
-      (entry) => {
-        const ring = (entry.target as HTMLElement).querySelector<HTMLElement>('.exp-dot-ring');
+      (el) => {
+        const ring = (el as HTMLElement).querySelector<HTMLElement>('.exp-dot-ring');
         if (!ring) return;
 
         const pulse = () =>
@@ -280,11 +336,11 @@ import Quotes from '../components/Quotes.astro';
 
     // ── Education cards (once) ──────────────────────────────────
     const seenEdu = new Set<Element>();
-    inView('.edu-card', (entry) => {
-      if (seenEdu.has(entry.target)) return;
-      seenEdu.add(entry.target);
+    inView('.edu-card', (el) => {
+      if (seenEdu.has(el)) return;
+      seenEdu.add(el);
       animate(
-        entry.target as HTMLElement,
+        el as HTMLElement,
         { y: [24, 0], opacity: [0, 1] },
         {
           duration: 0.6,
@@ -293,59 +349,231 @@ import Quotes from '../components/Quotes.astro';
       );
     });
 
-    // ── Project cards (once) ────────────────────────────────────
-    const seenProj = new Set<Element>();
-    inView('.proj-card', (entry) => {
-      if (seenProj.has(entry.target)) return;
-      seenProj.add(entry.target);
-      animate(
-        entry.target as HTMLElement,
-        { y: [24, 0], opacity: [0, 1] },
-        {
-          duration: 0.6,
-          ease: [0.16, 1, 0.3, 1],
-        }
-      );
-    });
+    // (Removed dead inView('.proj-card') / inView('.skill-group') - those sections no longer
+    //  exist on the page; motion v12's inView threw querySelector errors on the empty element set.)
 
-    // ── Skill groups (once) ─────────────────────────────────────
-    const seenSkill = new Set<Element>();
-    inView('.skill-group', (entry) => {
-      if (seenSkill.has(entry.target)) return;
-      seenSkill.add(entry.target);
+    // ── Consulting cards (once) ─────────────────────────────────
+    const seenCC = new Set<Element>();
+    inView('.cc-card', (el) => {
+      if (seenCC.has(el)) return;
+      seenCC.add(el);
       animate(
-        entry.target as HTMLElement,
-        { y: [20, 0], opacity: [0, 1] },
-        {
-          duration: 0.5,
-          ease: [0.16, 1, 0.3, 1],
-        }
+        el as HTMLElement,
+        { y: [24, 0], opacity: [0, 1] },
+        { duration: 0.6, ease: [0.16, 1, 0.3, 1] }
       );
     });
   }
 </script>
 
-<script is:inline>
-  // Nav scroll state
-  const siteNav = document.getElementById('site-nav');
-  if (siteNav) {
-    window.addEventListener(
-      'scroll',
-      () => {
-        siteNav.classList.toggle('scrolled', window.scrollY > 40);
-      },
-      { passive: true }
-    );
+<style>
+  /* Hero availability pill - the "open for leads" signal, top of the page */
+  .hero-availability {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    text-decoration: none;
+    padding: 0.4rem 0.95rem;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    background: oklch(92% 0.22 131 / 0.04);
+    margin-bottom: 1.75rem;
+    opacity: 0;
+    animation: fadeUp 0.9s var(--ease-out) 0.2s forwards;
+    transition:
+      border-color var(--dur-fast) var(--ease-out),
+      color var(--dur-fast) var(--ease-out),
+      background var(--dur-fast) var(--ease-out);
+  }
+  .hero-availability:hover {
+    border-color: var(--green);
+    color: var(--text);
+    background: oklch(92% 0.22 131 / 0.08);
+  }
+  .hero-availability .arr {
+    display: inline-block;
+    color: var(--green);
+    transition: transform var(--dur-fast) var(--ease-out);
+  }
+  .hero-availability:hover .arr {
+    transform: translateX(3px);
+  }
+  .avail-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--green);
+    flex-shrink: 0;
+    animation: avail-pulse 2.4s ease-out infinite;
+  }
+  @keyframes avail-pulse {
+    0% {
+      box-shadow: 0 0 0 0 oklch(92% 0.22 131 / 0.5);
+    }
+    70% {
+      box-shadow: 0 0 0 7px oklch(92% 0.22 131 / 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 oklch(92% 0.22 131 / 0);
+    }
   }
 
-  // Parallax on hero star field + grid
+  #consulting-cta {
+    padding-top: var(--space-xl);
+    padding-bottom: var(--space-xl);
+  }
+  #consulting-cta .section-title {
+    margin-bottom: 0.75rem;
+  }
+  .cc-sub {
+    color: var(--text-dim);
+    font-size: 1rem;
+    max-width: 48ch;
+    margin-bottom: 2.5rem;
+  }
+
+  .cc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  .cc-card {
+    display: block;
+    text-decoration: none;
+    padding: 1.75rem;
+    border-radius: 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+    transition:
+      border-color var(--dur-mid) var(--ease-out),
+      transform var(--dur-mid) var(--ease-out),
+      box-shadow var(--dur-mid) var(--ease-out);
+  }
+  .cc-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    opacity: 0;
+    transition: opacity var(--dur-mid) var(--ease-out);
+  }
+  .cc-science::before {
+    background: linear-gradient(90deg, var(--accent), var(--accent-bright));
+  }
+  .cc-lifestyle::before {
+    background: linear-gradient(90deg, oklch(52% 0.24 340), var(--secondary));
+  }
+  .cc-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px var(--black-a40);
+  }
+  .cc-card:hover::before {
+    opacity: 1;
+  }
+  .cc-science:hover {
+    border-color: var(--accent-a30);
+  }
+  .cc-lifestyle:hover {
+    border-color: oklch(63% 0.24 340 / 0.3);
+  }
+
+  .cc-icon {
+    width: 28px;
+    height: 28px;
+    fill: none;
+    stroke-width: 1.5;
+    margin-bottom: 1rem;
+    transition:
+      transform var(--dur-mid) var(--ease-out),
+      filter var(--dur-mid) var(--ease-out);
+  }
+  .cc-science .cc-icon {
+    stroke: var(--accent-bright);
+  }
+  .cc-lifestyle .cc-icon {
+    stroke: var(--secondary);
+  }
+  .cc-science:hover .cc-icon {
+    transform: scale(1.08) rotate(8deg);
+    filter: drop-shadow(0 0 10px var(--accent-a50));
+  }
+  .cc-lifestyle:hover .cc-icon {
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 10px oklch(63% 0.24 340 / 0.5));
+  }
+
+  .cc-tag {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+  .cc-science .cc-tag {
+    color: var(--accent-bright);
+  }
+  .cc-lifestyle .cc-tag {
+    color: var(--secondary);
+  }
+  .cc-name {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+  .cc-desc {
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+  }
+  .cc-cta {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+  .cc-science:hover .cc-cta {
+    color: var(--accent-bright);
+  }
+  .cc-lifestyle:hover .cc-cta {
+    color: var(--secondary);
+  }
+  .arr {
+    display: inline-block;
+    transition: transform var(--dur-fast) var(--ease-out);
+  }
+  .cc-card:hover .arr {
+    transform: translateX(4px);
+  }
+
+  @media (max-width: 600px) {
+    .cc-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script is:inline>
+  // Parallax on hero star field + grid (nav-scroll state is handled in Header.astro)
   if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const gridBg = document.querySelector('.grid-bg');
+    const stars = document.querySelector('.stars');
     window.addEventListener(
       'scroll',
       () => {
         const y = window.scrollY;
-        const gridBg = document.querySelector('.grid-bg');
-        const stars = document.querySelector('.stars');
         if (gridBg) gridBg.style.transform = `translateY(${y * 0.08}px)`;
         if (stars) stars.style.transform = `translateY(${y * 0.05}px)`;
       },

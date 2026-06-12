@@ -4,7 +4,7 @@ test.describe('Navigation', () => {
   test('homepage loads correctly', async ({ page }) => {
     await page.goto('/');
     await expect(page).toHaveTitle(/Jacob/i);
-    await expect(page.locator('h1')).toContainText(/Jacob/i);
+    await expect(page.locator('h1').first()).toContainText(/Jacob/i);
   });
 
   test('all navigation links are in the DOM', async ({ page }) => {
@@ -27,7 +27,7 @@ test.describe('Navigation', () => {
     await page.goto('/');
     await page.getByRole('link', { name: 'CV' }).first().click();
     await expect(page).toHaveURL(/cv/);
-    await expect(page.locator('h1')).toBeVisible();
+    await expect(page.locator('h1').first()).toBeVisible();
   });
 
   test('logo links to homepage', async ({ page }) => {

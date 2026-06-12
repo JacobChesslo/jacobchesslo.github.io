@@ -5,7 +5,7 @@ test.describe('CV Page', () => {
     await page.goto('/cv');
 
     await expect(page).toHaveTitle(/CV/i);
-    await expect(page.locator('h1')).toBeVisible();
+    await expect(page.locator('h1').first()).toBeVisible();
   });
 
   test('CV content is rendered from markdown', async ({ page }) => {
@@ -49,7 +49,7 @@ test.describe('CV Page Mobile', () => {
   test('CV is readable on mobile', async ({ page }) => {
     await page.goto('/cv');
 
-    await expect(page.locator('h1')).toBeVisible();
+    await expect(page.locator('h1').first()).toBeVisible();
 
     const cvBody = page.locator('.cv-md-body');
     await expect(cvBody).toBeVisible();

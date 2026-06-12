@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { marked, type Token, type Tokens } from 'marked';
+import { PERSON_BASE } from '../components/constants';
 import cvRaw from '../content/curriculum-vitae/README.md?raw';
 
 const renderer = new marked.Renderer();
@@ -53,7 +54,7 @@ renderer.list = function ({ items, ordered }) {
     .map((item) => {
       const nestedLists = item.tokens
         .filter((t: Token): t is Tokens.List => t.type === 'list')
-        .map((t: Tokens.List) => renderer.list({ items: t.items, ordered: t.ordered }))
+        .map((t: Tokens.List) => renderer.list(t))
         .join('');
       const textToken = item.tokens.find(
         (t: Token): t is Tokens.Text | Tokens.Paragraph =>
@@ -74,12 +75,19 @@ const month = now.toLocaleString('en-US', { month: 'short' });
 const day = String(now.getDate()).padStart(2, '0');
 const year = now.getFullYear();
 const cvFilename = `JacobChessloCV-${month}-${day}-${year}.pdf`;
+
+// The CV is the canonical résumé - the richest Person-entity page on the site
+const personSchema = { ...PERSON_BASE, url: Astro.url.origin + '/' };
 ---
 
 <Layout
   title="CV | Jacob Chesslo"
-  description="Curriculum vitae of Jacob Chesslo - software engineer, physicist, and researcher."
+  description="Curriculum vitae of Jacob Chesslo - software engineer at Blue Origin and physicist. Background spans particle physics at CERN, HPC, and aerospace avionics."
 >
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+  </Fragment>
+
   <div class="cv-page">
     <div class="cv-download-bar">
       <a href="/JacobChessloCV.pdf" download={cvFilename} class="btn btn-primary cv-download">
@@ -232,12 +240,18 @@ const cvFilename = `JacobChessloCV-${month}-${day}-${year}.pdf`;
 
   .cv-md-body :global(a) {
     color: var(--accent);
-    text-decoration: none;
-    transition: color var(--dur-fast) var(--ease-out);
+    /* Underlined at rest (not just on hover) so links are distinguishable without color alone -
+       WCAG 1.4.1. Subtle offset/color keeps it elegant in the dense résumé. */
+    text-decoration: underline;
+    text-decoration-color: color-mix(in oklch, var(--accent) 45%, transparent);
+    text-underline-offset: 2px;
+    transition:
+      color var(--dur-fast) var(--ease-out),
+      text-decoration-color var(--dur-fast) var(--ease-out);
   }
   .cv-md-body :global(a:hover) {
     color: var(--secondary);
-    text-decoration: underline;
+    text-decoration-color: var(--secondary);
   }
 
   /* Long reference URLs in presentations/posters */

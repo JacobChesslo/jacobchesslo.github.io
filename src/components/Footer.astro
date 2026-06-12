@@ -8,6 +8,7 @@ const year = new Date().getFullYear();
 
   <nav class="footer-nav" aria-label="Footer navigation">
     <a href="/#experience">Work</a>
+    <a href="/consulting">Consulting</a>
     <a href="/cv">CV</a>
     <span class="footer-sep" aria-hidden="true"></span>
     {
@@ -19,7 +20,7 @@ const year = new Date().getFullYear();
     }
   </nav>
 
-  <span style="color: var(--accent); font-size: 0.6rem; letter-spacing: 0.1em;"
+  <span style="color: var(--accent-bright); font-size: 0.65rem; letter-spacing: 0.1em;"
     >&#8767; built with intention</span
   >
 </footer>
@@ -35,6 +36,8 @@ const year = new Date().getFullYear();
     text-decoration: none;
     font-size: 0.72rem;
     letter-spacing: 0.08em;
+    /* Vertical padding lifts the tap target to ≥24px (WCAG 2.5.8) without changing text size */
+    padding: 10px 6px;
     transition: color var(--dur-fast) var(--ease-out);
   }
   .footer-nav a:hover {
